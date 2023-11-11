@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/App.css";
+import "../css/navbar.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { RestaurantPage } from "./screens/RestaurantPage";
 import { OrdersPage } from "./screens/OrdersPage";
@@ -8,12 +9,24 @@ import { LoginPage } from "./screens/LoginPage";
 import { MembersPage } from "./screens/MembersPage";
 import { HelpPage } from "./screens/HeplPage";
 import { HomePage } from "./screens/HomePage";
+import NavbarHome from "./components/header";
+import NavbarRestaurant from "./components/header/restaurant";
+import NavbarOthers from "./components/header/others";
 
 function App() {
+  const main_path = window.location.pathname;
+  console.log(main_path);
+
   return (
     <Router>
-      <div>
-        <nav>
+      {main_path === "/" ? (
+        <NavbarHome />
+      ) : main_path === "/restaurant" ? (
+        <NavbarRestaurant />
+      ) : (
+        <NavbarOthers />
+      )}
+      {/* <nav>
           <ul>
             <li>
               <Link to="/restaurant">RestaurantPage</Link>
@@ -37,40 +50,33 @@ function App() {
               <Link to="/">Home</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
-        {/* A <Switch> looks through its children <Route>s and
-        renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/restaurant">
-            <RestaurantPage />
-          </Route>
-          <Route path="/orders">
-            <OrdersPage />
-          </Route>
-          <Route path="/community">
-            <CommunityPage />
-          </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/member-page">
-            <MembersPage />
-          </Route>
-          <Route path="/help">
-            <HelpPage />
-          </Route>
-          <Route path="/">
-            <HomePage />
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/restaurant">
+          <RestaurantPage />
+        </Route>
+        <Route path="/orders">
+          <OrdersPage />
+        </Route>
+        <Route path="/community">
+          <CommunityPage />
+        </Route>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+        <Route path="/member-page">
+          <MembersPage />
+        </Route>
+        <Route path="/help">
+          <HelpPage />
+        </Route>
+        <Route path="/">
+          <HomePage />
+        </Route>
+      </Switch>
     </Router>
   );
 }
 
 export default App;
-
-function Home() {
-  return <h2>Home</h2>;
-}

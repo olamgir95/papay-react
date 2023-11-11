@@ -1,0 +1,7 @@
+.home_navbar {
+  width: 100%;
+  height: 773px;
+  display: flex;
+  background: url("../assets/imgs/headerback.png");
+  background-size: cover;
+}
