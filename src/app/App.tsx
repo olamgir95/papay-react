@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/App.css";
 import "../css/navbar.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { RestaurantPage } from "./screens/RestaurantPage";
 import { OrdersPage } from "./screens/OrdersPage";
 import { CommunityPage } from "./screens/CommunityPage";
