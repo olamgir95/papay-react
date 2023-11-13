@@ -43,3 +43,47 @@
 .home_navbar .hover-line:hover:after {
   transform: scaleX(1);
 }
+
+.home_navbar .head_information {
+  display: flex;
+  flex-direction: row;
+  width: 1290px;
+  height: 477px;
+}
+
+.home_navbar .define_restaurant {
+  position: relative;
+  width: 484px;
+  height: 143px;
+  margin-top: 40px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 75px;
+  color: #fff;
+}
+
+.home_navbar .timeline_service {
+  position: relative;
+  width: 466px;
+  height: 28px;
+  margin-top: 30px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #d5d5d5;
+}
+
+.home_navbar .halal_logo {
+  position: relative;
+  width: 277px;
+  height: 277px;
+  margin-top: 41px;
+  margin-left: 494px;
+  background: url("/public/home/halalHome.png");
+  border-radius: 90px 0 0 0;
+  filter: invert();
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/App.css";
 import "../css/navbar.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -14,17 +14,18 @@ import NavbarRestaurant from "./components/header/restaurant";
 import NavbarOthers from "./components/header/others";
 
 function App() {
+  const [path, setPath] = useState();
   const main_path = window.location.pathname;
   console.log(main_path);
 
   return (
     <Router>
       {main_path === "/" ? (
-        <NavbarHome />
+        <NavbarHome setPath={setPath} />
       ) : main_path === "/restaurant" ? (
-        <NavbarRestaurant />
+        <NavbarRestaurant setPath={setPath} />
       ) : (
-        <NavbarOthers />
+        <NavbarOthers setPath={setPath} />
       )}
       {/* <nav>
           <ul>
