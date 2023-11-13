@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 
 export default function NavbarHome(props: any) {
   return (
-    <div className="home_navbar">
+    <div className="format home_navbar">
       <Container>
         <Stack
           flexDirection={"row"}
@@ -28,7 +28,7 @@ export default function NavbarHome(props: any) {
             className="navbar_links"
           >
             <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/" activeClassName="underline" exact>
+              <NavLink to="/" activeClassName="underline">
                 Home
               </NavLink>
             </Box>
