@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../css/App.css";
 import "../css/navbar.css";
 import "../css/footer.css";
+import "../css/home.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { RestaurantPage } from "./screens/RestaurantPage";
 import { OrdersPage } from "./screens/OrdersPage";
