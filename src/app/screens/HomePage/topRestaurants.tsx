@@ -59,6 +59,7 @@ export default function TopRestaurants() {
                 <CardOverflow
                   sx={{
                     display: "flex",
+                    flexDirection: "row",
                     gap: 1.5,
                     py: 1.5,
                     px: "var(--Card-padding)",
@@ -144,6 +145,7 @@ export default function TopRestaurants() {
                 <CardOverflow
                   sx={{
                     display: "flex",
+                    flexDirection: "row",
                     gap: 1.5,
                     py: 1.5,
                     px: "var(--Card-padding)",
@@ -229,6 +231,7 @@ export default function TopRestaurants() {
                 <CardOverflow
                   sx={{
                     display: "flex",
+                    flexDirection: "row",
                     gap: 1.5,
                     py: 1.5,
                     px: "var(--Card-padding)",
@@ -314,6 +317,7 @@ export default function TopRestaurants() {
                 <CardOverflow
                   sx={{
                     display: "flex",
+                    flexDirection: "row",
                     gap: 1.5,
                     py: 1.5,
                     px: "var(--Card-padding)",
