@@ -13,7 +13,7 @@ export default function BestRestaurants() {
   return (
     <div className="best_restaurant_frame">
       <img className="best_corner_res" src={"/icons/best_res.svg"} alt="" />
-      <Container sx={{ mt: "153px" }}>
+      <Container sx={{ paddingTop: "153px" }}>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className="category_title">Zo'r Restaurantlar</Box>
 
