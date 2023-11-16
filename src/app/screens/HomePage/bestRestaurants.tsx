@@ -22,7 +22,7 @@ export default function BestRestaurants() {
               <Card
                 variant="outlined"
                 sx={{
-                  minHeight: 483,
+                  maxHeight: 483,
                   minWidth: 320,
                   mr: "35px",
                   cursor: "pointer",
@@ -50,10 +50,10 @@ export default function BestRestaurants() {
                     <Favorite style={{ fill: "white" }} />
                   </IconButton>
                 </CardOverflow>
-                <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
+                <Typography level="h2" sx={{ fontSize: "md", mt: 0 }}>
                   Texas De Brazil
                 </Typography>
-                <Typography level="body-sm" sx={{ mb: 2, mt: 0.5 }}>
+                <Typography level="body-sm">
                   <Link
                     href="#"
                     textColor="neutral.700"
@@ -62,7 +62,7 @@ export default function BestRestaurants() {
                     Tashkent, Yunus Abad 4-1
                   </Link>
                 </Typography>
-                <Typography level="body-sm" sx={{ mb: 2, mt: 0.5 }}>
+                <Typography level="body-sm">
                   <Link
                     href="#"
                     textColor="neutral.700"
@@ -114,7 +114,7 @@ export default function BestRestaurants() {
               <Card
                 variant="outlined"
                 sx={{
-                  minHeight: 483,
+                  maxHeight: 483,
                   minWidth: 320,
                   mr: "35px",
                   cursor: "pointer",
@@ -142,10 +142,10 @@ export default function BestRestaurants() {
                     <Favorite style={{ fill: "white" }} />
                   </IconButton>
                 </CardOverflow>
-                <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
+                <Typography level="h2" sx={{ fontSize: "md", mt: 0 }}>
                   Texas De Brazil
                 </Typography>
-                <Typography level="body-sm" sx={{ mb: 2, mt: 0.5 }}>
+                <Typography level="body-sm">
                   <Link
                     href="#"
                     textColor="neutral.700"
@@ -154,7 +154,7 @@ export default function BestRestaurants() {
                     Tashkent, Yunus Abad 4-1
                   </Link>
                 </Typography>
-                <Typography level="body-sm" sx={{ mb: 2, mt: 0.5 }}>
+                <Typography level="body-sm">
                   <Link
                     href="#"
                     textColor="neutral.700"
@@ -206,7 +206,7 @@ export default function BestRestaurants() {
               <Card
                 variant="outlined"
                 sx={{
-                  minHeight: 483,
+                  maxHeight: 483,
                   minWidth: 320,
                   mr: "35px",
                   cursor: "pointer",
@@ -234,10 +234,10 @@ export default function BestRestaurants() {
                     <Favorite style={{ fill: "white" }} />
                   </IconButton>
                 </CardOverflow>
-                <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
+                <Typography level="h2" sx={{ fontSize: "md", mt: 0 }}>
                   Texas De Brazil
                 </Typography>
-                <Typography level="body-sm" sx={{ mb: 2, mt: 0.5 }}>
+                <Typography level="body-sm">
                   <Link
                     href="#"
                     textColor="neutral.700"
@@ -246,7 +246,7 @@ export default function BestRestaurants() {
                     Tashkent, Yunus Abad 4-1
                   </Link>
                 </Typography>
-                <Typography level="body-sm" sx={{ mb: 2, mt: 0.5 }}>
+                <Typography level="body-sm">
                   <Link
                     href="#"
                     textColor="neutral.700"
@@ -298,7 +298,7 @@ export default function BestRestaurants() {
               <Card
                 variant="outlined"
                 sx={{
-                  minHeight: 483,
+                  maxHeight: 483,
                   minWidth: 320,
                   mr: "35px",
                   cursor: "pointer",
@@ -326,10 +326,10 @@ export default function BestRestaurants() {
                     <Favorite style={{ fill: "white" }} />
                   </IconButton>
                 </CardOverflow>
-                <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
+                <Typography level="h2" sx={{ fontSize: "md", mt: 0 }}>
                   Texas De Brazil
                 </Typography>
-                <Typography level="body-sm" sx={{ mb: 2, mt: 0.5 }}>
+                <Typography level="body-sm">
                   <Link
                     href="#"
                     textColor="neutral.700"
@@ -338,7 +338,7 @@ export default function BestRestaurants() {
                     Tashkent, Yunus Abad 4-1
                   </Link>
                 </Typography>
-                <Typography level="body-sm" sx={{ mb: 2, mt: 0.5 }}>
+                <Typography level="body-sm">
                   <Link
                     href="#"
                     textColor="neutral.700"

@@ -72,12 +72,113 @@
   display: flex;
   width: 100%;
   height: 755px;
-  background: #0b0e11;
-  position: relative;
 }
 
 .best_corner_res {
   position: absolute;
   left: 6%;
   /* transform: rotate(90deg); */
+}
+
+.homepage .best_dishes_frame {
+  margin-top: 72px;
+  display: flex;
+  width: 100%;
+  height: 462px;
+}
+
+.homepage .dishes_box {
+  height: 376px;
+  margin-right: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage .dishes_img {
+  color: #fff;
+  position: relative;
+  width: 273px;
+  height: 275px;
+  background-size: cover;
+  border-radius: 0px 5px 0px 0px;
+  background: url("/public/restaurant/trend_taom.png");
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage .dishes_img .dish_sale {
+  margin-top: 43px;
+  width: 77px;
+  height: 39px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8be69;
+  box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0px 50px 50px 0px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #fff;
+}
+
+.homepage .view_btn {
+  width: 163px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 31px;
+  padding-left: 20px;
+  margin-left: 55px;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: rgba(28, 23, 23, 0.59);
+  border: 2px solid #f8be69;
+  border-radius: 10px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 20px;
+  color: #fff;
+}
+
+.homepage .dishes_img:hover .view_btn {
+  opacity: 1;
+}
+
+.homepage .dishes_box .dish_desc {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage .dishes_box .dish_title_text {
+  margin-top: 18px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  color: #d1d1d1;
+}
+
+.homepage .dishes_box .dish_desc_text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  color: #e3c08d;
 }

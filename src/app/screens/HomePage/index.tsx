@@ -12,9 +12,9 @@ export function HomePage() {
     <div className="homepage">
       <Statistics />
       <TopRestaurants />
+      <BestRestaurants />
       <BestDishes />
       <Advertisements />
-      <BestRestaurants />
       <Events />
       <Recommendations />
     </div>
