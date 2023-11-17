@@ -15,19 +15,19 @@ const HorizontalMargin = styled.span<IMarginerProps>`
   background: ${({ bg }) => `${bg}`};
 `;
 
-const VerticalMargin = styled.span<IMarginerProps>`
-  display: flex;
-  min-width: ${({ width }) => `${width}px`};
-  min-height: ${({ height }) => `${height}px`};
-  background: ${({ bg }) => `${bg}`};
-`;
+// const VerticalMargin = styled.span<IMarginerProps>`
+//   display: flex;
+//   min-width: ${({ width }) => `${width}px`};
+//   min-height: ${({ height }) => `${height}px`};
+//   background: ${({ bg }) => `${bg}`};
+// `;
 
 function Marginer(props: IMarginerProps) {
-  const { direction } = props;
-  if (direction === "horizontal") return <HorizontalMargin {...props} />;
-  else {
-    return <VerticalMargin {...props} />;
-  }
+  // const { direction } = props;
+  return <HorizontalMargin {...props} />;
+  // else {
+  //   return <VerticalMargin {...props} />;
+  // }
 }
 
 Marginer.defaultProps = {
