@@ -19,7 +19,6 @@ import Footer from "./components/footer";
 function App() {
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
-  console.log(main_path);
 
   return (
     <Router>
