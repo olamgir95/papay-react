@@ -1,11 +1,8 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Box, Container, Stack } from "@mui/material";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/autoplay";
+import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
+SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 export default function Events() {
   const events_list = [
@@ -67,37 +64,36 @@ export default function Events() {
             <span className="category_title">Hodisalar</span>
           </Box>
           <Box className="prev_next_frame">
-            {/* <img
+            <img
               src="icons/arrow-left.svg"
               className="swiper-button-prev"
               alt=""
-            /> */}
+            />
             <div className="dot_frame_pagination swiper-pagination"></div>
-            {/* <img
+            <img
               src="icons/arrow-right.svg"
               className="swiper-button-next"
               alt=""
-            /> */}
+            />
           </Box>
           <Swiper
-            modules={[Autoplay, Pagination, Navigation]}
-            className="events_info  "
+            className="events_info swiper-wrapper"
             slidesPerView={"auto"}
             centeredSlides={true}
             spaceBetween={30}
-            navigation={true}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
             pagination={{
               el: ".swiper-pagination", // Use a valid DOM element here
               clickable: true,
             }}
-            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            autoplay={{ delay: 2000, disableOnInteraction: true }}
           >
             {events_list.map((value, number) => {
               return (
-                <SwiperSlide
-                  key={number}
-                  className="events_info_frame slider-wrapper"
-                >
+                <SwiperSlide key={number} className="events_info_frame">
                   <Box className="events_img">
                     <img src={value.img} className="events_img" alt="" />
                   </Box>

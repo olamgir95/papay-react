@@ -12,7 +12,7 @@ import { AspectRatio, CardOverflow, IconButton, Link } from "@mui/joy";
 export default function BestRestaurants() {
   return (
     <div className="best_restaurant_frame">
-      <img className="best_corner_res" src={"/icons/best_res.svg"} alt="" />
+      <img className="best_corner_res" src={"/icons/line_left.svg"} alt="" />
       <Container sx={{ paddingTop: "153px" }}>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className="category_title">Zo'r Restaurantlar</Box>
