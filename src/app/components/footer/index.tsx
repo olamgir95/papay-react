@@ -1,5 +1,6 @@
 import { Box, Container, Stack } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -16,18 +17,18 @@ export default function Footer() {
                 eiusmod tempor Sed ut perspiciatis unde omnis iste
               </Box>
               <Stack className="contact_links">
-                <Box>
+                <Link to={""}>
                   <img src="/footer/facebook.svg" alt="" />
-                </Box>
-                <Box>
+                </Link>
+                <Link to={""}>
                   <img src="/footer/twitter.svg" alt="" />
-                </Box>
-                <Box>
+                </Link>
+                <Link to={""}>
                   <img src="/footer/instagram.svg" alt="" />
-                </Box>
-                <Box>
+                </Link>
+                <Link to={""}>
                   <img src="/footer/youtube.svg" alt="" />
-                </Box>
+                </Link>
               </Stack>
             </Stack>
             <Stack className="parts">

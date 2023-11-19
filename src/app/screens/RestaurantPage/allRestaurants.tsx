@@ -38,14 +38,14 @@ const AllRestaurants = () => {
                   type="serch"
                   className="searchInput"
                   name="resSearch"
-                  placeholder="Resursni qidirish..."
+                  placeholder="Qidiruv..."
                 />
                 <Button
                   className="button_search"
                   variant="contained"
                   endIcon={<SearchIcon />}
                 >
-                  Search
+                  Izlash
                 </Button>
               </form>
             </Box>
@@ -166,7 +166,7 @@ const AllRestaurants = () => {
                     next: ArrowForwardIcon,
                   }}
                   {...item}
-                  color="secondary"
+                  color="primary"
                 />
               )}
             />

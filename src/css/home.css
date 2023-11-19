@@ -95,6 +95,10 @@
   align-items: center;
 }
 
+.btn_all {
+  margin-left: 100px;
+}
+
 .homepage .dishes_img {
   color: #fff;
   position: relative;
@@ -232,6 +236,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-left: 901px;
   margin-top: 54px;
 }
 
