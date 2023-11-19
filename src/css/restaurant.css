@@ -5,6 +5,8 @@
   background: #0b0e11;
 }
 
+/* ALL RESTAURANT  */
+
 .restaurant_page .all_restaurant .fil_search_box {
   position: relative;
   width: 100%;
@@ -75,7 +77,7 @@
   transform-origin: 0% 50%;
 }
 
-.restaurant_page .all_restaurant .search_big_box {
+.restaurant_page .search_big_box {
   position: relative;
   width: 360px;
   height: 33px;
@@ -88,7 +90,7 @@
   box-sizing: border-box;
 }
 
-.restaurant_page .all_restaurant .search_form {
+.restaurant_page .search_form {
   position: relative;
   width: 100%;
   display: flex;
@@ -97,7 +99,7 @@
   justify-content: space-between;
 }
 
-.restaurant_page .all_restaurant .searchInput {
+.restaurant_page .searchInput {
   position: relative;
   width: 245px;
   height: 29px;
@@ -113,15 +115,15 @@
   color: #4f547b;
 }
 
-.restaurant_page .all_restaurant .searchInput:focus {
+.restaurant_page .searchInput:focus {
   outline: none;
 }
 
-.all_restaurant .button_search {
+.restaurant_page .button_search {
   position: relative;
   width: 100px;
   height: 33px;
-  display: flex;
+  font-size: 12px;
   border-radius: 18.5px;
   background: #f8be69;
 }
@@ -202,4 +204,384 @@
 .bottom_box .line_two_img {
   transform: rotateX(180deg);
   transform: rotateZ(180deg);
+}
+
+/* SINGLE RESTAURANT */
+
+.restaurant_page .single_restaurant {
+  width: 100%;
+  height: auto;
+  display: flex;
+  background: #0b0e11;
+  flex-direction: column;
+}
+
+.single_restaurant .top_text {
+  position: relative;
+  width: 100%;
+  height: 43px;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.single_restaurant .top_text p {
+  position: relative;
+  margin-left: 380px;
+  font-family: "Dancing Script";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 43px;
+  color: #e3c08d;
+}
+
+.single_restaurant .avatar_big_box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 35px;
+}
+
+.single_restaurant .prev_btn,
+.next_btn {
+  font-size: 40px;
+  color: white;
+  width: 10%;
+  height: 147px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single_restaurant .avatars_wrapper {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.single_restaurant .swiper-wrapper {
+  width: 90%;
+  height: 147px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.single_restaurant .restaurant_avatars {
+  cursor: pointer;
+  width: 108px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.single_restaurant .dish_filter_main {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 90%;
+  margin-top: 65px;
+}
+
+.single_restaurant .dish_filter_box {
+  display: flex;
+  flex-direction: row;
+}
+
+.single_restaurant .dish_category_main {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 600px;
+}
+
+.single_restaurant .dish_category_main .dish_category_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+}
+
+.single_restaurant .dish_category_box button {
+  min-width: auto;
+  margin-right: 10px;
+}
+
+.single_restaurant .dish_category_main .dish_wrapper {
+  margin-left: 20px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.single_restaurant .dish_wrapper .dish_card {
+  margin-top: 60px;
+  margin-right: 26px;
+  width: 273px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.single_restaurant .dish_card .dish_img {
+  background: url("/public/restaurant/soup.png");
+  width: 273px;
+  height: 275px;
+  background-size: cover;
+  border-radius: 0px 50px 0px 0px;
+  position: relative;
+}
+
+.single_restaurant .dish_card .dish_img img {
+  position: absolute;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+.single_restaurant .dish_card .dish_img .dish_sale {
+  margin-top: 43px;
+  width: 84px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d1f4d9;
+  box-shadow: 4px 6px 20px rgb(0 0 0 / 10%);
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #c50a09;
+}
+
+.single_restaurant .dish_card .dish_img .like_view_btn {
+  position: absolute;
+  top: 223px;
+  padding: 5px;
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+}
+
+.single_restaurant .dish_card .dish_img:hover .like_view_btn {
+  opacity: 1;
+}
+
+.single_restaurant .dish_card .dish_img:hover .view_btn {
+  opacity: 1;
+}
+
+.single_restaurant .dish_card .dish_img .view_btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  padding: 20px;
+  top: 217px;
+  width: 64px;
+  height: 46px;
+  left: 105px;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: rgba(198 0 255 / 66%);
+  border: 2px solid #d7b686;
+  border-radius: 10px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 15px;
+  color: #ffffff;
+}
+.single_restaurant .dish_card .dish_img .view_btn img {
+  display: flex;
+}
+
+.single_restaurant .dish_card .dish_info {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.single_restaurant .dish_card .dish_info .dish_title_text {
+  margin-top: 18px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  color: #d1d1d1;
+}
+
+.single_restaurant .dish_card .dish_info .dish_price {
+  margin-top: 15px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  color: #e3c08d;
+  display: flex;
+  align-items: center;
+}
+
+.single_restaurant .dish_img:before {
+  border-radius: 0px 50px 0px 0px;
+  content: "";
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.single_restaurant .dish_img:hover:before {
+  border-radius: 0px 50px 0px 0px;
+  opacity: 1;
+}
+
+.single_restaurant .review_for_restaurant {
+  margin-top: 60px;
+  width: 100%;
+  height: 630px;
+  display: flex;
+  background: #0d1518;
+}
+
+.single_restaurant .review_container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.single_restaurant .category_title {
+  font-family: "dancing Script";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 43px;
+  color: #e3c08d;
+}
+
+.single_restaurant .review_sec {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row;
+}
+
+.single_restaurant .review_box {
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.single_restaurant .review_img {
+  display: flex;
+  justify-content: center;
+}
+
+.single_restaurant .review_img img {
+}
+
+.single_restaurant .member_reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 60px;
+}
+
+.single_restaurant .member_reviews .member_sec {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin-top: 70px;
+}
+
+.single_restaurant .member_sec .about_left {
+  background: url("/public/restaurant/rayhon.png");
+  background-repeat: no-repeat;
+}
+
+.single_restaurant .member_sec .about_right .right_members {
+  display: flex;
+  flex-direction: row;
+}
+
+.single_restaurant .dish_detail_box .modal_dish_desc {
+  margin-top: 20px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  color: #000000;
+}
+
+.single_restaurant .dish_detail_box .dish_create_dt {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  color: #000000;
+}
+
+.single_restaurant .dish_detail_box .to_basket_box {
+  margin-top: 10px;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.single_restaurant .member_reviews .last_section {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.single_restaurant .member_reviews .last_section iframe {
+  margin-top: 60px;
+  width: 1320px;
+  height: 500px;
 }

@@ -394,6 +394,7 @@ export default function BestRestaurants() {
             flexDirection={"row"}
             justifyContent={"flex-end"}
             width={"100%"}
+            className="btn_all"
           >
             <Button
               variant="contained"
@@ -402,7 +403,7 @@ export default function BestRestaurants() {
                 color: "#FFFFF",
               }}
             >
-              Hammasini ko'rish
+              Barchasini ko'rish
             </Button>
           </Stack>
         </Stack>
