@@ -154,40 +154,6 @@
   border-radius: 8px;
 }
 
-.all_restaurant .restaurant_img {
-  width: 280px;
-  height: 330px;
-  border-radius: 5px;
-  background-size: cover;
-}
-
-.all_restaurant .restaurant_desc {
-  width: 280px;
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.all_restaurant .restaurant_title_text {
-  font-family: "GT Walsheim Pro";
-  font-style: normal;
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 26px;
-  text-transform: capitalize;
-  color: #140342;
-}
-
-.all_restaurant .restaurant_desc_text {
-  margin-top: 6px;
-  font-family: "GT Walsheim Pro";
-  font-style: normal;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 26px;
-  color: #4f547b;
-}
-
 .all_restaurant .bottom_box {
   position: relative;
   width: 100%;
@@ -575,13 +541,9 @@
   color: #616164;
 }
 
-.single_restaurant .review_for_restaurant .review_stars {
+.restaurant_page .review_stars {
   margin-top: 10px;
-  width: 149px;
-  height: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 
 .single_restaurant .member_reviews {
@@ -729,4 +691,60 @@
   margin-top: 60px;
   width: 1320px;
   height: 500px;
+}
+
+.restaurant_page .chosen_dish_page {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background: #0b0e11;
+}
+
+.chosen_dish_page .dish_container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 60px 0px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.chosen_dish_page .chosen_dish_slider {
+  width: 48%;
+  overflow: visible;
+  height: 581px;
+}
+
+.chosen_dish_page .dish_swiper {
+  --swiper-navigation-color: #fff;
+  --swiper-pagination-color: #fff;
+  width: 95%;
+  height: 95%;
+  padding: 50px;
+  height: 1020px;
+  overflow: visible;
+}
+
+/* .chosen_dish_page .dish_swiper img {
+  width: 100%;
+  height: 100%;
+} */
+
+.chosen_dish_page .chosen_dish_info_container {
+  padding: 30px 40px;
+  width: 49%;
+  height: 452px;
+  display: flex;
+  background: #fff;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0px 4px 16px rgba(242, 189, 87, 0.04);
+  border-radius: 16px;
+}
+
+.swiper-wrapper {
+  display: flex;
 }

@@ -1,5 +1,13 @@
-import React from "react";
-import { Badge, Box, Button, Checkbox, Container, Stack } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Badge,
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  Rating,
+  Stack,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosNewIcon from "@mui/icons-material/ArrowForwardIos";
@@ -16,6 +24,7 @@ const dishes_list = Array.from(Array(8).keys());
 const comments_list = Array.from(Array(4).keys());
 
 export default function OneRestaurant() {
+  const [value, setValue] = useState<number | null>(2);
   return (
     <div className="single_restaurant">
       <Container>
@@ -158,11 +167,14 @@ export default function OneRestaurant() {
                     qilaman!!!
                   </p>
                   <Box className="review_stars">
-                    <StarIcon style={{ color: "#F2BD57" }} />
-                    <StarIcon style={{ color: "#F2BD57" }} />
-                    <StarIcon style={{ color: "#F2BD57" }} />
-                    <StarIcon style={{ color: "whitesmoke" }} />
-                    <StarIcon style={{ color: "whitesmoke" }} />
+                    <Rating
+                      name="simple-controlled"
+                      value={value}
+                      size="large"
+                      onChange={(event, newValue) => {
+                        setValue(newValue);
+                      }}
+                    />
                   </Box>
                 </Box>
               );

@@ -90,7 +90,7 @@ const AllRestaurants = () => {
                       </IconButton>
                     </CardOverflow>
 
-                    <Typography level="h2" sx={{ fontSize: "md", mt: 1 }}>
+                    <Typography level="h2" sx={{ fontSize: "lg", mt: 1 }}>
                       Texas De Brazil restaurant
                     </Typography>
                     <Typography level="body-sm" sx={{ mt: 0.5, mb: 2 }}>
