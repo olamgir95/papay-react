@@ -214,24 +214,13 @@
 }
 
 .single_restaurant .prev_btn,
-.next_btn {
+.single_restaurant .next_btn {
   font-size: 40px;
   color: white;
   width: 10%;
   height: 147px;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-.single_restaurant .avatars_wrapper {
-  width: 90%;
-  height: 147px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  overflow: hidden;
   align-items: center;
 }
 
@@ -703,35 +692,37 @@
 }
 
 .chosen_dish_page .dish_container {
-  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 60px 0px;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 .chosen_dish_page .chosen_dish_slider {
   width: 48%;
-  overflow: visible;
-  height: 581px;
+
+  height: 1020px;
 }
 
 .chosen_dish_page .dish_swiper {
   --swiper-navigation-color: #fff;
   --swiper-pagination-color: #fff;
-  width: 95%;
-  height: 95%;
-  padding: 50px;
-  height: 1020px;
-  overflow: visible;
+  height: 452px;
+  width: 100%;
 }
 
-/* .chosen_dish_page .dish_swiper img {
+.chosen_dish_page .dish_swiper img {
   width: 100%;
   height: 100%;
-} */
+}
+
+.swiper-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .chosen_dish_page .chosen_dish_info_container {
   padding: 30px 40px;
@@ -745,6 +736,37 @@
   border-radius: 16px;
 }
 
-.swiper-wrapper {
+.chosen_dish_info_container .eye {
   display: flex;
+  align-items: center;
+}
+
+.eye svg {
+  margin-right: 10px;
+}
+
+.chosen_dish_info_container .chosen_dish_info_card {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.chosen_dish_info_card .dish_txt {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 36px;
+  color: #000000;
+}
+
+.chosen_dish_info_card .resto_name {
+  margin-top: 16px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 36px;
+  color: #979797;
 }

@@ -20,5 +20,8 @@
   "typescript.preferences.autoImportFileExcludePatterns": [
     "**/node_modules/**",
     "**/*.spec.ts"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
   ]
 }

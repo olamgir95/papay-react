@@ -13,7 +13,6 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosNewIcon from "@mui/icons-material/ArrowForwardIos";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-import StarIcon from "@mui/icons-material/Star";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import SwiperCore, { Navigation } from "swiper";
@@ -215,6 +214,7 @@ export default function OneRestaurant() {
         <Stack className="last_section">
           <Box className="category_title">Oshxona Manzili</Box>
           <iframe
+            title="your-unique-title"
             src="https://m.place.naver.com/restaurant/1778015906/location?level=bottom&subtab=location&selected_place_id=1778015906"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>

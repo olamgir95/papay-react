@@ -1,4 +1,12 @@
-import { Box, Card, Checkbox, Container, Rating, Stack } from "@mui/material";
+import {
+  Box,
+  Card,
+  Checkbox,
+  Container,
+  Rating,
+  Stack,
+  Button,
+} from "@mui/material";
 import React, { useState } from "react";
 // import Typography from "@mui/joy/Typography";
 // import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
@@ -11,8 +19,13 @@ import { Favorite, FavoriteBorder } from "@mui/icons-material";
 // import { CssVarsProvider } from "@mui/joy/styles";
 // import { AspectRatio, CardOverflow, IconButton, Link } from "@mui/joy";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation } from "swiper";
-SwiperCore.use([Navigation]);
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import { FreeMode, Navigation, Thumbs } from "swiper";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import Marginer from "../../components/marginer";
 
 const chosen_list = Array.from(Array(3).keys());
 
@@ -26,12 +39,10 @@ export default function ChosenDish() {
         <Stack className="chosen_dish_slider">
           <Swiper
             className="dish_swiper"
-            spaceBetween={10}
-            // slidesPerView={1}
-            navigation={true}
-            // centeredSlides={false}
             loop={true}
-            // modules={[FreeMode, Navigation, Thumbs]}
+            spaceBetween={10}
+            navigation={true}
+            modules={[FreeMode, Navigation, Thumbs]}
           >
             {chosen_list.map((vl, order) => {
               return (
@@ -62,16 +73,7 @@ export default function ChosenDish() {
             <strong className="dish_txt">Qovurilgan Go'sht</strong>
             <span className="resto_name">Texas De Brazil</span>
             <Box className="rating_box">
-              <Box className="review_stars">
-                <Rating
-                  name="simple-controlled"
-                  value={value}
-                  size="large"
-                  onChange={(event, newValue) => {
-                    setValue(newValue);
-                  }}
-                />
-              </Box>
+              <Rating name="half-rating" defaultValue={3.5} precision={0.5} />
               <Box className="evalution_box">
                 <p className="evaluation_text">
                   <Checkbox
@@ -80,7 +82,30 @@ export default function ChosenDish() {
                     checkedIcon={<Favorite style={{ color: "red" }} />}
                     checked={false}
                   />
+                  <span>98 ta</span>
                 </p>
+                <Box className="eye">
+                  <RemoveRedEyeIcon />
+                  <span>1000 ta</span>
+                </Box>
+              </Box>
+              <p className="dish_desc_info">
+                Many desktop publishing packages and web page editors now use
+                Lorem Ipsum as their default model text, and a search for 'lorem
+                ipsum' will uncover many web sites still in their infancy.
+              </p>
+              <Marginer
+                direction="horizontal"
+                height="1"
+                width="100%"
+                bg="#000000"
+              />
+              <Box className="dish_price_box">
+                <span>Narx:</span>
+                <span>$11</span>
+              </Box>
+              <Box className="button_box">
+                <Button variant="contained">Savatga qo'shish</Button>
               </Box>
             </Box>
           </Card>
