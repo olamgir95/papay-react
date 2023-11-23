@@ -324,7 +324,7 @@
 
 .single_restaurant .dish_wrapper .dish_img .dish_sale {
   margin-top: 43px;
-  width: 84px;
+  width: 88px;
   height: 39px;
   display: flex;
   align-items: center;
@@ -335,8 +335,8 @@
   border-radius: 0px 50px 50px 0px;
   font-style: normal;
   font-weight: 600;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 13px;
+  /* line-height: 21px; */
   color: #fff;
 }
 
@@ -715,6 +715,23 @@
   width: 100%;
   height: 100%;
 }
+.chosen_dish_page .dish_swiper2 {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  height: 107px;
+  width: 510px;
+}
+
+.chosen_dish_info_container .dish_swiper .dish_swiper_slides {
+  margin-right: 10px;
+  width: 160px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .swiper-wrapper {
   display: flex;
@@ -763,10 +780,72 @@
 
 .chosen_dish_info_card .resto_name {
   margin-top: 16px;
-  font-family: "Poppins";
+  color: #000;
+
+  font-family: Poppins;
+  font-size: 10px;
   font-style: normal;
   font-weight: 600;
-  font-size: 30px;
-  line-height: 36px;
+  line-height: normal;
   color: #979797;
+}
+
+.chosen_dish_info_card .evalution_text {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.chosen_dish_info_card .dish_desc_info {
+  margin: 30px 0;
+  color: #000;
+  font-family: "Poppins";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.chosen_dish_info_card .rating_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rating_box .evalution_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #000;
+  gap: 20px;
+  font-family: DM Sans;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.chosen_dish_info_card .dish_price_box {
+  margin-top: 20px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.chosen_dish_info_card .button_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }

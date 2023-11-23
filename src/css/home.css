@@ -113,7 +113,7 @@
 
 .homepage .dishes_img .dish_sale {
   margin-top: 43px;
-  width: 77px;
+  width: 88px;
   height: 39px;
   display: flex;
   justify-content: center;
@@ -124,8 +124,8 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 13px;
+  /* line-height: 21px; */
   color: #fff;
 }
 

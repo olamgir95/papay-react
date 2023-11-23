@@ -64,17 +64,9 @@ export default function Events() {
             <span className="category_title">Hodisalar</span>
           </Box>
           <Box className="prev_next_frame">
-            <img
-              src="icons/arrow-left.svg"
-              className="swiper-button-prev"
-              alt=""
-            />
+            <img src="icons/arrow-left.svg" className="button-prev" alt="" />
             <div className="dot_frame_pagination swiper-pagination"></div>
-            <img
-              src="icons/arrow-right.svg"
-              className="swiper-button-next"
-              alt=""
-            />
+            <img src="icons/arrow-right.svg" className="button-next" alt="" />
           </Box>
           <Swiper
             className="events_info swiper-wrapper"
@@ -82,8 +74,8 @@ export default function Events() {
             centeredSlides={true}
             spaceBetween={30}
             navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
+              nextEl: ".button-next",
+              prevEl: ".button-prev",
             }}
             pagination={{
               el: ".swiper-pagination", // Use a valid DOM element here

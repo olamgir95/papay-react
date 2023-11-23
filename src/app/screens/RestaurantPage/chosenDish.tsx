@@ -1,23 +1,8 @@
-import {
-  Box,
-  Card,
-  Checkbox,
-  Container,
-  Rating,
-  Stack,
-  Button,
-} from "@mui/material";
-import React, { useState } from "react";
-// import Typography from "@mui/joy/Typography";
-// import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
-// import CallIcon from "@mui/icons-material/Call";
-// import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-// import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-// import SearchIcon from "@mui/icons-material/Search";
-// import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
-// import { CssVarsProvider } from "@mui/joy/styles";
-// import { AspectRatio, CardOverflow, IconButton, Link } from "@mui/joy";
+import { Box, Container, Rating, Stack, Button } from "@mui/material";
+import React from "react";
+import Checkbox from "@mui/material/Checkbox";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -31,7 +16,6 @@ const chosen_list = Array.from(Array(3).keys());
 
 export default function ChosenDish() {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  const [value, setValue] = useState<number | null>(2);
 
   return (
     <div className="chosen_dish_page">
@@ -46,30 +30,30 @@ export default function ChosenDish() {
           >
             {chosen_list.map((vl, order) => {
               return (
-                <SwiperSlide key={order}>
+                <SwiperSlide className="dish_swiper_slides" key={order}>
                   <img src="/restaurant/gosht.png" alt="" />
                 </SwiperSlide>
               );
             })}
           </Swiper>
-          {/* <Swiper
-            className="dish_swiper"
+          <Swiper
+            className="dish_swiper2"
+            slidesPerView={3}
             spaceBetween={10}
-            navigation={true}
+            centeredSlides={false}
             loop={true}
-            modules={[FreeMode, Navigation, Thumbs]}
           >
             {chosen_list.map((vl, order) => {
               return (
-                <SwiperSlide key={order}>
+                <SwiperSlide className="dish_swiper_slides" key={order}>
                   <img src="/restaurant/gosht2.png" alt="" />
                 </SwiperSlide>
               );
             })}
-          </Swiper> */}
+          </Swiper>
         </Stack>
         <Stack className="chosen_dish_info_container">
-          <Card className="chosen_dish_info_card">
+          <Stack className="chosen_dish_info_card">
             <strong className="dish_txt">Qovurilgan Go'sht</strong>
             <span className="resto_name">Texas De Brazil</span>
             <Box className="rating_box">
@@ -79,8 +63,7 @@ export default function ChosenDish() {
                   <Checkbox
                     {...label}
                     icon={<FavoriteBorder />}
-                    checkedIcon={<Favorite style={{ color: "red" }} />}
-                    checked={false}
+                    checkedIcon={<Favorite style={{ fill: "red" }} />}
                   />
                   <span>98 ta</span>
                 </p>
@@ -89,26 +72,26 @@ export default function ChosenDish() {
                   <span>1000 ta</span>
                 </Box>
               </Box>
-              <p className="dish_desc_info">
-                Many desktop publishing packages and web page editors now use
-                Lorem Ipsum as their default model text, and a search for 'lorem
-                ipsum' will uncover many web sites still in their infancy.
-              </p>
-              <Marginer
-                direction="horizontal"
-                height="1"
-                width="100%"
-                bg="#000000"
-              />
-              <Box className="dish_price_box">
-                <span>Narx:</span>
-                <span>$11</span>
-              </Box>
-              <Box className="button_box">
-                <Button variant="contained">Savatga qo'shish</Button>
-              </Box>
             </Box>
-          </Card>
+            <p className="dish_desc_info">
+              Many desktop publishing packages and web page editors now use
+              Lorem Ipsum as their default model text, and a search for 'lorem
+              ipsum' will uncover many web sites still in their infancy.
+            </p>
+            <Marginer
+              direction="horizontal"
+              height="1"
+              width="100%"
+              bg="#000000"
+            />
+            <Box className="dish_price_box">
+              <span>Narx:</span>
+              <span>$11</span>
+            </Box>
+            <Box className="button_box">
+              <Button variant="contained">Savatga qo'shish</Button>
+            </Box>
+          </Stack>
         </Stack>
       </Container>
     </div>
