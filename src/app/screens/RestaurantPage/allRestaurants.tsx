@@ -91,7 +91,7 @@ const AllRestaurants = () => {
                     </CardOverflow>
 
                     <Typography level="h2" sx={{ fontSize: "lg", mt: 1 }}>
-                      Texas De Brazil restaurant
+                      Rayhon restaurant
                     </Typography>
                     <Typography level="body-sm" sx={{ mt: 0.5, mb: 2 }}>
                       <Link

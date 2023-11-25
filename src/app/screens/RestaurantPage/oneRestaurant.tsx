@@ -29,7 +29,7 @@ export default function OneRestaurant() {
       <Container>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className="top_text">
-            <p>Texas De Brazil Restaurant</p>
+            <p>Rayhon Restaurant</p>
             <Box className="search_big_box">
               <form action="" className="search_form">
                 <input

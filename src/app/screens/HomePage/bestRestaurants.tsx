@@ -51,7 +51,7 @@ export default function BestRestaurants() {
                   </IconButton>
                 </CardOverflow>
                 <Typography level="h2" sx={{ fontSize: "md", mt: 0 }}>
-                  Texas De Brazil
+                  Rayhon
                 </Typography>
                 <Typography level="body-sm">
                   <Link
@@ -143,7 +143,7 @@ export default function BestRestaurants() {
                   </IconButton>
                 </CardOverflow>
                 <Typography level="h2" sx={{ fontSize: "md", mt: 0 }}>
-                  Texas De Brazil
+                  Rayhon
                 </Typography>
                 <Typography level="body-sm">
                   <Link
@@ -235,7 +235,7 @@ export default function BestRestaurants() {
                   </IconButton>
                 </CardOverflow>
                 <Typography level="h2" sx={{ fontSize: "md", mt: 0 }}>
-                  Texas De Brazil
+                  Rayhon
                 </Typography>
                 <Typography level="body-sm">
                   <Link
@@ -327,7 +327,7 @@ export default function BestRestaurants() {
                   </IconButton>
                 </CardOverflow>
                 <Typography level="h2" sx={{ fontSize: "md", mt: 0 }}>
-                  Texas De Brazil
+                  Rayhon
                 </Typography>
                 <Typography level="body-sm">
                   <Link

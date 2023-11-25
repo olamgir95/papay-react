@@ -45,7 +45,7 @@ export default function TopRestaurants() {
                 />
                 <CardContent sx={{ justifyContent: "flex-end" }}>
                   <Typography level="h2" textColor="#fff" mb={1}>
-                    Texas De Brazil
+                    Rayhon
                   </Typography>
                   <Typography
                     startDecorator={
@@ -131,7 +131,7 @@ export default function TopRestaurants() {
                 />
                 <CardContent sx={{ justifyContent: "flex-end" }}>
                   <Typography level="h2" textColor="#fff" mb={1}>
-                    Texas De Brazil
+                    Rayhon
                   </Typography>
                   <Typography
                     startDecorator={
@@ -217,7 +217,7 @@ export default function TopRestaurants() {
                 />
                 <CardContent sx={{ justifyContent: "flex-end" }}>
                   <Typography level="h2" textColor="#fff" mb={1}>
-                    Texas De Brazil
+                    Rayhon
                   </Typography>
                   <Typography
                     startDecorator={
@@ -303,7 +303,7 @@ export default function TopRestaurants() {
                 />
                 <CardContent sx={{ justifyContent: "flex-end" }}>
                   <Typography level="h2" textColor="#fff" mb={1}>
-                    Texas De Brazil
+                    Rayhon
                   </Typography>
                   <Typography
                     startDecorator={

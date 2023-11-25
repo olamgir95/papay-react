@@ -55,7 +55,7 @@ export default function ChosenDish() {
         <Stack className="chosen_dish_info_container">
           <Stack className="chosen_dish_info_card">
             <strong className="dish_txt">Qovurilgan Go'sht</strong>
-            <span className="resto_name">Texas De Brazil</span>
+            <span className="resto_name">Rayhon</span>
             <Box className="rating_box">
               <Rating name="half-rating" defaultValue={3.5} precision={0.5} />
               <Box className="evalution_box">

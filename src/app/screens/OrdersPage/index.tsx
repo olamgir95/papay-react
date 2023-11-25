@@ -2,10 +2,9 @@ import { Box, Container, Stack, Tab } from "@mui/material";
 import React, { useState } from "react";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
-// import PauseOrders from "../../components/orders/pauseOrders";
-import FinishedOrders from "../../components/orders/FinishedOrders";
-import PauseOrders from "../../components/orders/PauseOrders";
-import ProcessOrders from "../../components/orders/processOrders";
+import FinishedOrders from "./FinishedOrders";
+import PauseOrders from "./PauseOrders";
+import ProcessOrders from "./processOrders";
 import Marginer from "../../components/marginer";
 
 export function OrdersPage() {
@@ -25,11 +24,9 @@ export function OrdersPage() {
             <Box className="order_nav_frame">
               <Box className="order_table">
                 <TabList
-                  // value={`${value}`}
                   onChange={handleChange}
                   aria-label="basic tabs example"
                   className={"order_nav"}
-                  component="div"
                 >
                   <Tab label="Buyurtmalarim" value={"1"} />
                   <Tab label="Jarayon" value={"2"} />
@@ -136,7 +133,6 @@ export function OrdersPage() {
           </Stack>
         </Stack>
       </Container>
-      ;
     </div>
   );
 }
