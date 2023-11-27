@@ -1,22 +1,24 @@
 import React, { useState } from "react";
-import "../css/App.css";
-import "../css/navbar.css";
-import "../css/footer.css";
-import "../css/home.css";
-import "../css/order.css";
-import "../css/community.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { RestaurantPage } from "./screens/RestaurantPage";
 import { OrdersPage } from "./screens/OrdersPage";
 import { CommunityPage } from "./screens/CommunityPage";
 import { LoginPage } from "./screens/LoginPage";
-import { MembersPage } from "./screens/MembersPage";
+import { MemberPage } from "./screens/MemberPage";
 import { HelpPage } from "./screens/HeplPage";
 import { HomePage } from "./screens/HomePage";
 import NavbarHome from "./components/header";
 import NavbarRestaurant from "./components/header/restaurant";
 import NavbarOthers from "./components/header/others";
 import Footer from "./components/footer";
+import "../css/App.css";
+import "../css/navbar.css";
+import "../css/footer.css";
+import "../css/home.css";
+import "../css/order.css";
+import "../css/community.css";
+import "../css/restaurant.css";
+import "../css/member.css";
 
 function App() {
   const [path, setPath] = useState();
@@ -71,7 +73,7 @@ function App() {
           <LoginPage />
         </Route>
         <Route path="/member-page">
-          <MembersPage />
+          <MemberPage />
         </Route>
         <Route path="/help">
           <HelpPage />

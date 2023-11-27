@@ -52,19 +52,6 @@
   flex-direction: column;
 }
 
-.community_page .article_main .all_article_box {
-  margin-top: 15px;
-  text-decoration: none;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 15px;
-  border-radius: 30px;
-  background: #182226;
-  height: 170px;
-  padding: 8px 0;
-}
-
 .community_page .article_box {
   margin-top: 20px;
   width: 100%;
@@ -95,6 +82,18 @@
   height: 90%;
 }
 
+.community_page .article_main .all_article_box {
+  margin-top: 15px;
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  border-radius: 30px;
+  background: #182226;
+  height: 170px;
+  padding: 8px 0;
+}
 .all_article_box .all_article_container .user_prof {
   display: flex;
   align-items: center;

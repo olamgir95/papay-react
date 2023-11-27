@@ -6,7 +6,7 @@ import {
   Pagination,
   PaginationItem,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { ChangeEvent, SyntheticEvent, useState } from "react";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -22,12 +22,12 @@ export function CommunityPage(props: any) {
   const [value, setValue] = useState("1");
 
   // Handler
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    console.log(newValue);
-
+  const handleChange = (event: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-  const handlePagination = () => {};
+
+  const handlePagination = (event: ChangeEvent<unknown>, page: number) => {};
+
   return (
     <div className="community_page">
       <div className="community_frame">

@@ -23,7 +23,7 @@ export default function BestRestaurants() {
                 variant="outlined"
                 sx={{
                   maxHeight: 483,
-                  minWidth: 320,
+                  minWidth: 317,
                   mr: "35px",
                   cursor: "pointer",
                 }}
@@ -115,7 +115,7 @@ export default function BestRestaurants() {
                 variant="outlined"
                 sx={{
                   maxHeight: 483,
-                  minWidth: 320,
+                  minWidth: 317,
                   mr: "35px",
                   cursor: "pointer",
                 }}
@@ -207,7 +207,7 @@ export default function BestRestaurants() {
                 variant="outlined"
                 sx={{
                   maxHeight: 483,
-                  minWidth: 320,
+                  minWidth: 317,
                   mr: "35px",
                   cursor: "pointer",
                 }}
@@ -299,7 +299,7 @@ export default function BestRestaurants() {
                 variant="outlined"
                 sx={{
                   maxHeight: 483,
-                  minWidth: 320,
+                  minWidth: 317,
                   mr: "35px",
                   cursor: "pointer",
                 }}
