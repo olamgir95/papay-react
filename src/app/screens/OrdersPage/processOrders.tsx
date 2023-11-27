@@ -113,9 +113,7 @@ const ProcessOrders = (props: any) => {
                   <p>jami narxi</p>
                   <p>$112</p>
                 </Box>
-                <div className="time">
-                  {dayjs().format("YYYY-MM-DD HH:mm")}{" "}
-                </div>
+                <div className="time">{dayjs().format("YYYY-MM-DD HH:mm")}</div>
                 <Button color="primary" variant="contained">
                   Yakunlash
                 </Button>

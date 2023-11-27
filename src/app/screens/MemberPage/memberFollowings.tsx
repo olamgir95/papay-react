@@ -2,9 +2,9 @@ import { Avatar, Box, Button, Stack } from "@mui/material";
 import React from "react";
 
 const followings = [
-  { mb_nick: "Botir", following: true },
-  { mb_nick: "Jonibek", following: false },
-  { mb_nick: "Behruz", following: true },
+  { mb_nick: "Ali", following: true },
+  { mb_nick: "Nodir", following: false },
+  { mb_nick: "Mansur", following: true },
 ];
 
 const MemberFollowings = (prop: any) => {

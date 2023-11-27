@@ -146,11 +146,32 @@
     0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
+.maqola_yoz_sec .btn_cancel {
+  border: 1px solid rgba(247, 9, 9, 0.72);
+  background: rgba(247, 9, 9, 0.72);
+}
+
+.maqola_yoz_sec .btn_cancel:hover {
+  border: 1px solid rgba(227, 9, 15, 0.82);
+  background: rgba(227, 26, 9, 0.62);
+}
+
+.maqola_yoz_sec .btn_follow {
+  border: 1px solid #30945e;
+  background: #30945e;
+}
+
+.maqola_yoz_sec .btn_follow:hover {
+  border: 1px solid #2ba765;
+  background: #259258;
+}
+
 .my_page_right .my_page_menu {
   margin-top: 40px;
   width: 372.58px;
   margin-bottom: 82px;
 }
+
 .my_page_menu .MuiTabs-flexContainer {
   display: flex;
   flex-direction: column;
