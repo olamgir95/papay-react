@@ -6,6 +6,8 @@
 
 .community_page .community_frame {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background: #0b0e11;

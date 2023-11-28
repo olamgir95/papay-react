@@ -13,17 +13,10 @@ import TabList from "@mui/lab/TabList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { TabPanel } from "@mui/lab";
-import {
-  Facebook,
-  Instagram,
-  Settings,
-  Telegram,
-  YouTube,
-} from "@mui/icons-material";
+import { Facebook, Instagram, Telegram, YouTube } from "@mui/icons-material";
 import MemberPosts from "./memberPosts";
 import MemberFollowers from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
-import MySettings from "./mySettings";
 
 const VisitOtherPage = () => {
   // Initializations

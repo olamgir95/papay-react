@@ -50,6 +50,7 @@
 
 .my_page .my_page_right {
   margin-top: 50px;
+  margin-left: 50px;
   margin-bottom: 82px;
   width: 372.58px;
   height: 425px;
@@ -516,4 +517,56 @@
   width: 104px;
   height: 36px;
   padding: 21px 55px;
+}
+
+.writing_article {
+  display: flex;
+}
+
+.writing_article .header_sec {
+  width: 821px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin: 40px;
+  gap: 141px;
+  justify-content: space-between;
+}
+
+.writing_article .form_category {
+  width: 300px;
+}
+
+.writing_article .category {
+  color: #e1ffe9;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.writing_article .form_control {
+  width: 100%;
+  background-color: white;
+  height: 56px;
+}
+
+.form_category label,
+.form_control div div {
+  color: #979797;
+  font-family: Poppins;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.writing_article .reg_btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

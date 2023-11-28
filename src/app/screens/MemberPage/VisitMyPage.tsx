@@ -24,6 +24,7 @@ import MemberPosts from "./memberPosts";
 import MemberFollowers from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
 import MySettings from "./mySettings";
+import TuiEditor from "./TuiEditor";
 
 const VisitMyPage = () => {
   // Initializations
@@ -81,7 +82,9 @@ const VisitMyPage = () => {
                 </TabPanel>
                 <TabPanel value="4">
                   <Box className="menu_name">Maqola yozish</Box>
-                  <Box className="menu_content">MemberFolloers</Box>
+                  <Box className="menu_content">
+                    <TuiEditor />
+                  </Box>
                 </TabPanel>
                 <TabPanel value="5">
                   <Box className="menu_name">Tanlangan Maqola</Box>
