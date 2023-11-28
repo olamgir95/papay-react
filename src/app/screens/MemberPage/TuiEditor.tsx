@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import Typography from "@mui/joy/Typography";
 import { Editor } from "@toast-ui/react-editor";
+import "@toast-ui/editor/dist/toastui-editor.css";
 
 const toolbarItems = [
   ["heading", "bold", "italic", "strike"],
@@ -25,7 +26,7 @@ const hooks = {
 const events = { load: function (param: any) {} };
 
 const TuiEditor = (props: any) => {
-  const editorRef = useRef();
+  const editorRef = useRef(null);
 
   return (
     <Stack className="writing_article">
@@ -55,16 +56,17 @@ const TuiEditor = (props: any) => {
           />
         </Box>
       </Stack>
-      {}
       <Editor
-        /*@ts-ignore*/
         ref={editorRef}
+        initialValue=" "
         placeholder="Type here"
         previewStyle="vertical"
         height="640px"
         toolbarItems={toolbarItems}
         hooks={hooks}
         events={events}
+        initialEditType="wysiwyg"
+        usageStatistics={false}
       />
       <Box className="reg_btn">
         <Button variant="contained" color="primary">
