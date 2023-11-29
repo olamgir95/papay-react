@@ -587,11 +587,23 @@
   background-color: white;
 }
 
-.ProseMirror div,
-.toastui-editor-contents p {
-  /* opacity: 0; */
+.menu_content .tviewer {
+  background-color: white;
+  margin-top: 30px;
+  border-radius: 10px;
 }
 
-.placeholder .ProseMirror-widget {
-  opacity: 1;
+.tviewer .toastui-editor-contents {
+  width: 821px;
+  height: 494px;
+  padding: 40px;
+}
+
+.tviewer .toastui-editor-contents div div {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }

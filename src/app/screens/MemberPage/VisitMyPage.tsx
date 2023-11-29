@@ -25,10 +25,11 @@ import MemberFollowers from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
 import MySettings from "./mySettings";
 import TuiEditor from "./TuiEditor";
+import TViewer from "./TViewer";
 
 const VisitMyPage = () => {
   // Initializations
-  const [value, setValue] = useState("1");
+  const [value, setValue] = useState("5");
 
   // Handler
   const handleChange = (event: any, newValue: string) => {
@@ -88,7 +89,9 @@ const VisitMyPage = () => {
                 </TabPanel>
                 <TabPanel value="5">
                   <Box className="menu_name">Tanlangan Maqola</Box>
-                  <Box className="menu_content"></Box>
+                  <Box className="menu_content">
+                    <TViewer text={"<div>Hello</div>"} />
+                  </Box>
                 </TabPanel>
                 <TabPanel value="6">
                   <Box className="menu_name">Ma'lumotlarni o'zgartirish</Box>

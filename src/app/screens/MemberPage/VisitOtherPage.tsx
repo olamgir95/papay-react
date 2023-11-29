@@ -17,10 +17,11 @@ import { Facebook, Instagram, Telegram, YouTube } from "@mui/icons-material";
 import MemberPosts from "./memberPosts";
 import MemberFollowers from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
+import TViewer from "./TViewer";
 
 const VisitOtherPage = () => {
   // Initializations
-  const [value, setValue] = useState("1");
+  const [value, setValue] = useState("4");
 
   // Handler
   const handleChange = (event: any, newValue: string) => {
@@ -36,7 +37,7 @@ const VisitOtherPage = () => {
             <Stack className="my_page_left">
               <Box className="box_left">
                 <TabPanel value="1">
-                  <Box className="menu_name">Mening Maqolalarim</Box>
+                  <Box className="menu_name"> Maqolalar</Box>
                   <Box className="menu_content">
                     <MemberPosts />
                     <Stack className="pagination">
@@ -74,7 +75,9 @@ const VisitOtherPage = () => {
                 </TabPanel>
                 <TabPanel value="4">
                   <Box className="menu_name">Tanlangan Maqola</Box>
-                  <Box className="menu_content"></Box>
+                  <Box className="menu_content">
+                    <TViewer text={"<div>Hello</div>"} />
+                  </Box>
                 </TabPanel>
               </Box>
             </Stack>
@@ -110,7 +113,7 @@ const VisitOtherPage = () => {
                     onChange={handleChange}
                     aria-labelledby="simple-tabpanel-label"
                   >
-                    {value === "1" ? (
+                    {value === "1" || value === "4" ? (
                       <Tab
                         value={"4"}
                         component={() => (
@@ -164,7 +167,7 @@ const VisitOtherPage = () => {
                             fill="#201F25"
                           />
                         </svg>
-                        <span>Maqolalarim</span>
+                        <span>Maqolalari</span>
                       </div>
                     )}
                   />
