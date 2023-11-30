@@ -2,7 +2,7 @@ import {
   Box,
   Container,
   Stack,
-  Tab,
+  // Tab,
   Pagination,
   PaginationItem,
   Button,
@@ -13,6 +13,7 @@ import TabList from "@mui/lab/TabList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { TabPanel } from "@mui/lab";
+import Tab from "@mui/material/Tab";
 import {
   Facebook,
   Instagram,

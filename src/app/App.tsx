@@ -19,6 +19,7 @@ import "../css/order.css";
 import "../css/community.css";
 import "../css/restaurant.css";
 import "../css/member.css";
+import "../css/help.css";
 
 function App() {
   const [path, setPath] = useState();

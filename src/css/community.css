@@ -319,18 +319,22 @@
 }
 
 /* width */
-::-webkit-scrollbar {
+.community_page ::-webkit-scrollbar {
   width: 8px;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+.community_page ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+.community_page ::-webkit-scrollbar-thumb {
   background: #a1a1a1;
   border-radius: 10px;
+}
+
+.css-ltjzd6-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  border-bottom: 2px solid #0288d1;
 }
