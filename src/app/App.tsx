@@ -20,6 +20,7 @@ import "../css/community.css";
 import "../css/restaurant.css";
 import "../css/member.css";
 import "../css/help.css";
+import Car from "./screens/testCar";
 
 function App() {
   const [path, setPath] = useState();
@@ -80,7 +81,8 @@ function App() {
           <HelpPage />
         </Route>
         <Route path="/">
-          <HomePage />
+          <Car />
+          {/* <HomePage /> */}
         </Route>
       </Switch>
       <Footer />
