@@ -81,8 +81,8 @@ function App() {
           <HelpPage />
         </Route>
         <Route path="/">
-          <Car />
-          {/* <HomePage /> */}
+          {/* <Car /> */}
+          <HomePage />
         </Route>
       </Switch>
       <Footer />
