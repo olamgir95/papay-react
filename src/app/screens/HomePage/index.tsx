@@ -9,13 +9,12 @@ import Recommendations from "./recomendations";
 import "../../../css/home.css";
 
 export function HomePage() {
+  //selector: store => store
   useEffect(() => {
-    console.log("componentDidMount => Data fetch");
+    // backend data request =>
 
-    return () => {
-      // componentWillUnmount
-      console.log("componentWillUnmount");
-    };
+    // slice data => store
+    return;
   }, []);
 
   return (

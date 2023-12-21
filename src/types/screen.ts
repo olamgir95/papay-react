@@ -6,8 +6,8 @@ export interface AppRootState {
   homePage: HomePageState;
 }
 
-interface HomePageState {
-  TopRestaurants: Restaurant[];
+export interface HomePageState {
+  topRestaurants: Restaurant[];
   bestRestaurants: Restaurant[];
   trendProducts: Product[];
   bestBoArticles: BoArticle[];
