@@ -20,46 +20,41 @@ import "../css/community.css";
 import "../css/restaurant.css";
 import "../css/member.css";
 import "../css/help.css";
-import Car from "./screens/testCar";
+import AuthenticationModal from "./components/auth/index";
 
 function App() {
+  //INITIALIZATION
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
+  const [signUpOpen, setSignUpOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+
+  //HANDLER//
+  const handleSignUpOpen = () => setSignUpOpen(!signUpOpen);
+
+  const handleLoginOpen = () => setLoginOpen(!loginOpen);
 
   return (
     <Router>
       {main_path === "/" ? (
-        <NavbarHome setPath={setPath} />
+        <NavbarHome
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+        />
       ) : main_path === "/restaurant" ? (
-        <NavbarRestaurant setPath={setPath} />
+        <NavbarRestaurant
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+        />
       ) : (
-        <NavbarOthers setPath={setPath} />
+        <NavbarOthers
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+        />
       )}
-      {/* <nav>
-          <ul>
-            <li>
-              <Link to="/restaurant">RestaurantPage</Link>
-            </li>
-            <li>
-              <Link to="/comunity">ComunityPage</Link>
-            </li>
-            <li>
-              <Link to="/orders">OrdersPage</Link>
-            </li>
-            <li>
-              <Link to="/member-page">MembersPage</Link>
-            </li>
-            <li>
-              <Link to="/help">HelpPage</Link>
-            </li>
-            <li>
-              <Link to="/login">LoginPage</Link>
-            </li>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-          </ul>
-        </nav> */}
 
       <Switch>
         <Route path="/restaurant">
@@ -81,11 +76,16 @@ function App() {
           <HelpPage />
         </Route>
         <Route path="/">
-          {/* <Car /> */}
           <HomePage />
         </Route>
       </Switch>
       <Footer />
+      <AuthenticationModal
+        signUpOpen={signUpOpen}
+        loginOpen={loginOpen}
+        handleLoginOpen={handleLoginOpen}
+        handleSignUpOpen={handleSignUpOpen}
+      />
     </Router>
   );
 }

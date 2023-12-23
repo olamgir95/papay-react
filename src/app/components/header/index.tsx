@@ -6,10 +6,18 @@ import {
   IconButton,
   Stack,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { sweetTopSuccessAlert } from "../../../lib/sweetAlert";
 
-export default function NavbarHome(props: any) {
+export default function NavbarHome({
+  handleLoginOpen,
+  handleSignUpOpen,
+  setPath,
+}: {
+  handleLoginOpen: () => void;
+  handleSignUpOpen: () => void;
+  setPath: any;
+}): JSX.Element {
   return (
     <div className="format home_navbar">
       <Container>
@@ -27,27 +35,27 @@ export default function NavbarHome(props: any) {
             alignItems={"center"}
             className="navbar_links"
           >
-            <Box className="hover-line" onClick={props.setPath}>
+            <Box className="hover-line">
               <NavLink to="/" activeClassName="underline">
                 Home
               </NavLink>
             </Box>
-            <Box className="hover-line" onClick={props.setPath}>
+            <Box className="hover-line">
               <NavLink to="/restaurant" activeClassName="underline">
                 Restaurant
               </NavLink>
             </Box>
-            <Box className="hover-line" onClick={props.setPath}>
+            <Box className="hover-line">
               <NavLink to="/orders" activeClassName="underline">
                 Orders
               </NavLink>
             </Box>
-            <Box className="hover-line" onClick={props.setPath}>
+            <Box className="hover-line">
               <NavLink to="/community" activeClassName="underline">
                 Community
               </NavLink>
             </Box>
-            <Box className="hover-line" onClick={props.setPath}>
+            <Box className="hover-line">
               <NavLink to="/help" activeClassName="underline">
                 Help
               </NavLink>
@@ -69,6 +77,7 @@ export default function NavbarHome(props: any) {
               <Button
                 variant="contained"
                 sx={{ background: "#1976d2", color: "#FFFFF" }}
+                onClick={handleLoginOpen}
               >
                 Login
               </Button>
@@ -93,8 +102,9 @@ export default function NavbarHome(props: any) {
                   background: "#1976d2",
                   color: "#FFFFF",
                 }}
+                onClick={handleSignUpOpen}
               >
-                RO’YHATDAN O’TISH
+                Sign Up
               </Button>
             </Box>
           </Stack>

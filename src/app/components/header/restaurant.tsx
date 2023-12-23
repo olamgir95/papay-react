@@ -67,6 +67,7 @@ export default function NavbarRestaurant(props: any) {
               <Button
                 variant="contained"
                 sx={{ background: "#1976d2", color: "#FFFFF" }}
+                onClick={props.handleSignUpOpen}
               >
                 Login
               </Button>

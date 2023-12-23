@@ -46,3 +46,10 @@ export interface MeLiked {
   like_ref_id: string;
   my_favorite: boolean;
 }
+
+export interface AuthenticationModalProps {
+  signUpOpen: boolean;
+  loginOpen: boolean;
+  handleLoginOpen: () => void;
+  handleSignUpOpen: () => void;
+}
