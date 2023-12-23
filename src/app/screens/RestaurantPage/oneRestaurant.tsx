@@ -98,7 +98,7 @@ export default function OneRestaurant() {
                 desert
               </Button>
               <Button variant="contained" color="secondary">
-                ichimlik
+                drink
               </Button>
               <Button variant="contained" color="secondary">
                 salad

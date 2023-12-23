@@ -11,13 +11,11 @@ import { CssVarsProvider } from "@mui/joy/styles";
 import { CardOverflow, IconButton } from "@mui/joy";
 
 import { Restaurant } from "../../../types/user";
-import { serviceApi } from "../../../lib/config";
+import { serverApi } from "../../../lib/config";
 
 export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
   topRestaurants,
 }) => {
-  console.log("topres", topRestaurants);
-
   return (
     <div className="top_restaurant_frame">
       <Container>
@@ -29,9 +27,9 @@ export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
           <Box className="category_title">TOP Restaurantlar</Box>
           <Stack sx={{ mt: "43px" }} flexDirection={"row"} m={"16px"}>
             {topRestaurants.map((vl: Restaurant) => {
-              const imag_path = `${serviceApi}/${vl.mb_image}`;
+              const imag_path = `${serverApi}/${vl.mb_image}`;
               return (
-                <CssVarsProvider>
+                <CssVarsProvider key={vl._id}>
                   <Card
                     sx={{
                       minHeight: 430,
@@ -39,7 +37,6 @@ export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
                       mr: "35px",
                       cursor: "pointer",
                     }}
-                    key={vl._id}
                   >
                     <CardCover>
                       <img src={imag_path} loading="lazy" alt="" />
@@ -60,7 +57,7 @@ export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
                         }
                         textColor="neutral.300"
                       >
-                        Tashkent, Yunus Abad 4-1
+                        {vl.mb_address}
                       </Typography>
                     </CardContent>
                     <CardOverflow
