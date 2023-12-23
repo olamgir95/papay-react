@@ -10,13 +10,6 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function NavbarHome(props: any) {
-  const [count, setCount] = useState(0);
-  const [value, setValue] = useState(true);
-
-  useEffect(() => {
-    setCount(count + 1);
-  }, [value]);
-
   return (
     <div className="format home_navbar">
       <Container>
@@ -90,9 +83,7 @@ export default function NavbarHome(props: any) {
             <Box className="define_restaurant">
               The Authentic Restaurant & Cafe
             </Box>
-            <Box className="timeline_service">
-              {count} soat xizmatingizdamiz.
-            </Box>
+            <Box className="timeline_service">24 soat xizmatingizdamiz.</Box>
             <Box sx={{ mt: "90px" }}>
               <Button
                 variant="contained"
@@ -102,7 +93,6 @@ export default function NavbarHome(props: any) {
                   background: "#1976d2",
                   color: "#FFFFF",
                 }}
-                onClick={() => setValue(!value)}
               >
                 RO’YHATDAN O’TISH
               </Button>
