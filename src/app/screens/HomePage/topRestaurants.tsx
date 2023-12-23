@@ -1,5 +1,5 @@
 import { Box, Container, Stack } from "@mui/material";
-import React from "react";
+import React, { FC } from "react";
 import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
 import CardContent from "@mui/joy/CardContent";
@@ -9,22 +9,13 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Favorite } from "@mui/icons-material";
 import { CssVarsProvider } from "@mui/joy/styles";
 import { CardOverflow, IconButton } from "@mui/joy";
-import { createSelector } from "@reduxjs/toolkit";
-import { retrieveTopRestaurants } from "./selector";
-import { useSelector } from "react-redux";
+
 import { Restaurant } from "../../../types/user";
 import { serviceApi } from "../../../lib/config";
 
-//redux selector
-const TopRestaurantsRetriever = createSelector(
-  retrieveTopRestaurants,
-  (topRestaurants) => ({
-    topRestaurants,
-  })
-);
-
-export default function TopRestaurants() {
-  const { topRestaurants } = useSelector(TopRestaurantsRetriever);
+export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
+  topRestaurants,
+}) => {
   console.log("topres", topRestaurants);
 
   return (
@@ -140,4 +131,4 @@ export default function TopRestaurants() {
       </Container>
     </div>
   );
-}
+};
