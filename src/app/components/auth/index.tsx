@@ -71,10 +71,34 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       await memberApiService.loginRequest(login_data);
 
       handleLoginOpen();
-      window.location.reload();
+      // window.location.reload();
     } catch (err) {
       console.log(err);
       handleLoginOpen();
+      sweetErrorHandling(err).then();
+    }
+  };
+
+  const handleSignupRequest = async () => {
+    try {
+      const is_full_filled =
+        mb_nick !== "" && mb_password !== "" && mb_phone !== 0;
+
+      assert.ok(is_full_filled, Definer.input_err1);
+
+      const signup_data = {
+        mb_nick: mb_nick,
+        mb_password: mb_password,
+        mb_phone: mb_phone,
+      };
+
+      const memberApiService = new MemberApiService();
+      await memberApiService.signupRequest(signup_data);
+
+      handleSignUpOpen();
+      // window.location.reload();
+    } catch (err) {
+      console.log(err);
       sweetErrorHandling(err).then();
     }
   };
@@ -124,7 +148,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
                 variant="outlined"
               />
               <Fab
-                onClick={handleLoginRequest}
+                onClick={handleSignupRequest}
                 sx={{ marginTop: "30px", width: "120px" }}
                 variant="extended"
                 color="primary"
