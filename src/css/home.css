@@ -106,7 +106,6 @@
   height: 275px;
   background-size: cover;
   border-radius: 0px 5px 0px 0px;
-  background: url("/public/restaurant/trend_taom.png");
   display: flex;
   flex-direction: column;
 }
@@ -127,7 +126,9 @@
   font-size: 13px;
   color: #fff;
 }
-
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
+  background: rgba(28, 23, 23, 0.69) !important;
+}
 .homepage .view_btn {
   width: 163px;
   height: 50px;

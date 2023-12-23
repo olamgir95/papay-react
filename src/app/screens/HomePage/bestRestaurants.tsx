@@ -9,13 +9,11 @@ import { Favorite } from "@mui/icons-material";
 import { CssVarsProvider } from "@mui/joy/styles";
 import { AspectRatio, CardOverflow, IconButton, Link } from "@mui/joy";
 import { Restaurant } from "../../../types/user";
-import { serviceApi } from "../../../lib/config";
+import { serverApi } from "../../../lib/config";
 
 export const BestRestaurants: FC<{ bestRestaurants: Restaurant[] }> = ({
   bestRestaurants,
 }) => {
-  console.log("bestres", bestRestaurants);
-
   return (
     <div className="best_restaurant_frame">
       <img className="best_corner_res" src={"/icons/line_left.svg"} alt="" />
@@ -25,7 +23,7 @@ export const BestRestaurants: FC<{ bestRestaurants: Restaurant[] }> = ({
 
           <Stack sx={{ mt: "43px", flexDirection: "row" }}>
             {bestRestaurants.map((vl: Restaurant) => {
-              const image_path = `${serviceApi}/${vl.mb_image}`;
+              const image_path = `${serverApi}/${vl.mb_image}`;
               return (
                 <CssVarsProvider key={vl._id}>
                   <Card

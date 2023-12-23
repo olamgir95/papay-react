@@ -22,12 +22,12 @@ class Car extends Component<{}, CarState> {
   };
 
   componentDidMount(): void {
-    console.log("Car component mounted");
+    // console.log("Car component mounted");
   }
   // run after first render=Retrieve data from backend server
 
   componentWillUnmount(): void {
-    console.log("Car component unmounted");
+    // console.log("Car component unmounted");
   }
   //runs after component unmount
 
