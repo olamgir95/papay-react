@@ -1,4 +1,5 @@
-/*@ts-nocheck */
+// @typescript-eslint/no-unused-expressions
+
 import { Box, Container, Stack } from "@mui/material";
 import React, { FC, forwardRef, useRef } from "react";
 import Card from "@mui/joy/Card";
@@ -13,16 +14,17 @@ import { CardOverflow, IconButton } from "@mui/joy";
 
 import { Restaurant } from "../../../types/user";
 import { serverApi } from "../../../lib/config";
-import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
-import MemberApiService from "./../../apiServices/memberApiService";
-import { MemberLiken } from "../../../types/others";
+import MemberApiService from "../../apiServices/memberApiService";
 import { useHistory } from "react-router-dom";
 
-export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
-  topRestaurants,
-}) => {
+export const TopRestaurants = (props: any) => {
+  // @typescript-eslint/no-unused-expressions
   const refs: any = useRef([]);
   const history = useHistory();
 
@@ -45,6 +47,7 @@ export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
       } else {
         e.target.style.fill = "white";
         refs.current[like_result.like_ref_id].innerHTML--;
+        await sweetTopSmallSuccessAlert("success", 700, false);
       }
     } catch (err: any) {
       console.log("targetLikeTop, ERROR", err);
@@ -62,7 +65,7 @@ export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
         >
           <Box className="category_title">TOP Restaurantlar</Box>
           <Stack sx={{ mt: "43px" }} flexDirection={"row"} m={"16px"}>
-            {topRestaurants.map((vl: Restaurant) => {
+            {props.topRestaurants.map((vl: Restaurant) => {
               const imag_path = `${serverApi}/${vl.mb_image}`;
 
               return (
@@ -121,6 +124,9 @@ export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
                           bottom: 45,
                           transform: "translateY(50%)",
                           color: "rgba(0,0,0,0.4)",
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
                         }}
                       >
                         <Favorite

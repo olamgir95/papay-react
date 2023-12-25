@@ -7,10 +7,20 @@ import { LoginPage } from "./screens/LoginPage";
 import { MemberPage } from "./screens/MemberPage";
 import { HelpPage } from "./screens/HeplPage";
 import { HomePage } from "./screens/HomePage";
+import { serverApi } from "../lib/config";
+import { Member } from "../types/user";
+import {
+  sweetFailureProvider,
+  sweetTopSmallSuccessAlert,
+} from "../lib/sweetAlert";
+import { Definer } from "../lib/Definer";
 import NavbarHome from "./components/header";
 import NavbarRestaurant from "./components/header/restaurant";
 import NavbarOthers from "./components/header/others";
 import Footer from "./components/footer";
+import AuthenticationModal from "./components/auth/index";
+import assert from "assert";
+import MemberApiService from "./apiServices/memberApiService";
 import "../css/App.css";
 import "../css/navbar.css";
 import "../css/footer.css";
@@ -20,16 +30,6 @@ import "../css/community.css";
 import "../css/restaurant.css";
 import "../css/member.css";
 import "../css/help.css";
-import AuthenticationModal from "./components/auth/index";
-import { Member } from "../types/user";
-import { serverApi } from "../lib/config";
-import {
-  sweetFailureProvider,
-  sweetTopSmallSuccessAlert,
-} from "../lib/sweetAlert";
-import { Definer } from "../lib/Definer";
-import assert from "assert";
-import MemberApiService from "./apiServices/memberApiService";
 
 function App() {
   //INITIALIZATION
@@ -95,7 +95,7 @@ function App() {
           anchorEl={anchorEl}
           open={open}
         />
-      ) : main_path === "/restaurant" ? (
+      ) : main_path === "/restaurants" ? (
         <NavbarRestaurant
           verifedMemberData={verifedMemberData}
           setPath={setPath}
@@ -118,7 +118,7 @@ function App() {
       )}
 
       <Switch>
-        <Route path="/restaurant">
+        <Route path="/restaurants">
           <RestaurantPage />
         </Route>
         <Route path="/orders">

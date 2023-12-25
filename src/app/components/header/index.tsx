@@ -57,7 +57,7 @@ export default function NavbarHome({
               </NavLink>
             </Box>
             <Box className="hover-line" onClick={setPath}>
-              <NavLink to="/restaurant" activeClassName="underline">
+              <NavLink to="/restaurants" activeClassName="underline">
                 Restaurant
               </NavLink>
             </Box>

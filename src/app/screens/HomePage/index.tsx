@@ -18,7 +18,7 @@ import {
   retrieveTopRestaurants,
   retrieveTrendProducts,
 } from "./selector";
-import { TopRestaurants } from "./topRestaurants";
+import { TopRestaurants } from "./topRest";
 import { BestRestaurants } from "./bestRestaurants";
 import ProductApiService from "../../apiServices/productApiService";
 import { BestDishes } from "./bestDishes";
