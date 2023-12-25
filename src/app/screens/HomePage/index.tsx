@@ -48,9 +48,8 @@ export function HomePage() {
   const { setTopRestaurants, setBestRestaurants, setTrendProducts } =
     actionDispatch(useDispatch());
 
-  const { topRestaurants } = useSelector(RestaurantsRetriever);
-  const { bestRestaurants } = useSelector(RestaurantsRetriever);
-  const { trendProducts } = useSelector(RestaurantsRetriever);
+  const { topRestaurants, bestRestaurants, trendProducts } =
+    useSelector(RestaurantsRetriever);
   //selector: store => store
   useEffect(() => {
     // backend data request =>

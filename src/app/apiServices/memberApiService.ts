@@ -3,6 +3,7 @@ import assert from "assert";
 import { serverApi } from "../../lib/config";
 import { Definer } from "../../lib/Definer";
 import { Member } from "../../types/user";
+import { MemberLiken } from "../../types/others";
 
 export default class MemberApiService {
   private readonly path: string;
@@ -44,7 +45,6 @@ export default class MemberApiService {
       return member;
     } catch (err: any) {
       console.log(`ERROR ::: signupRequest ${err.message}`);
-
       throw err;
     }
   }
@@ -62,6 +62,24 @@ export default class MemberApiService {
     } catch (err: any) {
       console.log(`ERROR ::: logOutRequest ${err.message}`);
 
+      throw err;
+    }
+  }
+
+  async memberLikeTarget(data: any) {
+    try {
+      const result = await axios.post(this.path + "/member-liken", data, {
+        withCredentials: true,
+      });
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
+
+      const like_result: MemberLiken = result.data.data;
+      console.log("like", like_result);
+
+      return like_result;
+    } catch (err: any) {
+      console.log(`ERROR ::: memberLikeTarget ${err.message}`);
       throw err;
     }
   }

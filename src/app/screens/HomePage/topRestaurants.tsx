@@ -1,5 +1,6 @@
+/*@ts-nocheck */
 import { Box, Container, Stack } from "@mui/material";
-import React, { FC } from "react";
+import React, { FC, forwardRef, useRef } from "react";
 import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
 import CardContent from "@mui/joy/CardContent";
@@ -12,10 +13,45 @@ import { CardOverflow, IconButton } from "@mui/joy";
 
 import { Restaurant } from "../../../types/user";
 import { serverApi } from "../../../lib/config";
+import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
+import MemberApiService from "./../../apiServices/memberApiService";
+import { MemberLiken } from "../../../types/others";
+import { useHistory } from "react-router-dom";
 
 export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
   topRestaurants,
 }) => {
+  const refs: any = useRef([]);
+  const history = useHistory();
+
+  const chosenRestaurantHandler = (id: string) => {
+    history.push(`/restaurants/${id}`);
+  };
+
+  const targetLikeTop = async (e: any, id: string) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: id,
+          group_type: "member",
+        });
+      assert.ok(like_result, Definer.general_err1);
+      if (like_result.like_status > 0) {
+        e.target.style.fill = "red";
+        refs.current[like_result.like_ref_id].innerHTML++;
+      } else {
+        e.target.style.fill = "white";
+        refs.current[like_result.like_ref_id].innerHTML--;
+      }
+    } catch (err: any) {
+      console.log("targetLikeTop, ERROR", err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
   return (
     <div className="top_restaurant_frame">
       <Container>
@@ -28,6 +64,7 @@ export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
           <Stack sx={{ mt: "43px" }} flexDirection={"row"} m={"16px"}>
             {topRestaurants.map((vl: Restaurant) => {
               const imag_path = `${serverApi}/${vl.mb_image}`;
+
               return (
                 <CssVarsProvider key={vl._id}>
                   <Card
@@ -37,6 +74,7 @@ export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
                       mr: "35px",
                       cursor: "pointer",
                     }}
+                    onClick={() => chosenRestaurantHandler(vl._id)}
                   >
                     <CardCover>
                       <img src={imag_path} loading="lazy" alt="" />
@@ -91,6 +129,7 @@ export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
                               ? "red"
                               : "white",
                           }}
+                          onClick={(e) => targetLikeTop(e, vl._id)}
                         />
                       </IconButton>
                       <Typography
@@ -115,7 +154,11 @@ export const TopRestaurants: FC<{ topRestaurants: Restaurant[] }> = ({
                           display: "flex",
                         }}
                       >
-                        <div>{vl.mb_likes}</div>
+                        <div
+                          ref={(element) => (refs.current[vl._id] = element)}
+                        >
+                          {vl.mb_likes}
+                        </div>
                         <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
                       </Typography>
                     </CardOverflow>

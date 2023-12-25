@@ -36,6 +36,7 @@ const HomePageSlice = createSlice({
     },
   },
 });
+console.log("redusc", HomePageSlice);
 
 export const {
   setTopRestaurants,

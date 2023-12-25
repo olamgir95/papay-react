@@ -19,8 +19,8 @@ export const BestDishes: FC<{ trendProducts: Product[] }> = ({
               const image_path = `${serverApi}/${product?.product_images[0]}`;
               const size_volume =
                 product.product_collection === "drink"
-                  ? product.product_volume + " l"
-                  : product.product_size + "size";
+                  ? product.product_volume + " L"
+                  : product.product_size + " size";
               return (
                 <Box key={product._id} className="dishes_box">
                   <Stack
