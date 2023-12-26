@@ -38,11 +38,11 @@ const targetRestaurantsRetriever = createSelector(
     targetRestaurants,
   })
 );
-
+const order_list = Array.from(Array(8).keys());
 const AllRestaurants = () => {
-  const { setTargetRestaurants } = actionDispatch(useDispatch());
+  // const { setTargetRestaurants } = actionDispatch(useDispatch());
 
-  const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
+  // const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
 
   useEffect(() => {
     // backend data request =>
@@ -79,7 +79,7 @@ const AllRestaurants = () => {
           </Box>
           <Stack className="all_res_box">
             <CssVarsProvider>
-              {targetRestaurants.map((vl, index) => {
+              {order_list.map((vl, index) => {
                 return (
                   <Card
                     key={index}
