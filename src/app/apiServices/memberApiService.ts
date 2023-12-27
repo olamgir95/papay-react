@@ -41,6 +41,7 @@ export default class MemberApiService {
       assert.ok(result?.data.state !== "fail", Definer.general_err1);
 
       const member: Member = result.data.data;
+
       localStorage.setItem("member_data", JSON.stringify(member));
       return member;
     } catch (err: any) {
@@ -71,6 +72,8 @@ export default class MemberApiService {
       const result = await axios.post(this.path + "/member-liken", data, {
         withCredentials: true,
       });
+
+      console.log("res", result);
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state !== "fail", result?.data?.message);
 

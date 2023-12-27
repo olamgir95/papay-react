@@ -1,7 +1,7 @@
 // @typescript-eslint/no-unused-expressions
 
 import { Box, Container, Stack } from "@mui/material";
-import React, { FC, forwardRef, useRef } from "react";
+import { useRef } from "react";
 import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
 import CardContent from "@mui/joy/CardContent";
@@ -24,7 +24,6 @@ import MemberApiService from "../../apiServices/memberApiService";
 import { useHistory } from "react-router-dom";
 
 export const TopRestaurants = (props: any) => {
-  // @typescript-eslint/no-unused-expressions
   const refs: any = useRef([]);
   const history = useHistory();
 

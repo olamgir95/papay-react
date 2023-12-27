@@ -16,9 +16,7 @@ const HomePageSlice = createSlice({
   reducers: {
     setTopRestaurants: (state, action) => {
       state.topRestaurants = action.payload;
-      console.log("action", action);
     },
-
     setBestRestaurants: (state, action) => {
       state.bestRestaurants = action.payload;
     },

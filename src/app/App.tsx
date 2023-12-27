@@ -38,7 +38,6 @@ function App() {
   );
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
-  console.log(main_path);
 
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -56,7 +55,6 @@ function App() {
         : "/auth/default_user.svg";
       setVerifedMemberData(member_data);
     }
-    console.log("member_data", member_data);
   }, [signUpOpen, loginOpen]);
 
   //HANDLER//
@@ -102,6 +100,7 @@ function App() {
           handleLoginOpen={handleLoginOpen}
           handleLogOutClick={handleLogOutClick}
           handleCloseLogOut={handleCloseLogOut}
+          handleLogoutRequest={handleLogoutRequest}
           anchorEl={anchorEl}
           open={open}
         />
@@ -112,6 +111,7 @@ function App() {
           handleLoginOpen={handleLoginOpen}
           handleLogOutClick={handleLogOutClick}
           handleCloseLogOut={handleCloseLogOut}
+          handleLogoutRequest={handleLogoutRequest}
           anchorEl={anchorEl}
           open={open}
         />

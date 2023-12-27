@@ -15,9 +15,7 @@ const RestaurantPageSlice = createSlice({
   reducers: {
     setTargetRestaurants: (state, action) => {
       state.targetRestaurants = action.payload;
-      console.log("action", action);
     },
-
     setRendomRestaurants: (state, action) => {
       state.rendomRestaurants = action.payload;
     },

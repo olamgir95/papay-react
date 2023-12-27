@@ -1,3 +1,4 @@
+/*@ts-nocheck */
 import {
   Box,
   Button,
@@ -20,9 +21,19 @@ import { Favorite } from "@mui/icons-material";
 import { CssVarsProvider } from "@mui/joy/styles";
 import { AspectRatio, CardOverflow, IconButton, Link } from "@mui/joy";
 import { setTargetRestaurants } from "./slice";
-import { retrieveTargetRestaurants } from "./selector";
 import { Restaurant } from "../../../types/user";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import RestaurantApiService from "../../apiServices/restaurantApiService";
+import { SearchObj } from "../../../types/others";
+import { serverApi } from "../../../lib/config";
+import { retrieveTargetRestaurants } from "./selector";
+import assert from "assert";
+import MemberApiService from "../../apiServices/memberApiService";
+import { Definer } from "../../../lib/Definer";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 
 //redux slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -33,20 +44,66 @@ const actionDispatch = (dispatch: Dispatch) => ({
 //redux selector
 const targetRestaurantsRetriever = createSelector(
   retrieveTargetRestaurants,
-
   (targetRestaurants) => ({
     targetRestaurants,
   })
 );
-const order_list = Array.from(Array(8).keys());
+console.log();
 const AllRestaurants = () => {
-  // const { setTargetRestaurants } = actionDispatch(useDispatch());
+  const { setTargetRestaurants } = actionDispatch(useDispatch());
+  const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
+  const refs: any = useRef([]);
+  console.log("target", targetRestaurants);
 
-  // const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
+  const [targetSearchObj, setTargetSearchObj] = useState<SearchObj>({
+    page: 1,
+    limit: 8,
+    order: "mb_point",
+  });
 
   useEffect(() => {
-    // backend data request =>
-  }, []);
+    const restaurantService = new RestaurantApiService();
+    restaurantService
+      .getRestaurants(targetSearchObj)
+      .then((data) => setTargetRestaurants(data))
+      .catch((err) => console.log(err));
+  }, [targetSearchObj]);
+
+  //Handler
+
+  const searchHandler = (category: string) => {
+    targetSearchObj.page = 1;
+    targetSearchObj.order = category;
+    setTargetSearchObj({ ...targetSearchObj });
+  };
+
+  const handlePaginationChange = (event: any, value: number) => {
+    targetSearchObj.page = value;
+    setTargetSearchObj({ ...targetSearchObj });
+  };
+
+  const targetLikeHandler = async (e: any, id: string) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: id,
+          group_type: "member",
+        });
+      assert.ok(like_result, Definer.general_err1);
+      if (like_result.like_status > 0) {
+        e.target.style.fill = "red";
+        refs.current[like_result.like_ref_id].innerHTML++;
+      } else {
+        e.target.style.fill = "white";
+        refs.current[like_result.like_ref_id].innerHTML--;
+        await sweetTopSmallSuccessAlert("success", 700, false);
+      }
+    } catch (err: any) {
+      console.log("targetLikeTop, ERROR", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <div className="all_restaurant">
@@ -54,10 +111,10 @@ const AllRestaurants = () => {
         <Stack>
           <Box className="fil_search_box">
             <Box className="fil_box">
-              <a>Zo'r</a>
-              <a>Mashxur</a>
-              <a>Trenddagi</a>
-              <a>Yangi</a>
+              <a onClick={() => searchHandler("mb_point")}>Zo'r</a>
+              <a onClick={() => searchHandler("mb_views")}>Mashxur</a>
+              <a onClick={() => searchHandler("mb_likes")}>Trenddagi</a>
+              <a onClick={() => searchHandler("createdAt")}>Yangi</a>
             </Box>
             <Box className="search_big_box">
               <form action="" className="search_form">
@@ -79,10 +136,11 @@ const AllRestaurants = () => {
           </Box>
           <Stack className="all_res_box">
             <CssVarsProvider>
-              {order_list.map((vl, index) => {
+              {targetRestaurants.map((vl: Restaurant) => {
+                const image_path = `${serverApi}/${vl.mb_image}`;
                 return (
                   <Card
-                    key={index}
+                    key={vl._id}
                     variant="outlined"
                     sx={{
                       minHeight: 410,
@@ -93,7 +151,7 @@ const AllRestaurants = () => {
                   >
                     <CardOverflow>
                       <AspectRatio ratio="1">
-                        <img src="/restaurant/zor_res.png" alt="" />
+                        <img src={image_path} alt="" />
                       </AspectRatio>
                       <IconButton
                         aria-label="Like ninimal photography"
@@ -113,19 +171,26 @@ const AllRestaurants = () => {
                           color: "rgba(0,0,0,0.4)",
                         }}
                       >
-                        <Favorite style={{ color: "white" }} />
+                        <Favorite
+                          onClick={(e: any) => targetLikeHandler(e, vl._id)}
+                          style={{
+                            fill: vl?.me_liked[0]?.my_favorite
+                              ? "red"
+                              : "white",
+                          }}
+                        />
                       </IconButton>
                     </CardOverflow>
 
                     <Typography level="h2" sx={{ fontSize: "lg", mt: 1 }}>
-                      Rayhon restaurant
+                      {vl.mb_nick} restaurant
                     </Typography>
                     <Typography level="body-sm" sx={{ mt: 0.5, mb: 2 }}>
                       <Link
                         startDecorator={<LocationOnRoundedIcon />}
                         textColor="neutral.700"
                       >
-                        Tashkent, Yunus Abad 4-1
+                        {vl.mb_address}
                       </Link>
                     </Typography>
                     <Typography level="body-sm">
@@ -134,7 +199,7 @@ const AllRestaurants = () => {
                         textColor="neutral.700"
                         startDecorator={<CallIcon />}
                       >
-                        +82-(1)04 042-5681
+                        {vl.mb_phone}
                       </Link>
                     </Typography>
                     <CardOverflow
@@ -158,7 +223,7 @@ const AllRestaurants = () => {
                           display: "flex",
                         }}
                       >
-                        1000
+                        {vl.mb_views}
                         <VisibilityIcon
                           sx={{ fontSize: 20, marginLeft: "5px" }}
                         />
@@ -172,7 +237,11 @@ const AllRestaurants = () => {
                           display: "flex",
                         }}
                       >
-                        <div>50</div>
+                        <div
+                          ref={(element) => (refs.current[vl._id] = element)}
+                        >
+                          {vl.mb_likes}
+                        </div>
                         <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
                       </Typography>
                     </CardOverflow>
@@ -184,8 +253,8 @@ const AllRestaurants = () => {
           <Stack className="bottom_box">
             <img src="/icons/line_left.svg" alt="" className="line_img" />
             <Pagination
-              count={3}
-              page={1}
+              count={targetSearchObj.page >= 3 ? targetSearchObj.page + 1 : 3}
+              page={targetSearchObj.page}
               renderItem={(item) => (
                 <PaginationItem
                   components={{
@@ -196,6 +265,7 @@ const AllRestaurants = () => {
                   color="primary"
                 />
               )}
+              onChange={handlePaginationChange}
             />
             <img src="/icons/line_left.svg" alt="" className="line_two_img" />
           </Stack>
