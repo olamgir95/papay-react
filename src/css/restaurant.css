@@ -232,12 +232,11 @@
 
 .single_restaurant .restaurant_avatars {
   cursor: pointer;
-  width: 108px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  max-width: 108px !important;
+  max-height: 108px;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
 }
 
 .single_restaurant .restaurant_avatars span {
