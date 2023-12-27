@@ -34,6 +34,7 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import { useHistory } from "react-router-dom";
 
 //redux slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -48,8 +49,9 @@ const targetRestaurantsRetriever = createSelector(
     targetRestaurants,
   })
 );
-console.log();
+
 const AllRestaurants = () => {
+  const history = useHistory();
   const { setTargetRestaurants } = actionDispatch(useDispatch());
   const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
   const refs: any = useRef([]);
@@ -105,6 +107,10 @@ const AllRestaurants = () => {
     }
   };
 
+  const chosenRestaurantHandler = (id: string) => {
+    history.push(`/restaurants/${id}`);
+  };
+
   return (
     <div className="all_restaurant">
       <Container>
@@ -142,6 +148,7 @@ const AllRestaurants = () => {
                   <Card
                     key={vl._id}
                     variant="outlined"
+                    onClick={(e) => chosenRestaurantHandler(vl._id)}
                     sx={{
                       minHeight: 410,
                       minWidth: 290,
