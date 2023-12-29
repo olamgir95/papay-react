@@ -228,15 +228,30 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 147px;
 }
 
-.single_restaurant .restaurant_avatars {
+.single_restaurant .avatars_wrapper {
+  height: 147px;
+  width: 100% !important;
+  margin: 0 10px !important;
+}
+
+.avatars_wrapper .restaurant_avatars {
+  height: 147px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 108px !important;
+  margin-left: 0 !important;
+}
+
+.single_restaurant .restaurant_avatars img {
   cursor: pointer;
   max-width: 108px !important;
-  max-height: 108px;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
+  height: 108px !important;
+  border-radius: 50%;
+  background-size: cover;
 }
 
 .single_restaurant .restaurant_avatars span {
@@ -551,7 +566,6 @@
 }
 
 .single_restaurant .member_sec .about_left {
-  background: url("/public/restaurant/rayhon.png");
   background-repeat: no-repeat;
   width: 50%;
   height: auto;
@@ -733,13 +747,13 @@
   justify-content: center;
 }
 
-.swiper-wrapper {
+/* .swiper-wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   align-items: center;
-}
+} */
 
 .chosen_dish_page .chosen_dish_info_container {
   padding: 30px 40px;

@@ -48,7 +48,7 @@ SwiperCore.use([Navigation]);
 const actionDispatch = (dispatch: Dispatch) => ({
   setRendomRestaurants: (data: Restaurant[]) =>
     dispatch(setRendomRestaurants(data)),
-  setChosenRestaurant: (data: Restaurant[]) =>
+  setChosenRestaurant: (data: Restaurant) =>
     dispatch(setChosenRestaurant(data)),
   setTargetProducts: (data: Product[]) => dispatch(setTargetProducts(data)),
 });
@@ -66,12 +66,12 @@ const targetRestaurantsRetriever = createSelector(
 );
 
 export default function OneRestaurant() {
+  const [value, setValue] = useState<number | null>(2);
   const history = useHistory();
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
   let { restaurant_id } = useParams<{ restaurant_id: string }>();
-  const [chosenRestaurantId, setChosenRestaurantId] = useState<{
-    restaurant_id: string;
-  }>();
+  const [chosenRestaurantId, setChosenRestaurantId] =
+    useState<string>(restaurant_id);
   const [targetProductSearchObj, setTargetProductSearchObj] =
     useState<ProductSearchObj>({
       page: 1,
@@ -87,6 +87,8 @@ export default function OneRestaurant() {
     targetRestaurantsRetriever
   );
 
+  console.log("cheosen::::", chosenRestaurant);
+
   useEffect(() => {
     const productService = new ProductApiService();
     const restaurantService = new RestaurantApiService();
@@ -99,15 +101,20 @@ export default function OneRestaurant() {
     restaurantService
       .getRestaurants({ page: 1, limit: 10, order: "random" })
       .then((data) => {
-        console.log("data", data);
-
         setRendomRestaurants(data);
       })
       .catch((err) => console.log(err));
-  }, [targetProductSearchObj, productRebuild]);
+
+    restaurantService
+      .getChosenRestaurant(chosenRestaurantId)
+      .then((data) => {
+        setChosenRestaurant(data);
+      })
+      .catch((err) => console.log(err));
+  }, [chosenRestaurantId, targetProductSearchObj, productRebuild]);
 
   const chosenRestaurantHandler = (id: string) => {
-    setChosenRestaurantId({ restaurant_id: id });
+    setChosenRestaurantId(id);
     targetProductSearchObj.restaurant_mb_id = id;
     setTargetProductSearchObj({ ...targetProductSearchObj });
     history.push(`/restaurants/${id}`);
@@ -123,6 +130,10 @@ export default function OneRestaurant() {
     targetProductSearchObj.page = 1;
     targetProductSearchObj.order = order;
     setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
+
+  const chosenDish = (id: string) => {
+    history.push(`/restaurants/dish/${id}`);
   };
 
   const targetLikeProduct = async (e: any) => {
@@ -272,10 +283,14 @@ export default function OneRestaurant() {
                 const image_path = `${serverApi}/${product.product_images[0]}`;
                 const size_volume =
                   product.product_collection === "drink"
-                    ? product.product_volume + "L"
-                    : product.product_size + "size";
+                    ? product.product_volume + " L"
+                    : product.product_size + " size";
                 return (
-                  <Box key={product._id} className="dish_card">
+                  <Box
+                    onClick={() => chosenDish(product._id)}
+                    key={product._id}
+                    className="dish_card"
+                  >
                     <Box
                       className="dish_img"
                       sx={{ backgroundImage: `url(${image_path})` }}
@@ -335,7 +350,7 @@ export default function OneRestaurant() {
         <Container className="review_container">
           <Box className="category_title">Oshxona haqidagi fikrlar</Box>
           <Stack className="review_sec">
-            {/* {comments_list.map((vl, index) => {
+            {Array().map((vl, index) => {
               return (
                 <Box className="review_box" key={index}>
                   <Box className="review_img">
@@ -359,21 +374,22 @@ export default function OneRestaurant() {
                   </Box>
                 </Box>
               );
-            })} */}
+            })}
           </Stack>
         </Container>
       </div>
       <Container className="member_reviews">
         <Box className="category_title">Oshxona haqida</Box>
         <Stack className="member_sec">
-          <Box className="about_left">
+          <Box
+            className="about_left"
+            sx={{
+              backgroundImage: `url(${serverApi}/${chosenRestaurant?.mb_image})`,
+            }}
+          >
             <div className="about_left_desc">
-              <span className="name">Rayhon</span>
-              <p className="desc">
-                Biz sizlarga xizmat ko’rsatayotganimizdan bag’oyatda xursadmiz.
-                Bizning xaqimizda: O’z faoliyatimizni 1945 - yilda boshlaganmiz
-                vaxokazo vaxokazo vaxokazo...
-              </p>
+              <span className="name">{chosenRestaurant?.mb_nick}</span>
+              <p className="desc">{chosenRestaurant?.mb_description}</p>
             </div>
           </Box>
           <Box className="about_right">

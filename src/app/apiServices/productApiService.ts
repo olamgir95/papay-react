@@ -11,7 +11,7 @@ export default class ProductApiService {
     this.path = serverApi;
   }
 
-  async getTargetProducts(data: ProductSearchObj) {
+  async getTargetProducts(data: ProductSearchObj): Promise<Product[]> {
     try {
       console.log(serverApi);
 
