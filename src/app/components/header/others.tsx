@@ -12,6 +12,7 @@ import {
 import { NavLink } from "react-router-dom";
 import { Logout } from "@mui/icons-material";
 import { Member } from "../../../types/user";
+import Basket from "./basket";
 
 export default function NavbarOthers({
   handleLoginOpen,
@@ -83,19 +84,7 @@ export default function NavbarOthers({
                 Help
               </NavLink>
             </Box>
-            <Box>
-              <IconButton
-                aria-label="hover-line"
-                id="basic-button"
-                aria-controls={undefined}
-                aria-haspopup="true"
-                aria-expanded={undefined}
-              >
-                <Badge color="secondary" badgeContent={5}>
-                  <img src="/icons/shopping_cart.svg" alt="" />
-                </Badge>
-              </IconButton>
-            </Box>
+            <Basket />
             {verifedMemberData ? (
               <img
                 src={verifedMemberData.mb_image}
