@@ -61,11 +61,13 @@ export default function NavbarHome({
                 Restaurant
               </NavLink>
             </Box>
-            <Box className="hover-line">
-              <NavLink to="/orders" activeClassName="underline">
-                Orders
-              </NavLink>
-            </Box>
+            {verifedMemberData ? (
+              <Box className="hover-line" onClick={setPath}>
+                <NavLink to="/orders" activeClassName="underline">
+                  Order
+                </NavLink>
+              </Box>
+            ) : null}
             <Box className="hover-line" onClick={setPath}>
               <NavLink to="/community" activeClassName="underline">
                 Community

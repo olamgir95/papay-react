@@ -6,8 +6,41 @@ import FinishedOrders from "./FinishedOrders";
 import PauseOrders from "./PauseOrders";
 import ProcessOrders from "./processOrders";
 import Marginer from "../../components/marginer";
+import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
+import { Dispatch, createSelector } from "@reduxjs/toolkit";
+import {
+  retrieveProcessOrders,
+  retrievePausedOrders,
+  retrieveFinishedOrders,
+} from "./selector";
+import { Order } from "../../../types/order";
+import { useDispatch, useSelector } from "react-redux";
+
+//redux slice
+const actionDispatch = (dispatch: Dispatch) => ({
+  setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
+  setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
+  setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
+});
+
+//redux selector
+const targetOrdersRetriever = createSelector(
+  retrieveProcessOrders,
+  retrievePausedOrders,
+  retrieveFinishedOrders,
+  (processOrders, pausedOrders, finishedOrders) => ({
+    processOrders,
+    pausedOrders,
+    finishedOrders,
+  })
+);
 
 export function OrdersPage() {
+  const { setProcessOrders, setPausedOrders, setFinishedOrders } =
+    actionDispatch(useDispatch());
+  const { processOrders, pausedOrders, finishedOrders } = useSelector(
+    targetOrdersRetriever
+  );
   const [value, setValue] = useState("1");
 
   const handleChange = (event: any, newValue: string) => {
@@ -35,9 +68,9 @@ export function OrdersPage() {
               </Box>
             </Box>
             <Stack className="order_main_content">
-              <PauseOrders />
-              <ProcessOrders />
-              <FinishedOrders />
+              <PauseOrders processOrders={processOrders} />
+              <ProcessOrders pausedOrders={pausedOrders} />
+              <FinishedOrders finishedOrders={finishedOrders} />
             </Stack>
           </TabContext>
         </Stack>
