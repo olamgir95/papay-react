@@ -3,11 +3,16 @@ import { Box, Button, Container, Stack } from "@mui/material";
 import { MonetizationOn } from "@mui/icons-material";
 import { Product } from "../../../types/product";
 import { serverApi } from "../../../lib/config";
+import { useHistory } from "react-router-dom";
 
 export const BestDishes: FC<{ trendProducts: Product[] }> = ({
   trendProducts,
 }) => {
+  const history = useHistory();
   console.log("trendproducts", trendProducts);
+  const chosenDish = (id: string) => {
+    history.push(`/restaurants/dish/${id}`);
+  };
 
   return (
     <div className="best_dishes_frame">
@@ -30,7 +35,10 @@ export const BestDishes: FC<{ trendProducts: Product[] }> = ({
                     }}
                   >
                     <div className="dish_sale">{size_volume}</div>
-                    <Button className=" view_btn">
+                    <Button
+                      className=" view_btn"
+                      onClick={() => chosenDish(product._id)}
+                    >
                       Batafsil ko'rish
                       <img
                         src="/icons/arrow_right.svg"

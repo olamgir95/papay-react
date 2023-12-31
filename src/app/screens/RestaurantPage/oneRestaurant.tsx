@@ -250,11 +250,11 @@ export default function OneRestaurant() {
                 boshqa
               </Button>
               <Button
-                onClick={() => searchCollectionHandler("desert")}
+                onClick={() => searchCollectionHandler("dessert")}
                 variant="contained"
                 color="secondary"
               >
-                desert
+                dessert
               </Button>
               <Button
                 onClick={() => searchCollectionHandler("drink")}

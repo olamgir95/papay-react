@@ -22,7 +22,7 @@ export interface HomePageState {
 export interface RestaurantPageState {
   targetRestaurants: Restaurant[];
   rendomRestaurants: Restaurant[];
-  chosenRestaurant: Restaurant[] | null;
+  chosenRestaurant: Restaurant | null;
   targetProducts: Product[];
   chosenProduct: Product | null;
 }

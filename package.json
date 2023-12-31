@@ -42,7 +42,7 @@
     "socket.io-client": "^2.3.0",
     "styled-components": "^5.3.6",
     "sweetalert2": "^11.6.9",
-    "swiper": "^8.4.3",
+    "swiper": "^8.3.0",
     "typescript": "^5.3.3",
     "universal-cookie": "^6.1.1",
     "web-vitals": "^2.1.4"

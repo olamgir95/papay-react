@@ -30,6 +30,7 @@ export const TopRestaurants = (props: any) => {
   const chosenRestaurantHandler = (id: string) => {
     history.push(`/restaurants/${id}`);
   };
+  console.log(props.topRestaurants, "res");
 
   const targetLikeTop = async (e: any, id: string) => {
     try {
