@@ -1,9 +1,7 @@
 import {
-  Badge,
   Box,
   Button,
   Container,
-  IconButton,
   ListItemIcon,
   Menu,
   MenuItem,
@@ -13,6 +11,7 @@ import { NavLink } from "react-router-dom";
 import { Logout } from "@mui/icons-material";
 import { Member } from "../../../types/user";
 import Basket from "./basket";
+import { CartItem } from "../../../types/others";
 
 export default function NavbarOthers({
   handleLoginOpen,
@@ -23,6 +22,10 @@ export default function NavbarOthers({
   handleLogoutRequest,
   anchorEl,
   open,
+  cartItems,
+  onAdd,
+  onRemove,
+  onDelete,
 }: {
   handleLoginOpen: () => void;
   setPath: any;
@@ -32,6 +35,10 @@ export default function NavbarOthers({
   anchorEl: null | HTMLElement;
   handleLogoutRequest: any;
   open: boolean;
+  cartItems: CartItem[];
+  onAdd: any;
+  onRemove: any;
+  onDelete: any;
 }): JSX.Element {
   return (
     <div className="format_others home_navbar">
@@ -82,7 +89,12 @@ export default function NavbarOthers({
                 Help
               </NavLink>
             </Box>
-            <Basket />
+            <Basket
+              cartItems={cartItems}
+              onAdd={onAdd}
+              onRemove={onRemove}
+              onDelete={onDelete}
+            />
             {verifedMemberData ? (
               <img
                 src={verifedMemberData.mb_image}

@@ -152,6 +152,10 @@ function App() {
           handleLogoutRequest={handleLogoutRequest}
           anchorEl={anchorEl}
           open={open}
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
         />
       ) : main_path.includes("/restaurants") ? (
         <NavbarRestaurant
@@ -178,6 +182,10 @@ function App() {
           handleLogoutRequest={handleLogoutRequest}
           anchorEl={anchorEl}
           open={open}
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
         />
       )}
 

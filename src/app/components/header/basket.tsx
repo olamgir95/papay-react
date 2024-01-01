@@ -14,7 +14,7 @@ export default function Basket(props: any) {
   const open = Boolean(anchorEl);
 
   const { cartItems } = props;
-  const itemsPrice = cartItems.reduce(
+  const itemsPrice = cartItems?.reduce(
     (value: any, curValue: CartItem) =>
       value + curValue.price * curValue.quantity,
     0
@@ -116,6 +116,7 @@ export default function Basket(props: any) {
                         >
                           -
                         </button>
+
                         <button
                           onClick={(e) => props.onAdd(item)}
                           className="add"

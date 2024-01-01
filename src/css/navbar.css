@@ -166,6 +166,7 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
+  margin-left: -10px;
   font-size: 15px;
   line-height: 22px;
   color: #ae0000;
@@ -182,8 +183,8 @@
 
 .basket_frame .cancel_btn {
   position: absolute;
-  top: 33%;
-  right: 5%;
+  top: 32%;
+  right: 2%;
   cursor: pointer;
 }
 
@@ -233,4 +234,10 @@
   flex-direction: column;
 }
 
+.basket_frame .add,
+.remove {
+  margin-left: 5px;
+  width: 20px;
+  height: 20px;
+}
 /* END BASKET */

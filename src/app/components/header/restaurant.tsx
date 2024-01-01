@@ -1,10 +1,8 @@
 import React from "react";
 import {
-  Badge,
   Box,
   Button,
   Container,
-  IconButton,
   ListItemIcon,
   Menu,
   MenuItem,
@@ -14,7 +12,6 @@ import { NavLink } from "react-router-dom";
 import { Member } from "../../../types/user";
 import { Logout } from "@mui/icons-material";
 import Basket from "./basket";
-import { CartItem } from "../../../types/others";
 
 export default function NavbarRestaurant(props: any) {
   const {
@@ -23,7 +20,6 @@ export default function NavbarRestaurant(props: any) {
     verifedMemberData,
     handleLogOutClick,
     handleCloseLogOut,
-    handleLogoutRequest,
     anchorEl,
     open,
     cartItems,
