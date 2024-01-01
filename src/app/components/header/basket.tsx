@@ -12,9 +12,8 @@ export default function Basket(props: any) {
   /** INITIALIZATIONS **/
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const cartJson: any = localStorage.getItem("cart_data");
-  const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
-  const cartItems = current_cart;
+
+  const { cartItems } = props;
   const itemsPrice = cartItems.reduce(
     (value: any, curValue: CartItem) =>
       value + curValue.price * curValue.quantity,
@@ -85,7 +84,7 @@ export default function Basket(props: any) {
       >
         <Stack className={"basket_frame"}>
           <Box className={"all_check_box"}>
-            {!current_cart ? (
+            {!cartItems ? (
               <div>Cart is empty!</div>
             ) : (
               <div>My Cart Products:</div>
@@ -101,7 +100,7 @@ export default function Basket(props: any) {
                     <div className={"cancel_btn"}>
                       <CancelIcon
                         color={"primary"}
-                        // onClick={}
+                        onClick={(e) => props.onDelete(item)}
                       />
                     </div>
                     <img src={image_path} className={"product_img"} />
@@ -112,13 +111,13 @@ export default function Basket(props: any) {
                     <Box sx={{ minWidth: 120 }}>
                       <div className="col-2">
                         <button
-                          //   onClick={}
+                          onClick={(e) => props.onRemove(item)}
                           className="remove"
                         >
                           -
-                        </button>{" "}
+                        </button>
                         <button
-                          onClick={() => props.onAdd(item)}
+                          onClick={(e) => props.onAdd(item)}
                           className="add"
                         >
                           +

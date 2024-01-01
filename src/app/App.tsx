@@ -94,8 +94,8 @@ function App() {
           ? { ...exist, quantity: exist.quantity + 1 }
           : item
       );
-      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
       setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
     } else {
       const new_item: CartItem = {
         _id: product._id,
@@ -105,14 +105,39 @@ function App() {
         name: product.product_name,
       };
       const cart_updated = [...cartItems, { ...new_item }];
-      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
       setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
     }
   };
-  const onRemove = () => {};
-  const onDelete = () => {};
+  const onRemove = (item: CartItem) => {
+    const item_data: any = cartItems.find(
+      (vl: CartItem) => vl._id === item._id
+    );
+    if (item_data.quantity === 1) {
+      const filter_items: CartItem[] = cartItems.filter(
+        (vl) => vl._id !== item._id
+      );
+      setCartItems(filter_items);
+      localStorage.setItem("cart_data", JSON.stringify(filter_items));
+    } else {
+      const cart_updated = cartItems.map((vl: CartItem) =>
+        vl._id === item_data._id
+          ? { ...item_data, quantity: item_data.quantity - 1 }
+          : item
+      );
+      console.log("rem", cart_updated);
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    }
+  };
+  const onDelete = (item: CartItem) => {
+    const deleted_items: CartItem[] = cartItems.filter(
+      (vl) => vl._id !== item._id
+    );
+    setCartItems(deleted_items);
+    localStorage.setItem("cart_data", JSON.stringify(deleted_items));
+  };
   const onDeleteAll = () => {};
-  console.log("cccccc", cartItems);
 
   return (
     <Router>
@@ -128,7 +153,7 @@ function App() {
           anchorEl={anchorEl}
           open={open}
         />
-      ) : main_path === "/restaurants" ? (
+      ) : main_path.includes("/restaurants") ? (
         <NavbarRestaurant
           verifedMemberData={verifedMemberData}
           setPath={setPath}
@@ -140,6 +165,8 @@ function App() {
           open={open}
           cartItems={cartItems}
           onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
         />
       ) : (
         <NavbarOthers

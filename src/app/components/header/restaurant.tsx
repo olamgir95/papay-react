@@ -16,29 +16,21 @@ import { Logout } from "@mui/icons-material";
 import Basket from "./basket";
 import { CartItem } from "../../../types/others";
 
-export default function NavbarRestaurant({
-  handleLoginOpen,
-  setPath,
-  verifedMemberData,
-  handleLogOutClick,
-  handleCloseLogOut,
-  handleLogoutRequest,
-  anchorEl,
-  open,
-  cartItems,
-  onAdd,
-}: {
-  handleLoginOpen: () => void;
-  setPath: any;
-  verifedMemberData: Member | null;
-  handleLogOutClick: any;
-  handleCloseLogOut: any;
-  anchorEl: null | HTMLElement;
-  handleLogoutRequest: any;
-  open: boolean;
-  cartItems: CartItem[];
-  onAdd: any;
-}): JSX.Element {
+export default function NavbarRestaurant(props: any) {
+  const {
+    handleLoginOpen,
+    setPath,
+    verifedMemberData,
+    handleLogOutClick,
+    handleCloseLogOut,
+    handleLogoutRequest,
+    anchorEl,
+    open,
+    cartItems,
+    onAdd,
+    onRemove,
+    onDelete,
+  } = props;
   console.log("navbar cart", cartItems);
 
   return (
@@ -90,7 +82,12 @@ export default function NavbarRestaurant({
                 Help
               </NavLink>
             </Box>
-            <Basket cartItems={cartItems} onAdd={onAdd} />
+            <Basket
+              cartItems={cartItems}
+              onAdd={onAdd}
+              onRemove={onRemove}
+              onDelete={onDelete}
+            />
             {verifedMemberData ? (
               <img
                 src={verifedMemberData.mb_image}
@@ -150,10 +147,7 @@ export default function NavbarRestaurant({
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-              <MenuItem
-                sx={{ cursor: "pointer" }}
-                onClick={handleLogoutRequest}
-              >
+              <MenuItem sx={{ cursor: "pointer" }}>
                 <ListItemIcon>
                   <Logout fontSize="small" color="primary" />
                 </ListItemIcon>
