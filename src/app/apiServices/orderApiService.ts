@@ -11,7 +11,7 @@ export default class OrderApiService {
     this.path = serverApi;
   }
 
-  async createOrder(data: CartItem[]): Promise<CartItem> {
+  async createOrder(data: CartItem[]): Promise<Order> {
     try {
       const url = "/orders/create",
         result = await axios.post(this.path + url, data, {
@@ -22,8 +22,27 @@ export default class OrderApiService {
       assert.ok(result?.data.state !== "fail", Definer.general_err1);
       console.log("state:::", result.data.state);
 
-      const order: CartItem = result.data.data;
+      const order: Order = result.data.data;
       return order;
+    } catch (err: any) {
+      console.log(`ERROR ::: createOrder ${err.message}`);
+
+      throw err;
+    }
+  }
+  async getMyOrders(order_status: string): Promise<Order[]> {
+    try {
+      const url = `/orders?status=${order_status}`,
+        result = await axios.get(this.path + url, {
+          withCredentials: true,
+        });
+
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data.state !== "fail", Definer.general_err1);
+      console.log("state:::", result.data.state);
+
+      const orders: Order[] = result.data.data;
+      return orders;
     } catch (err: any) {
       console.log(`ERROR ::: createOrder ${err.message}`);
 

@@ -1,5 +1,5 @@
 import { Box, Container, Stack, Tab } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import FinishedOrders from "./FinishedOrders";
@@ -15,6 +15,7 @@ import {
 } from "./selector";
 import { Order } from "../../../types/order";
 import { useDispatch, useSelector } from "react-redux";
+import OrderApiService from "../../apiServices/orderApiService";
 
 //redux slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -24,7 +25,7 @@ const actionDispatch = (dispatch: Dispatch) => ({
 });
 
 //redux selector
-const targetOrdersRetriever = createSelector(
+export const targetOrdersRetriever = createSelector(
   retrieveProcessOrders,
   retrievePausedOrders,
   retrieveFinishedOrders,
@@ -38,14 +39,26 @@ const targetOrdersRetriever = createSelector(
 export function OrdersPage() {
   const { setProcessOrders, setPausedOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
-  const { processOrders, pausedOrders, finishedOrders } = useSelector(
-    targetOrdersRetriever
-  );
+
   const [value, setValue] = useState("1");
 
-  const handleChange = (event: any, newValue: string) => {
-    console.log(newValue);
+  useEffect(() => {
+    const orderService = new OrderApiService();
+    orderService
+      .getMyOrders("paused")
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+    orderService
+      .getMyOrders("paused")
+      .then((data) => setProcessOrders(data))
+      .catch((err) => console.log(err));
+    orderService
+      .getMyOrders("paused")
+      .then((data) => setFinishedOrders(data))
+      .catch((err) => console.log(err));
+  }, []);
 
+  const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
   };
 
@@ -68,9 +81,9 @@ export function OrdersPage() {
               </Box>
             </Box>
             <Stack className="order_main_content">
-              <PauseOrders processOrders={processOrders} />
-              <ProcessOrders pausedOrders={pausedOrders} />
-              <FinishedOrders finishedOrders={finishedOrders} />
+              <PauseOrders />
+              <ProcessOrders />
+              <FinishedOrders />
             </Stack>
           </TabContext>
         </Stack>

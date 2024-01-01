@@ -13,7 +13,7 @@ export interface OrderItem {
 export interface Order {
   _id: string;
   order_total_amount: number;
-  order_delivery_cost: { type: Number; required: true };
+  order_delivery_cost: number;
   mb_id: string;
   order_status: string;
   craetedAt: Date;

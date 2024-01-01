@@ -28,7 +28,6 @@ export default function NavbarRestaurant(props: any) {
     onDelete,
     onDeleteAll,
   } = props;
-  console.log("navbar cart", cartItems);
 
   return (
     <div className="format_restaurant home_navbar">

@@ -51,6 +51,7 @@ export default function Basket(props: any) {
       sweetErrorHandling(err).then();
     }
   };
+  console.log("cxart", cartItems);
 
   return (
     <Box className={"hover-line"}>
@@ -115,7 +116,7 @@ export default function Basket(props: any) {
               {cartItems?.map((item: CartItem) => {
                 const image_path = `${serverApi}/${item.image}`;
                 return (
-                  <Box key={item._id} className={"basket_info_box"}>
+                  <Box key={item?._id} className={"basket_info_box"}>
                     <div className={"cancel_btn"}>
                       <CancelIcon
                         color={"primary"}
