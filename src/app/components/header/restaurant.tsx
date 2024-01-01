@@ -26,6 +26,7 @@ export default function NavbarRestaurant(props: any) {
     onAdd,
     onRemove,
     onDelete,
+    onDeleteAll,
   } = props;
   console.log("navbar cart", cartItems);
 
@@ -83,6 +84,7 @@ export default function NavbarRestaurant(props: any) {
               onAdd={onAdd}
               onRemove={onRemove}
               onDelete={onDelete}
+              onDeleteAll={onDeleteAll}
             />
             {verifedMemberData ? (
               <img
