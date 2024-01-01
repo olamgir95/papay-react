@@ -104,7 +104,7 @@ function App() {
         image: product.product_images[0],
         name: product.product_name,
       };
-      const cart_updated = [...cartItems, { ...new_item }];
+      const cart_updated = [{ ...new_item }];
       console.log("new", cart_updated);
 
       setCartItems(cart_updated);
