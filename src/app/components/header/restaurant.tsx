@@ -14,6 +14,7 @@ import { NavLink } from "react-router-dom";
 import { Member } from "../../../types/user";
 import { Logout } from "@mui/icons-material";
 import Basket from "./basket";
+import { CartItem } from "../../../types/others";
 
 export default function NavbarRestaurant({
   handleLoginOpen,
@@ -24,6 +25,8 @@ export default function NavbarRestaurant({
   handleLogoutRequest,
   anchorEl,
   open,
+  cartItems,
+  onAdd,
 }: {
   handleLoginOpen: () => void;
   setPath: any;
@@ -33,7 +36,11 @@ export default function NavbarRestaurant({
   anchorEl: null | HTMLElement;
   handleLogoutRequest: any;
   open: boolean;
+  cartItems: CartItem[];
+  onAdd: any;
 }): JSX.Element {
+  console.log("navbar cart", cartItems);
+
   return (
     <div className="format_restaurant home_navbar">
       <Container>
@@ -83,7 +90,7 @@ export default function NavbarRestaurant({
                 Help
               </NavLink>
             </Box>
-            <Basket />
+            <Basket cartItems={cartItems} onAdd={onAdd} />
             {verifedMemberData ? (
               <img
                 src={verifedMemberData.mb_image}

@@ -65,7 +65,8 @@ const targetRestaurantsRetriever = createSelector(
   })
 );
 
-export default function OneRestaurant() {
+export default function OneRestaurant(props: any) {
+  const { onAdd } = props;
   const [value, setValue] = useState<number | null>(2);
   const history = useHistory();
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
@@ -86,8 +87,6 @@ export default function OneRestaurant() {
   const { rendomRestaurants, targetProducts, chosenRestaurant } = useSelector(
     targetRestaurantsRetriever
   );
-
-  console.log("cheosen::::", chosenRestaurant);
 
   useEffect(() => {
     const productService = new ProductApiService();
@@ -315,7 +314,15 @@ export default function OneRestaurant() {
                           />
                         </Badge>
                       </Button>
-                      <Button className="view_btn">
+                      <Button
+                        className="view_btn"
+                        onClick={(e) => {
+                          console.log("product", product);
+                          onAdd(product);
+
+                          e.stopPropagation();
+                        }}
+                      >
                         <img src="/icons/shopping_cart.svg" alt="" />
                       </Button>
                       <Button className="like_view_btn" sx={{ right: "36px" }}>

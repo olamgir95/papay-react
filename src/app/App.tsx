@@ -30,6 +30,8 @@ import "../css/community.css";
 import "../css/restaurant.css";
 import "../css/member.css";
 import "../css/help.css";
+import { CartItem } from "../types/others";
+import { Product } from "../types/product";
 
 function App() {
   //INITIALIZATION
@@ -38,11 +40,13 @@ function App() {
   );
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
-
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const cartJson: any = localStorage.getItem("cart_data");
+  const current_cart: CartItem[] = JSON.parse(cartJson);
+  const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
 
   useEffect(() => {
     const memberDataJson: any = localStorage.getItem("member_data")
@@ -79,6 +83,37 @@ function App() {
       sweetFailureProvider(Definer.general_err1);
     }
   };
+
+  const onAdd = (product: Product) => {
+    const exist: any = cartItems.find(
+      (item: CartItem) => item._id === product._id
+    );
+    if (exist) {
+      const cart_updated = cartItems.map((item: CartItem) =>
+        item._id === product._id
+          ? { ...exist, quantity: exist.quantity + 1 }
+          : item
+      );
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+      setCartItems(cart_updated);
+    } else {
+      const new_item: CartItem = {
+        _id: product._id,
+        quantity: 1,
+        price: product.product_price,
+        image: product.product_images[0],
+        name: product.product_name,
+      };
+      const cart_updated = [...cartItems, { ...new_item }];
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+      setCartItems(cart_updated);
+    }
+  };
+  const onRemove = () => {};
+  const onDelete = () => {};
+  const onDeleteAll = () => {};
+  console.log("cccccc", cartItems);
+
   return (
     <Router>
       {main_path === "/" ? (
@@ -103,6 +138,8 @@ function App() {
           handleLogoutRequest={handleLogoutRequest}
           anchorEl={anchorEl}
           open={open}
+          cartItems={cartItems}
+          onAdd={onAdd}
         />
       ) : (
         <NavbarOthers
@@ -119,7 +156,7 @@ function App() {
 
       <Switch>
         <Route path="/restaurants">
-          <RestaurantPage />
+          <RestaurantPage onAdd={onAdd} cartItems={cartItems} />
         </Route>
         <Route path="/orders">
           <OrdersPage />

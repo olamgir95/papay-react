@@ -46,7 +46,7 @@ const ChosenProductRetriever = createSelector(
   })
 );
 
-export default function ChosenDish() {
+export default function ChosenDish(props: any) {
   let { dish_id } = useParams<{ dish_id: string }>();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
@@ -180,7 +180,12 @@ export default function ChosenDish() {
               <span>${chosenProduct?.product_price}</span>
             </Box>
             <Box className="button_box">
-              <Button variant="contained">Savatga qo'shish</Button>
+              <Button
+                onClick={(e) => props.onAdd(chosenProduct)}
+                variant="contained"
+              >
+                Savatga qo'shish
+              </Button>
             </Box>
           </Stack>
         </Stack>

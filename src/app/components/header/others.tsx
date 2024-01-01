@@ -21,7 +21,6 @@ export default function NavbarOthers({
   handleLogOutClick,
   handleCloseLogOut,
   handleLogoutRequest,
-
   anchorEl,
   open,
 }: {
@@ -32,7 +31,6 @@ export default function NavbarOthers({
   handleCloseLogOut: any;
   anchorEl: null | HTMLElement;
   handleLogoutRequest: any;
-
   open: boolean;
 }): JSX.Element {
   return (
