@@ -7,13 +7,20 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import React from "react";
 import { serverApi } from "../../../lib/config";
 import { CartItem } from "../../../types/others";
+import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
+import OrderApiService from "../../apiServices/orderApiService";
+import { useHistory } from "react-router-dom";
 
 export default function Basket(props: any) {
   /** INITIALIZATIONS **/
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const history = useHistory();
 
-  const { cartItems } = props;
+  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
+
   const itemsPrice = cartItems?.reduce(
     (value: any, curValue: CartItem) =>
       value + curValue.price * curValue.quantity,
@@ -31,7 +38,19 @@ export default function Basket(props: any) {
     setAnchorEl(null);
   };
 
-  const processOrderHandler = async () => {};
+  const processOrderHandler = async () => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      const order = new OrderApiService();
+      await order.createOrder(cartItems);
+      onDeleteAll();
+      handleClose();
+      history.push("/orders");
+    } catch (err: any) {
+      console.log(err.message);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <Box className={"hover-line"}>
@@ -100,7 +119,7 @@ export default function Basket(props: any) {
                     <div className={"cancel_btn"}>
                       <CancelIcon
                         color={"primary"}
-                        onClick={(e) => props.onDelete(item)}
+                        onClick={(e) => onDelete(item)}
                       />
                     </div>
                     <img src={image_path} className={"product_img"} />
@@ -111,16 +130,13 @@ export default function Basket(props: any) {
                     <Box sx={{ minWidth: 120 }}>
                       <div className="col-2">
                         <button
-                          onClick={(e) => props.onRemove(item)}
+                          onClick={(e) => onRemove(item)}
                           className="remove"
                         >
                           -
                         </button>
 
-                        <button
-                          onClick={(e) => props.onAdd(item)}
-                          className="add"
-                        >
+                        <button onClick={(e) => onAdd(item)} className="add">
                           +
                         </button>
                       </div>

@@ -85,7 +85,7 @@ function App() {
   };
 
   const onAdd = (product: Product) => {
-    const exist: any = cartItems.find(
+    const exist: any = cartItems?.find(
       (item: CartItem) => item._id === product._id
     );
     if (exist) {
@@ -104,13 +104,15 @@ function App() {
         image: product.product_images[0],
         name: product.product_name,
       };
-      const cart_updated = [...cartItems, { ...new_item }];
+      const cart_updated = [{ ...new_item }];
+      console.log("new", cart_updated);
+
       setCartItems(cart_updated);
       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
     }
   };
   const onRemove = (item: CartItem) => {
-    const item_data: any = cartItems.find(
+    const item_data: any = cartItems?.find(
       (vl: CartItem) => vl._id === item._id
     );
     if (item_data.quantity === 1) {
@@ -120,7 +122,7 @@ function App() {
       setCartItems(filter_items);
       localStorage.setItem("cart_data", JSON.stringify(filter_items));
     } else {
-      const cart_updated = cartItems.map((vl: CartItem) =>
+      const cart_updated = cartItems?.map((vl: CartItem) =>
         vl._id === item_data._id
           ? { ...item_data, quantity: item_data.quantity - 1 }
           : item
@@ -131,13 +133,16 @@ function App() {
     }
   };
   const onDelete = (item: CartItem) => {
-    const deleted_items: CartItem[] = cartItems.filter(
+    const deleted_items: CartItem[] = cartItems?.filter(
       (vl) => vl._id !== item._id
     );
     setCartItems(deleted_items);
     localStorage.setItem("cart_data", JSON.stringify(deleted_items));
   };
-  const onDeleteAll = () => {};
+  const onDeleteAll = () => {
+    setCartItems([]);
+    localStorage.removeItem("cart_data");
+  };
 
   return (
     <Router>
@@ -156,6 +161,7 @@ function App() {
           onAdd={onAdd}
           onRemove={onRemove}
           onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
         />
       ) : main_path.includes("/restaurants") ? (
         <NavbarRestaurant
@@ -171,6 +177,7 @@ function App() {
           onAdd={onAdd}
           onRemove={onRemove}
           onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
         />
       ) : (
         <NavbarOthers
@@ -186,6 +193,7 @@ function App() {
           onAdd={onAdd}
           onRemove={onRemove}
           onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
         />
       )}
 
