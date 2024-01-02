@@ -23,8 +23,18 @@ const FinishedOrders = (props: any) => {
                   const image = `${serverApi}/${product?.product_images[0]}`;
                   return (
                     <Box className="order_box_item" key={index}>
-                      <img src={image} alt="" className="order_dish_img" />
-                      <p className="title_dish">{product?.product_name}</p>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          gap: "20px",
+                          flex: 1,
+                          alignItems: "center",
+                          width: "100%",
+                        }}
+                      >
+                        <img src={image} alt="" className="order_dish_img" />
+                        <p className="title_dish">{product?.product_name}</p>
+                      </Box>
                       <Box className="price_box">
                         <p>${item.item_price}</p>
                         <svg

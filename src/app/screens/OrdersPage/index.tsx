@@ -16,6 +16,7 @@ import {
 import { Order } from "../../../types/order";
 import { useDispatch, useSelector } from "react-redux";
 import OrderApiService from "../../apiServices/orderApiService";
+import { verifyMemberData } from "../../apiServices/verify";
 
 //redux slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -91,12 +92,23 @@ export function OrdersPage(props: any) {
           <Box className="order_info_box">
             <Box className="info_box_item">
               <div className="order_user_img">
-                <img src="/restaurant/user2.png" alt="" />
+                <img
+                  src={
+                    verifyMemberData?.mb_image
+                      ? verifyMemberData?.mb_image
+                      : "/auth/default_user.svg"
+                  }
+                  alt=""
+                />
                 <img className="svg" src="/restaurant/user_per.png" alt="" />
               </div>
               <div className="order_user_info">
-                <span className="name">Jonny</span>
-                <span className="user_prof">Foydalanuvchi</span>
+                <span className="name">{verifyMemberData?.mb_nick}</span>
+                <span className="user_prof">
+                  {verifyMemberData?.mb_type
+                    ? verifyMemberData.mb_type
+                    : "User"}
+                </span>
               </div>
             </Box>
             <Marginer bg="#A1A1A1" width="333" height="2" />
@@ -115,7 +127,9 @@ export function OrdersPage(props: any) {
                   fill="#2E3A59"
                 />
               </svg>
-              Gyeonggi-do, Suwon
+              {verifyMemberData?.mb_address
+                ? verifyMemberData?.mb_address
+                : "Address not entered."}
             </Box>
           </Box>
           <Stack className="pay_container">
