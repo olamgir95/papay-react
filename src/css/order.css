@@ -121,6 +121,14 @@
   margin-bottom: 15px;
 }
 
+.order_container .order_main_box .order_box_item div:first-child {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+}
+
 .order_container .order_main_box .order_box_item .order_dish_img {
   width: 50px;
   height: 47px;

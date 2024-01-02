@@ -79,15 +79,7 @@ const PauseOrders = (props: any) => {
                   const image = `${serverApi}/${product?.product_images[0]}`;
                   return (
                     <Box className="order_box_item" key={index}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flex: 1,
-                          gap: "20px",
-                          alignItems: "center",
-                          width: "100%",
-                        }}
-                      >
+                      <Box>
                         <img src={image} alt="" className="order_dish_img" />
                         <p className="title_dish">{product?.product_name}</p>
                       </Box>
