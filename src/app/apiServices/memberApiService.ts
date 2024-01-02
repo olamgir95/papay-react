@@ -50,7 +50,7 @@ export default class MemberApiService {
     }
   }
 
-  async logOutRequest() {
+  async logOutRequest(): Promise<Boolean> {
     try {
       const result = await axios.get(this.path + "/logout", {
         withCredentials: true,

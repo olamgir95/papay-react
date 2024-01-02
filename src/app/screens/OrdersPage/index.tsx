@@ -36,7 +36,7 @@ export const targetOrdersRetriever = createSelector(
   })
 );
 
-export function OrdersPage() {
+export function OrdersPage(props: any) {
   const { setProcessOrders, setPausedOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
 
@@ -49,14 +49,14 @@ export function OrdersPage() {
       .then((data) => setPausedOrders(data))
       .catch((err) => console.log(err));
     orderService
-      .getMyOrders("paused")
+      .getMyOrders("process")
       .then((data) => setProcessOrders(data))
       .catch((err) => console.log(err));
     orderService
-      .getMyOrders("paused")
+      .getMyOrders("deleted")
       .then((data) => setFinishedOrders(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [props.orderRebuild]);
 
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
@@ -81,9 +81,9 @@ export function OrdersPage() {
               </Box>
             </Box>
             <Stack className="order_main_content">
-              <PauseOrders />
-              <ProcessOrders />
-              <FinishedOrders />
+              <PauseOrders setOrderRebuild={props.setOrderRebuild} />
+              <ProcessOrders setOrderRebuild={props.setOrderRebuild} />
+              <FinishedOrders setOrderRebuild={props.setOrderRebuild} />
             </Stack>
           </TabContext>
         </Stack>

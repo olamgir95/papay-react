@@ -1,14 +1,70 @@
 import React from "react";
 import { TabPanel } from "@mui/lab";
 import { Box, Button, Stack } from "@mui/material";
-
-const pausedOrders = [
-  [1, 2, 3],
-  [1, 2, 3],
-  [1, 2, 3],
-];
+import { targetOrdersRetriever } from ".";
+import { useSelector } from "react-redux";
+import { Product } from "../../../types/product";
+import { serverApi } from "../../../lib/config";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider,
+} from "../../../lib/sweetAlert";
+import { verifyMemberData } from "../../apiServices/verify";
+import OrderApiService from "../../apiServices/orderApiService";
 
 const PauseOrders = (props: any) => {
+  const { pausedOrders } = useSelector(targetOrdersRetriever);
+  console.log("pasue", pausedOrders);
+
+  //handler
+  const deleteOrderHandler = async (event: any) => {
+    try {
+      console.log("id", event.target.value);
+
+      const order_id = event.target.value;
+      const data = { order_id: order_id, order_status: "deleted" };
+
+      if (!verifyMemberData) {
+        sweetFailureProvider("Please login first", true);
+      }
+
+      let confirmation = window.confirm(
+        "Buyurtmani bekor qilishni hohlaysizmi?"
+      );
+      if (confirmation) {
+        const orderServer = new OrderApiService();
+        await orderServer.updateStatusOfOrder(data).then();
+        props.setOrderRebuild(new Date());
+      }
+    } catch (err) {
+      console.log("Error in deleting the Order", err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
+  const payOrderHandler = async (event: any) => {
+    try {
+      const order_id = event.target.value;
+      const data = { order_id: order_id, order_status: "process" };
+
+      if (!verifyMemberData) {
+        sweetFailureProvider("Please login first", true);
+      }
+
+      let confirmation = window.confirm(
+        "Buyurtmangizni to'lashni tasdiqlaysizmi?"
+      );
+      if (confirmation) {
+        const orderServer = new OrderApiService();
+        await orderServer.updateStatusOfOrder(data).then();
+        props.setOrderRebuild(new Date());
+      }
+    } catch (err) {
+      console.log("Error in deleting the Order", err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
   return (
     <TabPanel value="1">
       <Stack>
@@ -16,14 +72,17 @@ const PauseOrders = (props: any) => {
           return (
             <Box className="order_main_box" key={ind}>
               <Box className="order_box_scroll">
-                {order.map((item, index) => {
-                  const image = `/restaurant/gosht2.png`;
+                {order?.order_items?.map((item, index) => {
+                  const product: Product = order.product_data.filter(
+                    (vl) => vl._id === item.product_id
+                  )[0];
+                  const image = `${serverApi}/${product?.product_images[0]}`;
                   return (
                     <Box className="order_box_item" key={index}>
                       <img src={image} alt="" className="order_dish_img" />
-                      <p className="title_dish">Sandvich</p>
+                      <p className="title_dish">{product?.product_name}</p>
                       <Box className="price_box">
-                        <p>$7</p>
+                        <p>${item.item_price}</p>
                         <svg
                           width="18"
                           height="17"
@@ -38,7 +97,7 @@ const PauseOrders = (props: any) => {
                             fill="#6D778B"
                           />
                         </svg>
-                        <p>3</p>
+                        <p>{item?.item_quantity}</p>
                         <svg
                           width="18"
                           height="16"
@@ -53,7 +112,9 @@ const PauseOrders = (props: any) => {
                             fill="#6D778B"
                           />
                         </svg>
-                        <p className="price">$21</p>
+                        <p className="price">
+                          ${item.item_quantity * item.item_price}
+                        </p>
                       </Box>
                     </Box>
                   );
@@ -62,7 +123,7 @@ const PauseOrders = (props: any) => {
               <Box className="total_price_box pause_price">
                 <Box className="boxTotal">
                   <p>Mahsulot narxi</p>
-                  <p>$21</p>
+                  <p>${order.order_total_amount - order.order_delivery_cost}</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="17"
@@ -94,7 +155,7 @@ const PauseOrders = (props: any) => {
                     <g mask="url(#mask0_1293_1487)"></g>
                   </svg>
                   <p>yetkazish xizmati</p>
-                  <p>$2</p>
+                  <p>${order.order_delivery_cost}</p>
                   <svg
                     width="18"
                     height="16"
@@ -110,12 +171,22 @@ const PauseOrders = (props: any) => {
                     />
                   </svg>
                   <p>jami narxi</p>
-                  <p>$23</p>
+                  <p>${order.order_total_amount}</p>
                 </Box>
-                <Button variant="contained" color="secondary">
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  value={order._id}
+                  onClick={deleteOrderHandler}
+                >
                   Bekor qilish
                 </Button>
-                <Button color="primary" variant="contained">
+                <Button
+                  value={order._id}
+                  color="primary"
+                  variant="contained"
+                  onClick={payOrderHandler}
+                >
                   To'lash
                 </Button>
               </Box>

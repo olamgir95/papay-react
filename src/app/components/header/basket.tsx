@@ -19,11 +19,12 @@ export default function Basket(props: any) {
   const open = Boolean(anchorEl);
   const history = useHistory();
 
-  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
+  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll, setOrderRebuild } =
+    props;
 
   const itemsPrice = cartItems?.reduce(
     (value: any, curValue: CartItem) =>
-      value + curValue.price * curValue.quantity,
+      value + curValue?.price * curValue?.quantity,
     0
   );
   const shoppingPrice = itemsPrice > 100 ? 0 : 2;
@@ -45,6 +46,7 @@ export default function Basket(props: any) {
       await order.createOrder(cartItems);
       onDeleteAll();
       handleClose();
+      setOrderRebuild(new Date());
       history.push("/orders");
     } catch (err: any) {
       console.log(err.message);
@@ -71,30 +73,31 @@ export default function Basket(props: any) {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        // onClick={handleClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: "visible",
-            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-            mt: 1.5,
-            "& .MuiAvatar-root": {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            "&:before": {
-              content: '""',
-              display: "block",
-              position: "absolute",
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: "background.paper",
-              transform: "translateY(-50%) rotate(45deg)",
-              zIndex: 0,
+        slotProps={{
+          paper: {
+            elevation: 0,
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+              mt: 1.5,
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
+              },
             },
           },
         }}
@@ -113,7 +116,7 @@ export default function Basket(props: any) {
           <Box className={"orders_main_wrapper"}>
             <Box className={"orders_wrapper"}>
               {cartItems?.map((item: CartItem) => {
-                const image_path = `${serverApi}/${item.image}`;
+                const image_path = `${serverApi}/${item?.image}`;
                 return (
                   <Box key={item?._id} className={"basket_info_box"}>
                     <div className={"cancel_btn"}>
@@ -123,9 +126,9 @@ export default function Basket(props: any) {
                       />
                     </div>
                     <img src={image_path} className={"product_img"} />
-                    <span className={"product_name"}>{item.name}</span>
+                    <span className={"product_name"}>{item?.name}</span>
                     <p className={"product_price"}>
-                      ${item.price} x {item.quantity}
+                      ${item?.price} x {item?.quantity}
                     </p>
                     <Box sx={{ minWidth: 120 }}>
                       <div className="col-2">

@@ -6,7 +6,7 @@ export interface OrderItem {
   item_price: number;
   order_id: string;
   product_id: string;
-  craetedAt: Date;
+  createdAt: Date;
   updatedAt: Date;
 }
 
@@ -16,7 +16,7 @@ export interface Order {
   order_delivery_cost: number;
   mb_id: string;
   order_status: string;
-  craetedAt: Date;
+  createdAt: Date;
   updatedAt: Date;
   //aggregations
   order_items: OrderItem[];

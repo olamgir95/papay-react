@@ -27,6 +27,7 @@ export default function NavbarRestaurant(props: any) {
     onRemove,
     onDelete,
     onDeleteAll,
+    setOrderRebuild,
   } = props;
 
   return (
@@ -84,6 +85,7 @@ export default function NavbarRestaurant(props: any) {
               onRemove={onRemove}
               onDelete={onDelete}
               onDeleteAll={onDeleteAll}
+              setOrderRebuild={setOrderRebuild}
             />
             {verifedMemberData ? (
               <img

@@ -27,6 +27,7 @@ export default function NavbarOthers({
   onRemove,
   onDelete,
   onDeleteAll,
+  setOrderRebuild,
 }: {
   handleLoginOpen: () => void;
   setPath: any;
@@ -41,6 +42,7 @@ export default function NavbarOthers({
   onRemove: any;
   onDelete: any;
   onDeleteAll: any;
+  setOrderRebuild: any;
 }): JSX.Element {
   return (
     <div className="format_others home_navbar">
@@ -97,6 +99,7 @@ export default function NavbarOthers({
               onRemove={onRemove}
               onDelete={onDelete}
               onDeleteAll={onDeleteAll}
+              setOrderRebuild={setOrderRebuild}
             />
             {verifedMemberData ? (
               <img

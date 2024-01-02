@@ -1,14 +1,14 @@
 import React from "react";
 import { TabPanel } from "@mui/lab";
 import { Box, Stack } from "@mui/material";
-
-const finishedOrders = [
-  [1, 2, 3],
-  [1, 2, 3],
-  [1, 2, 3],
-];
+import { targetOrdersRetriever } from ".";
+import { useSelector } from "react-redux";
+import { Product } from "../../../types/product";
+import { serverApi } from "../../../lib/config";
 
 const FinishedOrders = (props: any) => {
+  const { finishedOrders } = useSelector(targetOrdersRetriever);
+
   return (
     <TabPanel value="3">
       <Stack>
@@ -16,14 +16,17 @@ const FinishedOrders = (props: any) => {
           return (
             <Box className="order_main_box" key={ind}>
               <Box className="order_box_scroll">
-                {order.map((item, index) => {
-                  const image = `/restaurant/gosht.png`;
+                {order?.order_items?.map((item, index) => {
+                  const product: Product = order.product_data.filter(
+                    (vl) => vl._id === item.product_id
+                  )[0];
+                  const image = `${serverApi}/${product?.product_images[0]}`;
                   return (
                     <Box className="order_box_item" key={index}>
                       <img src={image} alt="" className="order_dish_img" />
-                      <p className="title_dish">Qovurma</p>
+                      <p className="title_dish">{product?.product_name}</p>
                       <Box className="price_box">
-                        <p>$11</p>
+                        <p>${item.item_price}</p>
                         <svg
                           width="18"
                           height="17"
@@ -38,7 +41,7 @@ const FinishedOrders = (props: any) => {
                             fill="#6D778B"
                           />
                         </svg>
-                        <p>2</p>
+                        <p>{item?.item_quantity}</p>
                         <svg
                           width="18"
                           height="16"
@@ -53,7 +56,9 @@ const FinishedOrders = (props: any) => {
                             fill="#6D778B"
                           />
                         </svg>
-                        <p className="price">$22</p>
+                        <p className="price">
+                          ${item?.item_quantity * item?.item_price}
+                        </p>
                       </Box>
                     </Box>
                   );
@@ -62,7 +67,7 @@ const FinishedOrders = (props: any) => {
               <Box className="total_price_box finished_price">
                 <Box className="boxTotal">
                   <p>Mahsulot narxi</p>
-                  <p>$22</p>
+                  <p>${order.order_total_amount - order.order_delivery_cost}</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="17"
@@ -94,7 +99,7 @@ const FinishedOrders = (props: any) => {
                     <g mask="url(#mask0_1293_1487)"></g>
                   </svg>
                   <p>yetkazish xizmati</p>
-                  <p>$2</p>
+                  <p>${order.order_delivery_cost}</p>
                   <svg
                     width="18"
                     height="16"
@@ -110,7 +115,7 @@ const FinishedOrders = (props: any) => {
                     />
                   </svg>
                   <p>jami narxi</p>
-                  <p>$24</p>
+                  <p>${order.order_total_amount}</p>
                 </Box>
               </Box>
             </Box>

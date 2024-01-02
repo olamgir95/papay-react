@@ -45,8 +45,10 @@ function App() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const cartJson: any = localStorage.getItem("cart_data");
-  const current_cart: CartItem[] = JSON.parse(cartJson);
+  const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
+  const [orderRebuild, setOrderRebuild] = useState<Date>(new Date());
+  console.log("cart", cartItems);
 
   useEffect(() => {
     const memberDataJson: any = localStorage.getItem("member_data")
@@ -76,7 +78,6 @@ function App() {
       const memberApiService = new MemberApiService();
       const res = await memberApiService.logOutRequest();
       await sweetTopSmallSuccessAlert("success", 700, true);
-      assert.ok(res, "test");
       return res;
     } catch (err) {
       console.log(err);
@@ -86,10 +87,12 @@ function App() {
 
   const onAdd = (product: Product) => {
     const exist: any = cartItems?.find(
-      (item: CartItem) => item._id === product._id
+      (item: CartItem) => item?._id === product?._id
     );
+    console.log("exist", exist);
+
     if (exist) {
-      const cart_updated = cartItems.map((item: CartItem) =>
+      const cart_updated = cartItems?.map((item: CartItem) =>
         item._id === product._id
           ? { ...exist, quantity: exist.quantity + 1 }
           : item
@@ -101,10 +104,10 @@ function App() {
         _id: product._id,
         quantity: 1,
         price: product.product_price,
-        image: product.product_images[0],
+        image: product?.product_images[0],
         name: product.product_name,
       };
-      const cart_updated = [{ ...new_item }];
+      const cart_updated = [...cartItems, { ...new_item }];
       console.log("new", cart_updated);
 
       setCartItems(cart_updated);
@@ -134,7 +137,7 @@ function App() {
   };
   const onDelete = (item: CartItem) => {
     const deleted_items: CartItem[] = cartItems?.filter(
-      (vl) => vl._id !== item._id
+      (vl) => vl?._id !== item?._id
     );
     setCartItems(deleted_items);
     localStorage.setItem("cart_data", JSON.stringify(deleted_items));
@@ -162,6 +165,7 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
         />
       ) : main_path.includes("/restaurants") ? (
         <NavbarRestaurant
@@ -178,6 +182,7 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
         />
       ) : (
         <NavbarOthers
@@ -194,6 +199,7 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
         />
       )}
 
@@ -202,7 +208,10 @@ function App() {
           <RestaurantPage onAdd={onAdd} cartItems={cartItems} />
         </Route>
         <Route path="/orders">
-          <OrdersPage />
+          <OrdersPage
+            orderRebuild={orderRebuild}
+            setOrderRebuild={setOrderRebuild}
+          />
         </Route>
         <Route path="/community">
           <CommunityPage />

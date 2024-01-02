@@ -6,10 +6,42 @@ import { targetOrdersRetriever } from ".";
 import { useSelector } from "react-redux";
 import { serverApi } from "../../../lib/config";
 import { Product } from "../../../types/product";
+import { verifyMemberData } from "../../apiServices/verify";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider,
+} from "../../../lib/sweetAlert";
+import OrderApiService from "../../apiServices/orderApiService";
 
 const ProcessOrders = (props: any) => {
   const { processOrders } = useSelector(targetOrdersRetriever);
   console.log("process", processOrders);
+
+  //handler
+  const PayOrderHandler = async (event: any) => {
+    try {
+      console.log("id", event.target.value);
+
+      const order_id = event.target.value;
+      const data = { order_id: order_id, order_status: "deleted" };
+
+      if (!verifyMemberData) {
+        sweetFailureProvider("Please login first", true);
+      }
+
+      let confirmation = window.confirm(
+        "Buyurtmani qabul qilgangizni tasdiqlaysizmi?"
+      );
+      if (confirmation) {
+        const orderServer = new OrderApiService();
+        await orderServer.updateStatusOfOrder(data).then();
+        props.setOrderRebuild(new Date());
+      }
+    } catch (err) {
+      console.log("Error in deleting the Order", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <TabPanel value="2">
@@ -22,11 +54,11 @@ const ProcessOrders = (props: any) => {
                   const product: Product = order.product_data.filter(
                     (vl) => vl._id === item.product_id
                   )[0];
-                  const image = `${serverApi}/${product.product_images[0]}`;
+                  const image = `${serverApi}/${product?.product_images[0]}`;
                   return (
                     <Box className="order_box_item" key={index}>
                       <img src={image} alt="" className="order_dish_img" />
-                      <p className="title_dish">{product.product_name}</p>
+                      <p className="title_dish">{product?.product_name}</p>
                       <Box className="price_box">
                         <p>${item.item_price}</p>
                         <svg
@@ -59,7 +91,7 @@ const ProcessOrders = (props: any) => {
                           />
                         </svg>
                         <p className="price">
-                          ${item.item_quantity * item.item_price}
+                          ${item?.item_quantity * item?.item_price}
                         </p>
                       </Box>
                     </Box>
@@ -69,7 +101,9 @@ const ProcessOrders = (props: any) => {
               <Box className="total_price_box process_price">
                 <Box className="boxTotal">
                   <p>Mahsulot narxi</p>
-                  <p>${order.order_total_amount - order.order_delivery_cost}</p>
+                  <p>
+                    ${order?.order_total_amount - order?.order_delivery_cost}
+                  </p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="17"
@@ -117,10 +151,17 @@ const ProcessOrders = (props: any) => {
                     />
                   </svg>
                   <p>jami narxi</p>
-                  <p>${order.order_total_amount}</p>
+                  <p>${order?.order_total_amount}</p>
                 </Box>
-                <div className="time">{dayjs().format("YYYY-MM-DD HH:mm")}</div>
-                <Button color="primary" variant="contained">
+                <div className="time">
+                  {dayjs(order?.createdAt).format("YYYY-MM-DD HH:mm")}
+                </div>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  onClick={PayOrderHandler}
+                  value={order._id}
+                >
                   Yakunlash
                 </Button>
               </Box>

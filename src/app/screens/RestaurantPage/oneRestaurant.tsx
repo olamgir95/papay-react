@@ -279,7 +279,7 @@ export default function OneRestaurant(props: any) {
             </div>
             <Stack className="dish_wrapper">
               {targetProducts?.map((product: Product) => {
-                const image_path = `${serverApi}/${product.product_images[0]}`;
+                const image_path = `${serverApi}/${product?.product_images[0]}`;
                 const size_volume =
                   product.product_collection === "drink"
                     ? product.product_volume + " L"
@@ -299,6 +299,9 @@ export default function OneRestaurant(props: any) {
                         <Badge
                           badgeContent={product.product_likes}
                           color="primary"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
                         >
                           <Checkbox
                             icon={<FavoriteBorder style={{ color: "white" }} />}
@@ -317,10 +320,8 @@ export default function OneRestaurant(props: any) {
                       <Button
                         className="view_btn"
                         onClick={(e) => {
-                          console.log("product", product);
-                          onAdd(product);
-
                           e.stopPropagation();
+                          onAdd(product);
                         }}
                       >
                         <img src="/icons/shopping_cart.svg" alt="" />
