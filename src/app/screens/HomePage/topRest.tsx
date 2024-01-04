@@ -25,12 +25,12 @@ import { useHistory } from "react-router-dom";
 
 export const TopRestaurants = (props: any) => {
   const refs: any = useRef([]);
+
   const history = useHistory();
 
   const chosenRestaurantHandler = (id: string) => {
     history.push(`/restaurants/${id}`);
   };
-  console.log(props.topRestaurants, "res");
 
   const targetLikeTop = async (e: any, id: string) => {
     try {
@@ -49,6 +49,7 @@ export const TopRestaurants = (props: any) => {
         refs.current[like_result.like_ref_id].innerHTML--;
         await sweetTopSmallSuccessAlert("success", 700, false);
       }
+      console.log("ref test", refs.current);
     } catch (err: any) {
       console.log("targetLikeTop, ERROR", err);
       sweetErrorHandling(err).then();

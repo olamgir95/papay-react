@@ -57,13 +57,13 @@ export default class MemberApiService {
       });
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data.state !== "fail", Definer.general_err1);
-      console.log("state:::", result.data.state);
+
       const logout_result = result.data.state;
       localStorage.removeItem("member_data");
+
       return logout_result === "success";
     } catch (err: any) {
       console.log(`ERROR ::: logOutRequest ${err.message}`);
-
       throw err;
     }
   }

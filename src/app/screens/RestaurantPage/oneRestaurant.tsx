@@ -330,6 +330,9 @@ export default function OneRestaurant(props: any) {
                         <Badge
                           badgeContent={product.product_views}
                           color="primary"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
                         >
                           <Checkbox
                             icon={
@@ -358,7 +361,7 @@ export default function OneRestaurant(props: any) {
         <Container className="review_container">
           <Box className="category_title">Oshxona haqidagi fikrlar</Box>
           <Stack className="review_sec">
-            {Array().map((vl, index) => {
+            {Array.from(Array(4).keys()).map((vl, index) => {
               return (
                 <Box className="review_box" key={index}>
                   <Box className="review_img">
@@ -404,7 +407,10 @@ export default function OneRestaurant(props: any) {
             {Array.from(Array(3).keys()).map((vl, index) => {
               return (
                 <Box className="right_members" key={index}>
-                  <div className="right_img"> </div>
+                  <div className="right_img">
+                    {" "}
+                    <img src="/restaurant/oshpazlar.png" alt="" />
+                  </div>
                   <div className="right_desc">
                     <span>Bizning mohir oshpazlarimiz</span>
                     <p>

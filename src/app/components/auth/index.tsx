@@ -71,7 +71,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       await memberApiService.loginRequest(login_data);
 
       handleLoginOpen();
-      // window.location.reload();
+      window.location.reload();
     } catch (err) {
       console.log(err);
       handleLoginOpen();

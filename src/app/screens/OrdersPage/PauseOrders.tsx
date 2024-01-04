@@ -11,6 +11,7 @@ import {
 } from "../../../lib/sweetAlert";
 import { verifyMemberData } from "../../apiServices/verify";
 import OrderApiService from "../../apiServices/orderApiService";
+import { Order } from "../../../types/order";
 
 const PauseOrders = (props: any) => {
   const { pausedOrders } = useSelector(targetOrdersRetriever);
@@ -68,7 +69,7 @@ const PauseOrders = (props: any) => {
   return (
     <TabPanel value="1">
       <Stack>
-        {pausedOrders?.map((order, ind) => {
+        {pausedOrders?.map((order: Order, ind) => {
           return (
             <Box className="order_main_box" key={ind}>
               <Box className="order_box_scroll">
