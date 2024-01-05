@@ -2,7 +2,6 @@ import axios from "axios";
 import { serverApi } from "../../lib/config";
 import { Definer } from "../../lib/Definer";
 import assert from "assert";
-import { CartItem } from "../../types/others";
 import { BoArticle, SearchArticlesObj } from "../../types/boArticle";
 
 export default class CommunityApiService {
