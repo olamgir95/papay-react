@@ -221,7 +221,7 @@ function App() {
           <LoginPage />
         </Route>
         <Route path="/member-page">
-          <MemberPage />
+          <MemberPage verifyMemberData={verifedMemberData} />
         </Route>
         <Route path="/help">
           <HelpPage />

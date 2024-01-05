@@ -48,7 +48,7 @@ export interface CommunityPageState {
 //Member page
 export interface MemberPageState {
   chosenMember: Member | null;
-  chosenBoArticles: BoArticle[];
+  chosenMemberBoArticles: BoArticle[];
   chosenSingleBoArticles: BoArticle | null;
   memberFollowers: Follower[];
   memberFollowings: Following[];

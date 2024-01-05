@@ -18,8 +18,50 @@ import MemberPosts from "./memberPosts";
 import MemberFollowers from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
 import TViewer from "./TViewer";
+import {
+  retrieveChosenMember,
+  retrieveChosenMemberBoArticles,
+  retrieveChosenSingleBoArticles,
+} from "./selector";
+import {
+  setChosenMember,
+  setChosenMemberBoArticles,
+  setChosenSingleBoArticles,
+} from "./slice";
+import { Dispatch, createSelector } from "@reduxjs/toolkit";
+import { BoArticle } from "../../../types/boArticle";
+import { useDispatch, useSelector } from "react-redux";
+import { Member } from "../../../types/user";
 
-const VisitOtherPage = () => {
+//redux slice
+const actionDispatch = (dispatch: Dispatch) => ({
+  setChosenMember: (data: Member) => dispatch(setChosenMember(data)),
+  setChosenMemberBoArticles: (data: BoArticle[]) =>
+    dispatch(setChosenMemberBoArticles(data)),
+  setChosenSingleBoArticle: (data: BoArticle) =>
+    dispatch(setChosenSingleBoArticles(data)),
+});
+
+//redux selector
+const MemberRetriever = createSelector(
+  retrieveChosenMember,
+  retrieveChosenMemberBoArticles,
+  retrieveChosenSingleBoArticles,
+  (chosenMember, chosenMemberBoArticles, chosenSingleBoArticle) => ({
+    chosenMember,
+    chosenMemberBoArticles,
+    chosenSingleBoArticle,
+  })
+);
+
+const VisitOtherPage = (props: any) => {
+  const {
+    setChosenMember,
+    setChosenMemberBoArticles,
+    setChosenSingleBoArticle,
+  } = actionDispatch(useDispatch());
+  const { chosenMember, chosenMemberBoArticles, chosenSingleBoArticle } =
+    useSelector(MemberRetriever);
   // Initializations
   const [value, setValue] = useState("4");
 

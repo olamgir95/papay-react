@@ -8,9 +8,9 @@ export const retrieveChosenMember = createSelector(
   (MemberPage) => MemberPage.chosenMember
 );
 
-export const retrieveChosenBoArticles = createSelector(
+export const retrieveChosenMemberBoArticles = createSelector(
   selectMemberPage,
-  (MemberPage) => MemberPage.chosenBoArticles
+  (MemberPage) => MemberPage.chosenMemberBoArticles
 );
 
 export const retrieveChosenSingleBoArticles = createSelector(
