@@ -23,7 +23,7 @@ const ProcessOrders = (props: any) => {
       console.log("id", event.target.value);
 
       const order_id = event.target.value;
-      const data = { order_id: order_id, order_status: "deleted" };
+      const data = { order_id: order_id, order_status: "finished" };
 
       if (!verifyMemberData) {
         sweetFailureProvider("Please login first", true);

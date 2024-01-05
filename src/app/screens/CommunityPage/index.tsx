@@ -6,7 +6,7 @@ import {
   Pagination,
   PaginationItem,
 } from "@mui/material";
-import React, { ChangeEvent, SyntheticEvent, useState } from "react";
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -14,19 +14,73 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CommunityChats from "./communityChats";
 import { TabPanel } from "@mui/lab";
 import TargetArticles from "./targetArticles";
+import CommunityApiService from "../../apiServices/communityApiService";
+import { BoArticle, SearchArticlesObj } from "../../../types/boArticle";
+import { retrieveTargetBoArticles } from "./selector";
+import { Dispatch, createSelector } from "@reduxjs/toolkit";
+import { setTargetBoArticles } from "./slice";
+import { useDispatch, useSelector } from "react-redux";
 
-const targetBoArticles = [1, 2, 3, 4, 5];
+//redux slice
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTargetBoArticles: (data: BoArticle[]) =>
+    dispatch(setTargetBoArticles(data)),
+});
+
+//redux selector
+const CommunitysRetriever = createSelector(
+  retrieveTargetBoArticles,
+  (targetBoArticles) => ({
+    targetBoArticles,
+  })
+);
 
 export function CommunityPage(props: any) {
+  const { setTargetBoArticles } = actionDispatch(useDispatch());
+
+  const { targetBoArticles } = useSelector(CommunitysRetriever);
   // Initializations
   const [value, setValue] = useState("1");
+  const [searchArticleObj, setSearchArticleObj] = useState<SearchArticlesObj>({
+    bo_id: "all",
+    page: 1,
+    limit: 5,
+  });
+
+  useEffect(() => {
+    const communityService = new CommunityApiService();
+    communityService
+      .getTargetArticles(searchArticleObj)
+      .then((data) => setTargetBoArticles(data))
+      .catch((err) => console.log(err));
+  }, [searchArticleObj]);
 
   // Handler
   const handleChange = (event: SyntheticEvent, newValue: string) => {
+    searchArticleObj.page = 1;
+    switch (newValue) {
+      case "1":
+        searchArticleObj.bo_id = "all";
+        break;
+      case "2":
+        searchArticleObj.bo_id = "celebrity";
+        break;
+      case "3":
+        searchArticleObj.bo_id = "evaluation";
+        break;
+      case "4":
+        searchArticleObj.bo_id = "story";
+        break;
+    }
+    setSearchArticleObj({ ...searchArticleObj });
+
     setValue(newValue);
   };
 
-  const handlePagination = (event: ChangeEvent<unknown>, page: number) => {};
+  const handlePagination = (event: ChangeEvent<unknown>, page: number) => {
+    searchArticleObj.page = page;
+    setSearchArticleObj({ ...searchArticleObj });
+  };
 
   return (
     <div className="community_page">
