@@ -47,13 +47,15 @@ export function CommunityPage(props: any) {
     limit: 5,
   });
 
+  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+
   useEffect(() => {
     const communityService = new CommunityApiService();
     communityService
       .getTargetArticles(searchArticleObj)
       .then((data) => setTargetBoArticles(data))
       .catch((err) => console.log(err));
-  }, [searchArticleObj]);
+  }, [searchArticleObj, articlesRebuild]);
 
   // Handler
   const handleChange = (event: SyntheticEvent, newValue: string) => {
@@ -105,16 +107,28 @@ export function CommunityPage(props: any) {
                 </Box>
                 <Stack className="article_main">
                   <TabPanel value="1">
-                    <TargetArticles targetBoArticles={targetBoArticles} />
+                    <TargetArticles
+                      targetBoArticles={targetBoArticles}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                   </TabPanel>
                   <TabPanel value="2">
-                    <TargetArticles targetBoArticles={targetBoArticles} />
+                    <TargetArticles
+                      targetBoArticles={targetBoArticles}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                   </TabPanel>
                   <TabPanel value="3">
-                    <TargetArticles targetBoArticles={targetBoArticles} />
+                    <TargetArticles
+                      targetBoArticles={targetBoArticles}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                   </TabPanel>
                   <TabPanel value="4">
-                    <TargetArticles targetBoArticles={targetBoArticles} />
+                    <TargetArticles
+                      targetBoArticles={targetBoArticles}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                   </TabPanel>
                 </Stack>
                 <Box className="article_bott">
