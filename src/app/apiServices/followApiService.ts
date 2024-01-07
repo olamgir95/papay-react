@@ -59,7 +59,6 @@ export default class FollowApiService {
           withCredentials: true,
         }
       );
-      console.log("testtttttttttttttttttttttttttttttt");
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data.state !== "fail", Definer.general_err1);

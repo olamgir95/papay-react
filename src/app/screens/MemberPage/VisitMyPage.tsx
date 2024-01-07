@@ -177,6 +177,7 @@ const VisitMyPage = (props: any) => {
                   <Box className="menu_name">Followers</Box>
                   <Box className="menu_content">
                     <MemberFollowers
+                      actions_enabled={true}
                       mb_id={verifyMemberData?._id}
                       setFollowRebuild={setFollowRebuild}
                       followRebuild={followRebuild}
@@ -187,6 +188,7 @@ const VisitMyPage = (props: any) => {
                   <Box className="menu_name">Following</Box>
                   <Box className="menu_content">
                     <MemberFollowings
+                      actions_enabled={true}
                       mb_id={verifyMemberData?._id}
                       setFollowRebuild={setFollowRebuild}
                       followRebuild={followRebuild}

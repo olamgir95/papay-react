@@ -64,7 +64,7 @@ const MemberFollowings = (props: any) => {
       await followingService.unsubscribe(id);
 
       setFollowRebuild(!followRebuild);
-      await sweetTopSmallSuccessAlert("subscribed successfully", 700, false);
+      await sweetTopSmallSuccessAlert("unsubscribed successfully", 700, false);
     } catch (err: any) {
       console.log(err);
       sweetErrorHandling(err).then();
@@ -96,7 +96,7 @@ const MemberFollowings = (props: any) => {
                 {following?.follow_member_data?.mb_nick}
               </span>
             </Box>
-            {
+            {props.actions_enabled && (
               <Button
                 className="following_cancel"
                 variant="contained"
@@ -124,7 +124,7 @@ const MemberFollowings = (props: any) => {
               >
                 Bekor Qilish
               </Button>
-            }
+            )}
           </Box>
         );
       })}

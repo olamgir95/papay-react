@@ -14,7 +14,7 @@ export function MemberPage(props: any) {
   const query = useQuery();
   const chosen_mb_id: string | null = query.get("mb_id") ?? null;
   const chosen_art_id: string | null = query.get("art_id") ?? null;
-  console.log("query", query);
+  console.log("query", chosen_mb_id);
 
   return (
     <div className="member_page">
