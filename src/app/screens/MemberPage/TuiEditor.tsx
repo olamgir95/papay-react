@@ -61,7 +61,7 @@ const TuiEditor = (props: any) => {
         initialValue=" "
         placeholder="Type here"
         previewStyle="vertical"
-        height="640px"
+        height="440px"
         toolbarItems={toolbarItems}
         hooks={hooks}
         events={events}

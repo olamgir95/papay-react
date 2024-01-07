@@ -50,7 +50,11 @@ const MemberPosts = (props: any) => {
           "YYYY-MM-DD HH:mm"
         );
         return (
-          <Link className="all_article_box" href={``} key={article?._id}>
+          <Link
+            className="all_article_box"
+            key={article?._id}
+            onClick={() => renderChosenArticleHandler(article?._id)}
+          >
             <Box className="all_article_img">
               <img src={image} alt="" />
             </Box>

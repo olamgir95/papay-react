@@ -62,9 +62,9 @@ export default class CommunityApiService {
         withCredentials: true,
       });
 
+      console.log("state:::", result.data.data);
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data.state !== "fail", Definer.general_err1);
-      console.log("state:::", result.data.state);
 
       const article: BoArticle = result.data.data;
       return article;

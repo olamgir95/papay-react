@@ -21,12 +21,12 @@ import TViewer from "./TViewer";
 import {
   retrieveChosenMember,
   retrieveChosenMemberBoArticles,
-  retrieveChosenSingleBoArticles,
+  retrieveChosenSingleBoArticle,
 } from "./selector";
 import {
   setChosenMember,
   setChosenMemberBoArticles,
-  setChosenSingleBoArticles,
+  setChosenSingleBoArticle,
 } from "./slice";
 import { Dispatch, createSelector } from "@reduxjs/toolkit";
 import { BoArticle } from "../../../types/boArticle";
@@ -39,14 +39,14 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setChosenMemberBoArticles: (data: BoArticle[]) =>
     dispatch(setChosenMemberBoArticles(data)),
   setChosenSingleBoArticle: (data: BoArticle) =>
-    dispatch(setChosenSingleBoArticles(data)),
+    dispatch(setChosenSingleBoArticle(data)),
 });
 
 //redux selector
 const MemberRetriever = createSelector(
   retrieveChosenMember,
   retrieveChosenMemberBoArticles,
-  retrieveChosenSingleBoArticles,
+  retrieveChosenSingleBoArticle,
   (chosenMember, chosenMemberBoArticles, chosenSingleBoArticle) => ({
     chosenMember,
     chosenMemberBoArticles,

@@ -3,7 +3,7 @@ import { Member } from "./user";
 export interface MeFollowed {
   follow_id: string;
   subscriber_id: string;
-  me_following: boolean;
+  my_following: boolean;
 }
 
 export interface Follower {
@@ -23,4 +23,10 @@ export interface Following {
   createdAt: Date;
   updatedAt: Date;
   follow_member_data: Member;
+}
+
+export interface FollowSearchObj {
+  page: number;
+  limit: number;
+  mb_id: string;
 }

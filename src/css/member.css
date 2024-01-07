@@ -38,10 +38,15 @@
 
 .my_page .menu_content .pagination {
   margin: 40px;
+  position: relative;
+  bottom: 0;
   display: flex;
+  height: 100%;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  vertical-align: bottom;
+  align-items: flex-end;
+  margin-bottom: 0px;
 }
 
 .pagination li button {
@@ -595,8 +600,13 @@
 
 .tviewer .toastui-editor-contents {
   width: 821px;
-  height: 494px;
+  /* height: 494px; */
   padding: 40px;
+}
+
+.tviewer .toastui-editor-contents p {
+  font-family: Poppins;
+  font-size: 15px;
 }
 
 .tviewer .toastui-editor-contents div div {

@@ -31,12 +31,12 @@ import { Member } from "../../../types/user";
 import {
   retrieveChosenMember,
   retrieveChosenMemberBoArticles,
-  retrieveChosenSingleBoArticles,
+  retrieveChosenSingleBoArticle,
 } from "./selector";
 import {
   setChosenMember,
   setChosenMemberBoArticles,
-  setChosenSingleBoArticles,
+  setChosenSingleBoArticle,
 } from "./slice";
 import { Dispatch, createSelector } from "@reduxjs/toolkit";
 import { BoArticle, SearchMemberArticlesObj } from "../../../types/boArticle";
@@ -47,6 +47,8 @@ import {
 } from "../../../lib/sweetAlert";
 import CommunityApiService from "./../../apiServices/communityApiService";
 import MemberApiService from "../../apiServices/memberApiService";
+import { verifyMemberData } from "../../apiServices/verify";
+import { serverApi } from "../../../lib/config";
 
 //redux slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -54,14 +56,14 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setChosenMemberBoArticles: (data: BoArticle[]) =>
     dispatch(setChosenMemberBoArticles(data)),
   setChosenSingleBoArticle: (data: BoArticle) =>
-    dispatch(setChosenSingleBoArticles(data)),
+    dispatch(setChosenSingleBoArticle(data)),
 });
 
 //redux selector
 const MemberRetriever = createSelector(
   retrieveChosenMember,
   retrieveChosenMemberBoArticles,
-  retrieveChosenSingleBoArticles,
+  retrieveChosenSingleBoArticle,
   (chosenMember, chosenMemberBoArticles, chosenSingleBoArticle) => ({
     chosenMember,
     chosenMemberBoArticles,
@@ -70,7 +72,6 @@ const MemberRetriever = createSelector(
 );
 
 const VisitMyPage = (props: any) => {
-  const { verifyMemberData } = props;
   const {
     setChosenMember,
     setChosenMemberBoArticles,
@@ -79,10 +80,11 @@ const VisitMyPage = (props: any) => {
   const { chosenMember, chosenMemberBoArticles, chosenSingleBoArticle } =
     useSelector(MemberRetriever);
   // Initializations
-  const [value, setValue] = useState("5");
+  const [value, setValue] = useState("1");
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
     useState<SearchMemberArticlesObj>({ mb_id: "none", page: 1, limit: 5 });
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+  const [followRebuild, setFollowRebuild] = useState<boolean>(false);
 
   useEffect(() => {
     if (!localStorage.getItem("member_data")) {
@@ -100,7 +102,7 @@ const VisitMyPage = (props: any) => {
       .getChosenMember(verifyMemberData?._id)
       .then((data) => setChosenMember(data))
       .catch((err) => console.log(err));
-  }, [memberArticleSearchObj, articlesRebuild]);
+  }, [memberArticleSearchObj, articlesRebuild, followRebuild]);
 
   // Handler
   const handleChange = (event: any, newValue: string) => {
@@ -120,7 +122,10 @@ const VisitMyPage = (props: any) => {
       const communityService = new CommunityApiService();
       communityService
         .getChosenArticle(art_id)
-        .then((data) => setChosenSingleBoArticle(data))
+        .then((data) => {
+          setChosenSingleBoArticle(data);
+          setValue("5");
+        })
         .catch((err) => console.log(err));
     } catch (err: any) {
       console.log(err);
@@ -135,7 +140,7 @@ const VisitMyPage = (props: any) => {
           <Stack className="my_page_frame">
             <Stack className="my_page_left">
               <Box className="box_left">
-                <TabPanel value="1">
+                <TabPanel value={"1"}>
                   <Box className="menu_name">Mening Maqolalarim</Box>
                   <Box className="menu_content">
                     <MemberPosts
@@ -168,31 +173,39 @@ const VisitMyPage = (props: any) => {
                     </Stack>
                   </Box>
                 </TabPanel>
-                <TabPanel value="2">
+                <TabPanel value={"2"}>
                   <Box className="menu_name">Followers</Box>
                   <Box className="menu_content">
-                    <MemberFollowers actions_enabled={true} />
+                    <MemberFollowers
+                      mb_id={verifyMemberData?._id}
+                      setFollowRebuild={setFollowRebuild}
+                      followRebuild={followRebuild}
+                    />
                   </Box>
                 </TabPanel>
-                <TabPanel value="3">
+                <TabPanel value={"3"}>
                   <Box className="menu_name">Following</Box>
                   <Box className="menu_content">
-                    <MemberFollowings actions_enabled={true} />
+                    <MemberFollowings
+                      mb_id={verifyMemberData?._id}
+                      setFollowRebuild={setFollowRebuild}
+                      followRebuild={followRebuild}
+                    />
                   </Box>
                 </TabPanel>
-                <TabPanel value="4">
+                <TabPanel value={"4"}>
                   <Box className="menu_name">Maqola yozish</Box>
                   <Box className="menu_content">
                     <TuiEditor />
                   </Box>
                 </TabPanel>
-                <TabPanel value="5">
+                <TabPanel value={"5"}>
                   <Box className="menu_name">Tanlangan Maqola</Box>
                   <Box className="menu_content">
-                    <TViewer text={"<div>Hello</div>"} />
+                    <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
                   </Box>
                 </TabPanel>
-                <TabPanel value="6">
+                <TabPanel value={"6"}>
                   <Box className="menu_name">Ma'lumotlarni o'zgartirish</Box>
                   <Box className="menu_content">
                     <MySettings />
@@ -207,7 +220,14 @@ const VisitMyPage = (props: any) => {
                 </a>
                 <Box className="info_box_item">
                   <div className="order_user_img">
-                    <img src="/restaurant/user2.png" alt="" />
+                    <img
+                      src={
+                        chosenMember?.mb_image
+                          ? `${serverApi}/${chosenMember?.mb_image}`
+                          : "/community/user1.svg"
+                      }
+                      alt=""
+                    />
                     <img
                       className="svg"
                       src="/restaurant/user_per.png"
@@ -215,8 +235,12 @@ const VisitMyPage = (props: any) => {
                     />
                   </div>
                   <div className="order_user_info">
-                    <span className="name">Jonny</span>
-                    <span className="user_prof">Foydalanuvchi</span>
+                    <span className="name">
+                      {chosenMember?.mb_nick.toLocaleUpperCase()}
+                    </span>
+                    <span className="user_prof">
+                      {chosenMember?.mb_type.toLowerCase()}
+                    </span>
                   </div>
                 </Box>
                 <Box className="user_media_box">
@@ -226,10 +250,14 @@ const VisitMyPage = (props: any) => {
                   <YouTube />
                 </Box>
                 <Box className="user_media_box">
-                  <p>Followers: 2</p>
-                  <p>Followings: 2</p>
+                  <p>Followers: {chosenMember?.mb_subscriber_cnt}</p>
+                  <p>Followings: {chosenMember?.mb_follow_cnt}</p>
                 </Box>
-                <p className="user_media_box">Salom Mening Ismim Jonny</p>
+                <p className="user_media_box">
+                  {chosenMember?.mb_description
+                    ? chosenMember?.mb_description
+                    : "Qo'shimcha ma'lumot kititilmagan"}
+                </p>
                 <Box className="maqola_yoz_sec">
                   <TabList
                     onChange={handleChange}
@@ -239,6 +267,7 @@ const VisitMyPage = (props: any) => {
                       value={"4"}
                       component={() => (
                         <Button
+                          {...props}
                           variant="contained"
                           onClick={() => setValue("4")}
                         >
