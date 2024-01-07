@@ -7,7 +7,7 @@ import {
   PaginationItem,
   Button,
 } from "@mui/material";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -39,8 +39,14 @@ import {
   setChosenSingleBoArticles,
 } from "./slice";
 import { Dispatch, createSelector } from "@reduxjs/toolkit";
-import { BoArticle } from "../../../types/boArticle";
+import { BoArticle, SearchMemberArticlesObj } from "../../../types/boArticle";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider,
+} from "../../../lib/sweetAlert";
+import CommunityApiService from "./../../apiServices/communityApiService";
+import MemberApiService from "../../apiServices/memberApiService";
 
 //redux slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -64,6 +70,7 @@ const MemberRetriever = createSelector(
 );
 
 const VisitMyPage = (props: any) => {
+  const { verifyMemberData } = props;
   const {
     setChosenMember,
     setChosenMemberBoArticles,
@@ -73,12 +80,53 @@ const VisitMyPage = (props: any) => {
     useSelector(MemberRetriever);
   // Initializations
   const [value, setValue] = useState("5");
+  const [memberArticleSearchObj, setMemberArticleSearchObj] =
+    useState<SearchMemberArticlesObj>({ mb_id: "none", page: 1, limit: 5 });
+  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+
+  useEffect(() => {
+    if (!localStorage.getItem("member_data")) {
+      sweetFailureProvider("Please login first", true, true);
+    }
+    const communityService = new CommunityApiService();
+    const memberService = new MemberApiService();
+
+    communityService
+      .getMemberCommunityArticles(memberArticleSearchObj)
+      .then((data) => setChosenMemberBoArticles(data))
+      .catch((err) => console.log(err));
+
+    memberService
+      .getChosenMember(verifyMemberData?._id)
+      .then((data) => setChosenMember(data))
+      .catch((err) => console.log(err));
+  }, [memberArticleSearchObj, articlesRebuild]);
 
   // Handler
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
   };
-  const handlePagination = (event: ChangeEvent<unknown>, page: number) => {};
+
+  const handlePaginationChange = (
+    event: ChangeEvent<unknown>,
+    page: number
+  ) => {
+    memberArticleSearchObj.page = page;
+    setMemberArticleSearchObj({ ...memberArticleSearchObj });
+  };
+
+  const renderChosenArticleHandler = async (art_id: string) => {
+    try {
+      const communityService = new CommunityApiService();
+      communityService
+        .getChosenArticle(art_id)
+        .then((data) => setChosenSingleBoArticle(data))
+        .catch((err) => console.log(err));
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <div className="my_page">
@@ -90,12 +138,20 @@ const VisitMyPage = (props: any) => {
                 <TabPanel value="1">
                   <Box className="menu_name">Mening Maqolalarim</Box>
                   <Box className="menu_content">
-                    <MemberPosts />
+                    <MemberPosts
+                      chosenMemberBoArticles={chosenMemberBoArticles}
+                      renderChosenArticleHandler={renderChosenArticleHandler}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                     <Stack className="pagination">
                       <Box className="bottom_box">
                         <Pagination
-                          count={3}
-                          page={1}
+                          count={
+                            memberArticleSearchObj.page >= 3
+                              ? memberArticleSearchObj.page + 1
+                              : 3
+                          }
+                          page={memberArticleSearchObj.page}
                           renderItem={(item) => (
                             <PaginationItem
                               components={{
@@ -106,7 +162,7 @@ const VisitMyPage = (props: any) => {
                               color="secondary"
                             />
                           )}
-                          onChange={handlePagination}
+                          onChange={handlePaginationChange}
                         />
                       </Box>
                     </Stack>

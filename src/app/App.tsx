@@ -1,5 +1,5 @@
 import React, { MouseEvent, useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import { RestaurantPage } from "./screens/RestaurantPage";
 import { OrdersPage } from "./screens/OrdersPage";
 import { CommunityPage } from "./screens/CommunityPage";
@@ -19,7 +19,6 @@ import NavbarRestaurant from "./components/header/restaurant";
 import NavbarOthers from "./components/header/others";
 import Footer from "./components/footer";
 import AuthenticationModal from "./components/auth/index";
-import assert from "assert";
 import MemberApiService from "./apiServices/memberApiService";
 import "../css/App.css";
 import "../css/navbar.css";
@@ -38,8 +37,7 @@ function App() {
   const [verifedMemberData, setVerifedMemberData] = useState<Member | null>(
     null
   );
-  const [path, setPath] = useState();
-  const main_path = window.location.pathname;
+  const { pathname } = useLocation();
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -148,11 +146,10 @@ function App() {
   };
 
   return (
-    <Router>
-      {main_path === "/" ? (
+    <>
+      {pathname === "/" ? (
         <NavbarHome
           verifedMemberData={verifedMemberData}
-          setPath={setPath}
           handleLoginOpen={handleLoginOpen}
           handleSignUpOpen={handleSignUpOpen}
           handleLogOutClick={handleLogOutClick}
@@ -167,10 +164,9 @@ function App() {
           onDeleteAll={onDeleteAll}
           setOrderRebuild={setOrderRebuild}
         />
-      ) : main_path.includes("/restaurants") ? (
+      ) : pathname.includes("/restaurants") ? (
         <NavbarRestaurant
           verifedMemberData={verifedMemberData}
-          setPath={setPath}
           handleLoginOpen={handleLoginOpen}
           handleLogOutClick={handleLogOutClick}
           handleCloseLogOut={handleCloseLogOut}
@@ -187,7 +183,6 @@ function App() {
       ) : (
         <NavbarOthers
           verifedMemberData={verifedMemberData}
-          setPath={setPath}
           handleLoginOpen={handleLoginOpen}
           handleLogOutClick={handleLogOutClick}
           handleCloseLogOut={handleCloseLogOut}
@@ -237,7 +232,7 @@ function App() {
         handleLoginOpen={handleLoginOpen}
         handleSignUpOpen={handleSignUpOpen}
       />
-    </Router>
+    </>
   );
 }
 

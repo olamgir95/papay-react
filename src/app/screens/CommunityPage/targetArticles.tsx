@@ -40,7 +40,7 @@ const TargetArticles = (props: any) => {
       {props.targetBoArticles?.map((article: BoArticle) => {
         const image = article?.art_image
           ? `${serverApi}/${article?.art_image}`
-          : "/community/user.png";
+          : "/community/default.svg";
         const formattedDate = dayjs(article?.createdAt).format(
           "YYYY-MM-DD HH:mm"
         );

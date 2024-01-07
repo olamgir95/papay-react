@@ -16,7 +16,6 @@ import Basket from "./basket";
 export default function NavbarRestaurant(props: any) {
   const {
     handleLoginOpen,
-    setPath,
     verifedMemberData,
     handleLogOutClick,
     handleCloseLogOut,
@@ -47,34 +46,34 @@ export default function NavbarRestaurant(props: any) {
             alignItems={"center"}
             className="navbar_links"
           >
-            <Box className="hover-line" onClick={setPath}>
+            <Box className="hover-line">
               <NavLink to="/">Home</NavLink>
             </Box>
-            <Box className="hover-line" onClick={setPath}>
+            <Box className="hover-line">
               <NavLink to="/restaurants" activeClassName="underline">
                 Restaurant
               </NavLink>
             </Box>
             {verifedMemberData ? (
-              <Box className="hover-line" onClick={setPath}>
+              <Box className="hover-line">
                 <NavLink to="/orders" activeClassName="underline">
                   Order
                 </NavLink>
               </Box>
             ) : null}
-            <Box className="hover-line" onClick={setPath}>
+            <Box className="hover-line">
               <NavLink to="/community" activeClassName="underline">
                 Community
               </NavLink>
             </Box>
             {verifedMemberData ? (
-              <Box className="hover-line" onClick={setPath}>
+              <Box className="hover-line">
                 <NavLink to="/member-page" activeClassName="underline">
                   My page
                 </NavLink>
               </Box>
             ) : null}
-            <Box className="hover-line" onClick={setPath}>
+            <Box className="hover-line">
               <NavLink to="/help" activeClassName="underline">
                 Help
               </NavLink>

@@ -65,7 +65,12 @@ export const TopRestaurants = (props: any) => {
           sx={{ mt: "45px" }}
         >
           <Box className="category_title">TOP Restaurantlar</Box>
-          <Stack sx={{ mt: "43px" }} flexDirection={"row"} m={"16px"}>
+          <Stack
+            sx={{ mt: "43px" }}
+            flexDirection={"row"}
+            m={"16px"}
+            gap={"20px"}
+          >
             {props.topRestaurants.map((vl: Restaurant) => {
               const imag_path = `${serverApi}/${vl.mb_image}`;
 
@@ -74,8 +79,7 @@ export const TopRestaurants = (props: any) => {
                   <Card
                     sx={{
                       minHeight: 430,
-                      minWidth: 317,
-                      mr: "35px",
+                      minWidth: 300,
                       cursor: "pointer",
                     }}
                     onClick={() => chosenRestaurantHandler(vl._id)}

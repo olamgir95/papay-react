@@ -59,7 +59,7 @@ export const BestRestaurants: FC<{ bestRestaurants: Restaurant[] }> = ({
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className="category_title">Zo'r Restaurantlar</Box>
 
-          <Stack sx={{ mt: "43px", flexDirection: "row" }}>
+          <Stack sx={{ mt: "43px", flexDirection: "row", gap: "20px" }}>
             {bestRestaurants.map((vl: Restaurant) => {
               const image_path = `${serverApi}/${vl.mb_image}`;
               return (
@@ -68,8 +68,7 @@ export const BestRestaurants: FC<{ bestRestaurants: Restaurant[] }> = ({
                     variant="outlined"
                     sx={{
                       maxHeight: 483,
-                      minWidth: 317,
-                      mr: "35px",
+                      minWidth: 300,
                       cursor: "pointer",
                     }}
                     onClick={() => chosenRestaurantHandler(vl._id)}
@@ -181,7 +180,7 @@ export const BestRestaurants: FC<{ bestRestaurants: Restaurant[] }> = ({
             sx={{ mt: "16px" }}
             flexDirection={"row"}
             justifyContent={"flex-end"}
-            width={"100%"}
+            width={"90%"}
             className="btn_all"
           >
             <Button
