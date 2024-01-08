@@ -7,7 +7,10 @@ import { Fab, Stack, TextField } from "@mui/material";
 import styled from "styled-components";
 import LoginIcon from "@mui/icons-material/Login";
 import { AuthenticationModalProps } from "../../../types/user";
-import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 import { Definer } from "../../../lib/Definer";
 import assert from "assert";
 import MemberApiService from "./../../apiServices/memberApiService";
@@ -71,7 +74,9 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       await memberApiService.loginRequest(login_data);
 
       handleLoginOpen();
+      await sweetTopSmallSuccessAlert("Log in successfully", 700, true);
       window.location.reload();
+      return true;
     } catch (err) {
       console.log(err);
       handleLoginOpen();
@@ -95,8 +100,10 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       const memberApiService = new MemberApiService();
       await memberApiService.signupRequest(signup_data);
 
+      await sweetTopSmallSuccessAlert("Sign up successfully", 700, true);
       handleSignUpOpen();
       window.location.reload();
+      return true;
     } catch (err) {
       console.log(err);
       sweetErrorHandling(err).then();

@@ -75,7 +75,7 @@ function App() {
     try {
       const memberApiService = new MemberApiService();
       const res = await memberApiService.logOutRequest();
-      await sweetTopSmallSuccessAlert("success", 700, true);
+      await sweetTopSmallSuccessAlert("Log out successfully", 700, true);
       return res;
     } catch (err) {
       console.log(err);
