@@ -333,6 +333,7 @@
 .my_page .follow_box .follower_img {
   width: 89px;
   height: 89px;
+  cursor: pointer;
 }
 
 .follow_box .user_prof {
@@ -360,6 +361,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  cursor: pointer;
 }
 
 .follower_content .follow_box .following_already {

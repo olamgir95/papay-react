@@ -43,6 +43,7 @@ import { useHistory } from "react-router-dom";
 import FollowApiService from "../../apiServices/followApiService";
 import { Definer } from "../../../lib/Definer";
 import assert from "assert";
+import { verifyMemberData } from "../../apiServices/verify";
 
 //redux slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -67,7 +68,8 @@ const MemberRetriever = createSelector(
 
 const VisitOtherPage = (props: any) => {
   const history = useHistory();
-  const { verifyMemberData, chosen_mb_id, chosen_art_id } = props;
+  const { chosen_mb_id, chosen_art_id } = props;
+
   const {
     setChosenMember,
     setChosenMemberBoArticles,

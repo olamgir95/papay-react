@@ -22,6 +22,7 @@ import assert from "assert";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { serverApi } from "../../../lib/config";
+import { useHistory } from "react-router-dom";
 
 //redux slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -40,7 +41,7 @@ const FollowingsRetriever = createSelector(
 
 const MemberFollowings = (props: any) => {
   const { setFollowRebuild, followRebuild, mb_id } = props;
-
+  const history = useHistory();
   const { setMemberFollowings } = actionDispatch(useDispatch());
   const { memberFollowings } = useSelector(FollowingsRetriever);
   const [followersSearchObj, setFollowersSearchObj] = useState<FollowSearchObj>(
@@ -79,6 +80,11 @@ const MemberFollowings = (props: any) => {
     setFollowersSearchObj({ ...followersSearchObj });
   };
 
+  const visitMemberHandler = (mb_id: string) => {
+    history.push(`/member-page/others?mb_id=${mb_id}`);
+    document.location.reload();
+  };
+
   return (
     <Stack className="follower_content">
       {memberFollowings.map((following) => {
@@ -87,12 +93,20 @@ const MemberFollowings = (props: any) => {
           : "/community/follow.png";
         return (
           <Box className="follow_box">
-            <Avatar alt="" src={image} className="follower_img" />
+            <Avatar
+              alt=""
+              src={image}
+              className="follower_img"
+              onClick={() => visitMemberHandler(following?.follow_id)}
+            />
             <Box className="user_prof">
               <span className="user">
                 {following?.follow_member_data?.mb_type}
               </span>
-              <span className="name">
+              <span
+                className="name"
+                onClick={() => visitMemberHandler(following?.follow_id)}
+              >
                 {following?.follow_member_data?.mb_nick}
               </span>
             </Box>
