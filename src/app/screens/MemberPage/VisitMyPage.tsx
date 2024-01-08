@@ -6,6 +6,7 @@ import {
   Pagination,
   PaginationItem,
   Button,
+  Tabs,
 } from "@mui/material";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import TabContext from "@mui/lab/TabContext";
@@ -281,10 +282,14 @@ const VisitMyPage = (props: any) => {
                 </Box>
               </Box>
               <Box>
-                <TabList
-                  onChange={handleChange}
-                  aria-label="lab API tabs example"
+                <Tabs
+                  orientation="vertical"
+                  variant="scrollable"
+                  value={value}
                   className="my_page_menu"
+                  onChange={handleChange}
+                  aria-label="Vertical tabs example"
+                  sx={{ borderRight: 1, borderColor: "divider", width: "95%" }}
                 >
                   <Tab
                     value={"1"}
@@ -352,7 +357,7 @@ const VisitMyPage = (props: any) => {
                       </div>
                     )}
                   />
-                </TabList>
+                </Tabs>
               </Box>
             </Stack>
           </Stack>

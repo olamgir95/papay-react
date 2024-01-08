@@ -189,6 +189,7 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
+  width: 98%;
   border-radius: 16px;
   background: #fff;
   box-shadow: 0px 4px 16px 0px rgba(242, 189, 87, 0.04) inset,
@@ -202,9 +203,6 @@
   font-weight: 600;
   cursor: pointer;
   line-height: normal;
-}
-.css-1aquho2-MuiTabs-indicator {
-  display: none;
 }
 
 .my_page .post_content .all_article_box {
