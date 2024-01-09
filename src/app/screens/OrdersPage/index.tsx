@@ -1,5 +1,5 @@
 import { Box, Container, Stack, Tab } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import FinishedOrders from "./FinishedOrders";
@@ -14,7 +14,7 @@ import {
   retrieveFinishedOrders,
 } from "./selector";
 import { Order } from "../../../types/order";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import OrderApiService from "../../apiServices/orderApiService";
 import { verifyMemberData } from "../../apiServices/verify";
 

@@ -7,8 +7,6 @@ import { LoginPage } from "./screens/LoginPage";
 import { MemberPage } from "./screens/MemberPage";
 import { HelpPage } from "./screens/HeplPage";
 import { HomePage } from "./screens/HomePage";
-import { serverApi } from "../lib/config";
-import { Member } from "../types/user";
 import {
   sweetFailureProvider,
   sweetTopSmallSuccessAlert,
@@ -31,12 +29,10 @@ import "../css/member.css";
 import "../css/help.css";
 import { CartItem } from "../types/others";
 import { Product } from "../types/product";
+import "./apiServices/verify";
 
 function App() {
   //INITIALIZATION
-  const [verifedMemberData, setVerifedMemberData] = useState<Member | null>(
-    null
-  );
   const { pathname } = useLocation();
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -46,20 +42,6 @@ function App() {
   const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
   const [orderRebuild, setOrderRebuild] = useState<Date>(new Date());
-  console.log("cart", cartItems);
-
-  useEffect(() => {
-    const memberDataJson: any = localStorage.getItem("member_data")
-      ? localStorage.getItem("member_data")
-      : null;
-    const member_data = memberDataJson ? JSON.parse(memberDataJson) : null;
-    if (member_data) {
-      member_data.mb_image = member_data.mb_image
-        ? `${serverApi}/${member_data.mb_image}`.replace(/\\/g, "/")
-        : "/auth/default_user.svg";
-      setVerifedMemberData(member_data);
-    }
-  }, [signUpOpen, loginOpen]);
 
   //HANDLER//
   const handleSignUpOpen = () => setSignUpOpen(!signUpOpen);
@@ -149,7 +131,6 @@ function App() {
     <>
       {pathname === "/" ? (
         <NavbarHome
-          verifedMemberData={verifedMemberData}
           handleLoginOpen={handleLoginOpen}
           handleSignUpOpen={handleSignUpOpen}
           handleLogOutClick={handleLogOutClick}
@@ -166,7 +147,6 @@ function App() {
         />
       ) : pathname.includes("/restaurants") ? (
         <NavbarRestaurant
-          verifedMemberData={verifedMemberData}
           handleLoginOpen={handleLoginOpen}
           handleLogOutClick={handleLogOutClick}
           handleCloseLogOut={handleCloseLogOut}
@@ -182,7 +162,6 @@ function App() {
         />
       ) : (
         <NavbarOthers
-          verifedMemberData={verifedMemberData}
           handleLoginOpen={handleLoginOpen}
           handleLogOutClick={handleLogOutClick}
           handleCloseLogOut={handleCloseLogOut}
@@ -206,7 +185,6 @@ function App() {
           <OrdersPage
             orderRebuild={orderRebuild}
             setOrderRebuild={setOrderRebuild}
-            verifyMemberData={verifedMemberData}
           />
         </Route>
         <Route path="/community">
@@ -216,7 +194,7 @@ function App() {
           <LoginPage />
         </Route>
         <Route path="/member-page">
-          <MemberPage verifyMemberData={verifedMemberData} />
+          <MemberPage />
         </Route>
         <Route path="/help">
           <HelpPage />

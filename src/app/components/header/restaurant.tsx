@@ -9,14 +9,13 @@ import {
   Stack,
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { Member } from "../../../types/user";
 import { Logout } from "@mui/icons-material";
 import Basket from "./basket";
+import { verifyMemberData } from "../../apiServices/verify";
 
 export default function NavbarRestaurant(props: any) {
   const {
     handleLoginOpen,
-    verifedMemberData,
     handleLogOutClick,
     handleCloseLogOut,
     anchorEl,
@@ -54,7 +53,7 @@ export default function NavbarRestaurant(props: any) {
                 Restaurant
               </NavLink>
             </Box>
-            {verifedMemberData ? (
+            {verifyMemberData ? (
               <Box className="hover-line">
                 <NavLink to="/orders" activeClassName="underline">
                   Order
@@ -66,7 +65,7 @@ export default function NavbarRestaurant(props: any) {
                 Community
               </NavLink>
             </Box>
-            {verifedMemberData ? (
+            {verifyMemberData ? (
               <Box className="hover-line">
                 <NavLink to="/member-page" activeClassName="underline">
                   My page
@@ -86,9 +85,9 @@ export default function NavbarRestaurant(props: any) {
               onDeleteAll={onDeleteAll}
               setOrderRebuild={setOrderRebuild}
             />
-            {verifedMemberData ? (
+            {verifyMemberData ? (
               <img
-                src={verifedMemberData.mb_image}
+                src={verifyMemberData.mb_image}
                 style={{
                   width: "48px",
                   height: "48px",

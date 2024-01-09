@@ -88,7 +88,7 @@ const VisitMyPage = (props: any) => {
   const [followRebuild, setFollowRebuild] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!localStorage.getItem("member_data")) {
+    if (!verifyMemberData) {
       sweetFailureProvider("Please login first", true, true);
     }
     const communityService = new CommunityApiService();

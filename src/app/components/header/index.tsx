@@ -12,12 +12,12 @@ import { Member } from "../../../types/user";
 import { Logout } from "@mui/icons-material";
 import Basket from "./basket";
 import { CartItem } from "../../../types/others";
+import { verifyMemberData } from "../../apiServices/verify";
 
 export default function NavbarHome({
   handleLoginOpen,
   handleSignUpOpen,
   handleLogoutRequest,
-  verifedMemberData,
   handleLogOutClick,
   handleCloseLogOut,
   anchorEl,
@@ -31,7 +31,6 @@ export default function NavbarHome({
 }: {
   handleLoginOpen: () => void;
   handleSignUpOpen: () => void;
-  verifedMemberData: Member | null;
   handleLogOutClick: any;
   handleCloseLogOut: any;
   anchorEl: null | HTMLElement;
@@ -71,7 +70,7 @@ export default function NavbarHome({
                 Restaurant
               </NavLink>
             </Box>
-            {verifedMemberData ? (
+            {verifyMemberData ? (
               <Box className="hover-line">
                 <NavLink to="/orders" activeClassName="underline">
                   Order
@@ -83,7 +82,7 @@ export default function NavbarHome({
                 Community
               </NavLink>
             </Box>
-            {verifedMemberData ? (
+            {verifyMemberData ? (
               <Box className="hover-line">
                 <NavLink to="/member-page" activeClassName="underline">
                   My page
@@ -103,9 +102,9 @@ export default function NavbarHome({
               onDeleteAll={onDeleteAll}
               setOrderRebuild={setOrderRebuild}
             />
-            {verifedMemberData ? (
+            {verifyMemberData ? (
               <img
-                src={verifedMemberData.mb_image}
+                src={verifyMemberData.mb_image}
                 style={{
                   width: "48px",
                   height: "48px",
@@ -183,7 +182,7 @@ export default function NavbarHome({
               The Authentic Restaurant & Cafe
             </Box>
             <Box className="timeline_service">24 soat xizmatingizdamiz.</Box>
-            {!verifedMemberData ? (
+            {!verifyMemberData ? (
               <Box sx={{ mt: "90px" }}>
                 <Button
                   variant="contained"

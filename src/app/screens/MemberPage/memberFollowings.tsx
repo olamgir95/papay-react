@@ -23,6 +23,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
+import { verifyMemberData } from "../../apiServices/verify";
 
 //redux slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -59,7 +60,7 @@ const MemberFollowings = (props: any) => {
   const unSubscribeHandler = async (e: any, id: string) => {
     try {
       e.stopPropagation();
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
 
       const followingService = new FollowApiService();
       await followingService.unsubscribe(id);

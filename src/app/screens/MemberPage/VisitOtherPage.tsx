@@ -151,7 +151,7 @@ const VisitOtherPage = (props: any) => {
 
   const subscribeHandler = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
 
       const followService = new FollowApiService();
       await followService.subscribe(e.target.value);
@@ -166,7 +166,7 @@ const VisitOtherPage = (props: any) => {
 
   const unSubscribeHandler = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
 
       const followingService = new FollowApiService();
       await followingService.unsubscribe(e.target.value);
@@ -307,7 +307,7 @@ const VisitOtherPage = (props: any) => {
                             className="btn_cancel"
                             onClick={unSubscribeHandler}
                           >
-                            Bekor Qilish
+                            Unfollow
                           </Button>
                         )}
                       />
@@ -321,7 +321,7 @@ const VisitOtherPage = (props: any) => {
                             className="btn_follow"
                             onClick={subscribeHandler}
                           >
-                            Follow Qilish
+                            Follow
                           </Button>
                         )}
                       />

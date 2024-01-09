@@ -18,6 +18,7 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import { verifyMemberData } from "../../apiServices/verify";
 
 export const BestRestaurants: FC<{ bestRestaurants: Restaurant[] }> = ({
   bestRestaurants,
@@ -32,7 +33,7 @@ export const BestRestaurants: FC<{ bestRestaurants: Restaurant[] }> = ({
 
   const targetLikeBest = async (e: any, id: string) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
       const memberService = new MemberApiService(),
         like_result: any = await memberService.memberLikeTarget({
           like_ref_id: id,

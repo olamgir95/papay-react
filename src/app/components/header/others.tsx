@@ -12,10 +12,10 @@ import { Logout } from "@mui/icons-material";
 import { Member } from "../../../types/user";
 import Basket from "./basket";
 import { CartItem } from "../../../types/others";
+import { verifyMemberData } from "../../apiServices/verify";
 
 export default function NavbarOthers({
   handleLoginOpen,
-  verifedMemberData,
   handleLogOutClick,
   handleCloseLogOut,
   handleLogoutRequest,
@@ -29,7 +29,6 @@ export default function NavbarOthers({
   setOrderRebuild,
 }: {
   handleLoginOpen: () => void;
-  verifedMemberData: Member | null;
   handleLogOutClick: any;
   handleCloseLogOut: any;
   anchorEl: null | HTMLElement;
@@ -67,7 +66,7 @@ export default function NavbarOthers({
                 Restaurant
               </NavLink>
             </Box>
-            {verifedMemberData ? (
+            {verifyMemberData ? (
               <Box className="hover-line">
                 <NavLink to="/orders" activeClassName="underline">
                   Order
@@ -79,7 +78,7 @@ export default function NavbarOthers({
                 Community
               </NavLink>
             </Box>
-            {verifedMemberData ? (
+            {verifyMemberData ? (
               <Box className="hover-line">
                 <NavLink to="/member-page" activeClassName="underline">
                   My page
@@ -99,9 +98,9 @@ export default function NavbarOthers({
               onDeleteAll={onDeleteAll}
               setOrderRebuild={setOrderRebuild}
             />
-            {verifedMemberData ? (
+            {verifyMemberData ? (
               <img
-                src={verifedMemberData.mb_image}
+                src={verifyMemberData.mb_image}
                 style={{
                   width: "48px",
                   height: "48px",
