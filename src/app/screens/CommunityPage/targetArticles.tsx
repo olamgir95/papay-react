@@ -47,7 +47,11 @@ const TargetArticles = (props: any) => {
         );
 
         return (
-          <Link className="all_article_box" href={``} key={article._id}>
+          <Link
+            className="all_article_box"
+            href={`/member-page/other?mb_id=${article?.mb_id}&art_id=${article?._id}`}
+            key={article?._id}
+          >
             <Box className="all_article_img">
               <img src={image} alt="" />
             </Box>
