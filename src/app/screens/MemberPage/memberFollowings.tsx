@@ -82,7 +82,7 @@ const MemberFollowings = (props: any) => {
   };
 
   const visitMemberHandler = (mb_id: string) => {
-    history.push(`/member-page/others?mb_id=${mb_id}`);
+    history.push(`/member-page/other?mb_id=${mb_id}`);
     document.location.reload();
   };
 

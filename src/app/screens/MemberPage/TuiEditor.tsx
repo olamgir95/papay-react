@@ -16,7 +16,10 @@ import { BoArticleInput } from "../../../types/boArticle";
 import { serverApi } from "../../../lib/config";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
-import { sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 import { useHistory } from "react-router-dom";
 
 const TuiEditor = (props: any) => {
@@ -87,6 +90,7 @@ const TuiEditor = (props: any) => {
       setArticlesRebuild(new Date());
     } catch (err) {
       console.log(`ERROR ::: handleRegisterButton, ${err}`);
+      sweetErrorHandling(err).then();
     }
   };
 

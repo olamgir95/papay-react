@@ -226,14 +226,7 @@ const VisitMyPage = (props: any) => {
                 </a>
                 <Box className="info_box_item">
                   <div className="order_user_img">
-                    <img
-                      src={
-                        chosenMember?.mb_image
-                          ? `${serverApi}/${chosenMember?.mb_image}`
-                          : "/community/user1.svg"
-                      }
-                      alt=""
-                    />
+                    <img src={verifyMemberData?.mb_image} alt="" />
                     <img
                       className="svg"
                       src="/restaurant/user_per.png"

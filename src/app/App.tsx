@@ -1,5 +1,5 @@
 import React, { MouseEvent, useEffect, useState } from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import { RestaurantPage } from "./screens/RestaurantPage";
 import { OrdersPage } from "./screens/OrdersPage";
 import { CommunityPage } from "./screens/CommunityPage";
@@ -33,6 +33,7 @@ import "./apiServices/verify";
 
 function App() {
   //INITIALIZATION
+  const history = useHistory();
   const { pathname } = useLocation();
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -58,6 +59,8 @@ function App() {
       const memberApiService = new MemberApiService();
       const res = await memberApiService.logOutRequest();
       await sweetTopSmallSuccessAlert("Log out successfully", 700, true);
+      history.push("/");
+
       return res;
     } catch (err) {
       console.log(err);
