@@ -13,12 +13,9 @@ import {
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
 import { verifyMemberData } from "../../apiServices/verify";
-import { useHistory } from "react-router-dom";
 
 const TargetArticles = (props: any) => {
-  const history = useHistory();
   const { setArticlesRebuild } = props;
-  const refs: any = useRef([]);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const targetLikeHandler = async (e: any) => {

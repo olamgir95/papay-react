@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -41,40 +41,40 @@ const ModalImg = styled.img`
 export default function AuthenticationModal(props: AuthenticationModalProps) {
   const { signUpOpen, loginOpen, handleLoginOpen, handleSignUpOpen } = props;
   const classes = useStyles();
-  let mb_nick: string = "",
-    mb_phone: number = 0,
-    mb_password: string = "";
+  const [mbNick, setMbNick] = useState<string>("");
+  const [mbPhone, setMbPhone] = useState<number>(0);
+  const [mbPassword, setMbPassword] = useState<string>("");
 
   //handlers//
 
   const handleUserName = (e: any) => {
-    mb_nick = e.target.value;
+    setMbNick(e.target.value);
   };
+
   const handlePhone = (e: any) => {
-    if (e.target) {
-      mb_phone = e.target.value;
-    }
+    setMbPhone(Number(e.target.value));
   };
+
   const handlePassword = (e: any) => {
-    mb_password = e.target.value;
+    setMbPassword(e.target.value);
   };
 
   const handleLoginRequest = async () => {
     try {
-      const is_full_filled = mb_nick !== "" && mb_password !== "";
+      const is_full_filled = mbNick !== "" && mbPassword !== "";
 
       assert.ok(is_full_filled, Definer.input_err1);
 
       const login_data = {
-        mb_nick: mb_nick,
-        mb_password: mb_password,
+        mb_nick: mbNick,
+        mb_password: mbPassword,
       };
 
       const memberApiService = new MemberApiService();
       await memberApiService.loginRequest(login_data);
 
-      handleLoginOpen();
       await sweetTopSmallSuccessAlert("Log in successfully", 700, true);
+      handleLoginOpen();
       window.location.reload();
       return true;
     } catch (err) {
@@ -87,14 +87,15 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
   const handleSignupRequest = async () => {
     try {
       const is_full_filled =
-        mb_nick !== "" && mb_password !== "" && mb_phone !== 0;
-
+        mbNick !== "" && mbPassword !== "" && mbPhone !== 0;
       assert.ok(is_full_filled, Definer.input_err1);
 
+      assert.ok(Number(mbPhone), "Please enter only number for phone number");
+
       const signup_data = {
-        mb_nick: mb_nick,
-        mb_password: mb_password,
-        mb_phone: mb_phone,
+        mb_nick: mbNick,
+        mb_password: mbPassword,
+        mb_phone: mbPhone,
       };
 
       const memberApiService = new MemberApiService();
@@ -106,6 +107,20 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       return true;
     } catch (err) {
       console.log(err);
+      handleSignUpOpen();
+      sweetErrorHandling(err).then();
+    }
+  };
+
+  const passwordKeyHandler = (e: any) => {
+    try {
+      if (e.key === "Enter" && signUpOpen) {
+        handleSignupRequest().then();
+      } else if (e.key === "Enter" && loginOpen) {
+        handleLoginRequest().then();
+      }
+    } catch (err: any) {
+      console.log(`getKeyHandler, ERROR: ${err}`);
       sweetErrorHandling(err).then();
     }
   };
@@ -149,7 +164,8 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
                 variant="outlined"
               />
               <TextField
-                onChange={handlePassword}
+                onChange={(e) => handlePassword(e)}
+                onKeyDown={passwordKeyHandler}
                 id="outlined-basic"
                 label="password"
                 variant="outlined"
@@ -205,6 +221,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
               />
               <TextField
                 onChange={handlePassword}
+                onKeyDown={passwordKeyHandler}
                 id="outlined-basic"
                 label="password"
                 variant="outlined"

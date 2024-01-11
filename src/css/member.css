@@ -592,7 +592,7 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.toastui-editor-defaultUI {
+.my_page .toastui-editor-defaultUI {
   width: 861px;
   background-color: white;
 }
@@ -603,18 +603,18 @@
   border-radius: 10px;
 }
 
-.tviewer .toastui-editor-contents {
+.my_page .tviewer .toastui-editor-contents {
   width: 800px;
   /* height: 494px; */
   padding: 40px;
 }
 
-.tviewer .toastui-editor-contents p {
+.my_page .tviewer .toastui-editor-contents p {
   font-family: Poppins;
   font-size: 15px;
 }
 
-.tviewer .toastui-editor-contents div div {
+.my_page .tviewer .toastui-editor-contents div div {
   color: #000;
   font-family: Poppins;
   font-size: 18px;
@@ -623,7 +623,7 @@
   line-height: normal;
 }
 
-.toastui-editor-contents img {
+.my_page .toastui-editor-contents img {
   max-width: 70%;
   margin-top: 20px;
 }

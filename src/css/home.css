@@ -389,7 +389,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 }
 .homepage .article_main .article_container {
   width: 568px;
@@ -412,17 +411,18 @@
 .homepage .article_main .article_box {
   margin-top: 18px;
   width: 100%;
-  height: auto;
+  height: 150px;
   display: flex;
   border-radius: 20px;
   flex-direction: row;
   background: #fff;
+  overflow: hidden;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
 }
 .homepage .article_main .article_news {
   margin-top: 18px;
   width: 100%;
-  height: 380px;
+  height: 350px;
   display: flex;
   border-radius: 20px;
   flex-direction: column;
@@ -434,24 +434,44 @@
 }
 
 .article_news div {
-  height: 80%;
+  height: 90%;
   width: 100%;
 }
 
 .article_news img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  width: 300px;
+  height: 300px;
+  object-fit: fill;
+}
+
+.homepage .article_main .two {
+  margin-top: 20px;
+}
+
+.toastui-editor-contents p {
+  background-color: white;
+  font-family: "Poppins";
+  padding: 20px;
+  height: 300px;
+}
+
+.toastui-editor-contents img {
+  border-radius: 20px;
+  height: 90%;
 }
 
 .homepage .article_container .article_img {
-  background: url("/public/restaurant/recom.png");
+  height: 150px;
   width: 150px;
-  height: auto;
   border-radius: 0px;
   background-size: cover;
-  object-fit: contain;
+  object-fit: cover;
   background-repeat: no-repeat;
+  background-position: center;
+}
+
+.homepage .article_container .article_img img {
+  height: 100%;
 }
 
 .article_container .article_info {
@@ -477,9 +497,13 @@
   align-items: center;
 }
 
+.article_main_info .article_author .css-1pqm26d-MuiAvatar-img {
+  object-fit: fill;
+}
+
 .homepage .article_container .article_author img {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
 }
 
 .article_author .author_name {
