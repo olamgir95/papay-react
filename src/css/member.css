@@ -220,6 +220,7 @@
   background: #182226;
   height: 175px;
   padding: 10px 0 5px 0;
+  cursor: pointer;
 }
 .all_article_box .all_article_container .user_prof {
   display: flex;

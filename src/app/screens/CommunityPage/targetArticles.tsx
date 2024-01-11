@@ -13,8 +13,10 @@ import {
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
 import { verifyMemberData } from "../../apiServices/verify";
+import { useHistory } from "react-router-dom";
 
 const TargetArticles = (props: any) => {
+  const history = useHistory();
   const { setArticlesRebuild } = props;
   const refs: any = useRef([]);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -36,6 +38,7 @@ const TargetArticles = (props: any) => {
       sweetErrorHandling(err).then();
     }
   };
+
   return (
     <Stack>
       {props.targetBoArticles?.map((article: BoArticle) => {
@@ -57,7 +60,14 @@ const TargetArticles = (props: any) => {
             </Box>
             <Box className="all_article_container">
               <Box className="user_prof">
-                <img src="restaurant/user_per.png" alt="" />
+                <img
+                  src={
+                    article?.member_data?.mb_image
+                      ? `${serverApi}/${article?.member_data?.mb_image}`
+                      : "restaurant/user_per.png"
+                  }
+                  alt=""
+                />
                 <span>{article?.member_data?.mb_nick}</span>
               </Box>
               <Box className="evaluation">

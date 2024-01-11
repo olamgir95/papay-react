@@ -15,11 +15,11 @@ ReactDOM.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Router>
-          <SocketContext.Provider value={socket}>
+        <SocketContext.Provider value={socket}>
+          <Router>
             <App />
-          </SocketContext.Provider>
-        </Router>
+          </Router>
+        </SocketContext.Provider>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,
