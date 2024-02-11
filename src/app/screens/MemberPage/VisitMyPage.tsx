@@ -49,7 +49,6 @@ import {
 import CommunityApiService from "./../../apiServices/communityApiService";
 import MemberApiService from "../../apiServices/memberApiService";
 import { verifyMemberData } from "../../apiServices/verify";
-import { serverApi } from "../../../lib/config";
 
 //redux slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -94,6 +93,7 @@ const VisitMyPage = (props: any) => {
     const communityService = new CommunityApiService();
     const memberService = new MemberApiService();
 
+    console.log("dataaaaaaaaaaaaaa", memberArticleSearchObj);
     communityService
       .getMemberCommunityArticles(memberArticleSearchObj)
       .then((data) => setChosenMemberBoArticles(data))

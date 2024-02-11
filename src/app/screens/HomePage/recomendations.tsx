@@ -171,7 +171,7 @@ export default function Recommendations() {
               <Box className="article_category">Mashxurlar</Box>
               {newsBoArticles?.map((article: BoArticle) => {
                 return (
-                  <Box className="article_news">
+                  <Box className="article_news" key={article?._id}>
                     <TViewer chosenSingleBoArticle={article} />
                   </Box>
                 );

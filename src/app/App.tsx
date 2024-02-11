@@ -69,6 +69,8 @@ function App() {
   };
 
   const onAdd = (product: Product) => {
+    console.log("product", product);
+
     const exist: any = cartItems?.find(
       (item: CartItem) => item?._id === product?._id
     );
@@ -82,6 +84,7 @@ function App() {
       );
       setCartItems(cart_updated);
       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+      console.log("cart", cartItems);
     } else {
       const new_item: CartItem = {
         _id: product._id,
@@ -90,6 +93,8 @@ function App() {
         image: product?.product_images[0],
         name: product.product_name,
       };
+      console.log("cartitems", cartItems);
+
       const cart_updated = [...cartItems, { ...new_item }];
       console.log("new", cart_updated);
 
@@ -97,6 +102,7 @@ function App() {
       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
     }
   };
+  console.log("new", cartItems);
   const onRemove = (item: CartItem) => {
     const item_data: any = cartItems?.find(
       (vl: CartItem) => vl._id === item._id

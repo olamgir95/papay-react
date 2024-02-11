@@ -28,8 +28,8 @@ export default function Basket(props: any) {
       value + curValue?.price * curValue?.quantity,
     0
   );
-  const shoppingPrice = itemsPrice > 100 ? 0 : 2;
-  const totalPrice = itemsPrice + shoppingPrice;
+  const shippingPrice = itemsPrice > 100 ? 0 : 2;
+  const totalPrice = itemsPrice + shippingPrice;
   console.log(itemsPrice);
 
   /** HANDLERS **/
@@ -153,7 +153,7 @@ export default function Basket(props: any) {
           {cartItems?.length > 0 ? (
             <Box className={"to_order_box"}>
               <span className={"price_text"}>
-                Jami: ${totalPrice} ({itemsPrice} + {shoppingPrice})
+                Jami: ${totalPrice} ({itemsPrice} + {shippingPrice})
               </span>
               <Button
                 onClick={processOrderHandler}
